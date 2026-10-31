@@ -39,12 +39,16 @@ while IFS='|' read -r sha subj ts; do
         --content "{\"text\":\"$EMOJI ZenSwarm $action: $tid ($ts_date)\\n$subj\"}" \
         >/dev/null 2>&1 || true
 
-    # Base 任务流水 upsert (状态同步)
+    # Base 任务流水 upsert (状态同步, 幂等: 先 search 已有 record_id)
     STATE_MAP="done"; [ "$action" = "fail" ] && STATE_MAP="fail"; [ "$action" = "create" ] && STATE_MAP="draft"
-    lark-cli base +record-upsert --as user --base-token "$BASE_TOKEN" \
+    REC_ID=$(lark-cli base +record-search --as user --base-token "$BASE_TOKEN" \
+        --table-id "任务流水" --keyword "$tid" --search-field "task_id" 2>/dev/null \
+        | grep -oE 'rec[a-z0-9]+' | head -1 || true)
+    UPSERT_ARGS=(base +record-upsert --as user --base-token "$BASE_TOKEN" \
         --table-id "任务流水" \
-        --json "{\"task_id\":\"$tid\",\"状态\":[\"$STATE_MAP\"]}" \
-        >/dev/null 2>&1 || true
+        --json "{\"task_id\":\"$tid\",\"状态\":[\"$STATE_MAP\"]}")
+    [ -n "$REC_ID" ] && UPSERT_ARGS+=(--record-id "$REC_ID")
+    lark-cli "${UPSERT_ARGS[@]}" >/dev/null 2>&1 || true
 
     SENT=$((SENT+1))
     [ "$ts" -gt "$MAX_TS" ] && MAX_TS="$ts"
