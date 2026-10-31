@@ -1,16 +1,16 @@
 {
   "agent_id": "docs-agent",
-  "autonomy_scope": "project",
-  "capability_tier": "specialist",
+  "autonomy_scope": "task",
+  "capability_tier": "consultant",
   "description": "文档编写 Agent — 技术文档、API 文档、用户指南、架构文档",
   "generated_from": {
-    "schema_content_hash": "7311dd063551c656",
+    "schema_content_hash": "ee947225abf57fc1",
     "source": "OriginForce/docs/team-schema.yaml"
   },
-  "level": "L3",
+  "level": "L2",
   "name": "文档编写 Agent",
   "role": "技术文档、API 文档、用户指南、架构文档",
-  "runtime": "claude-code",
+  "runtime": "hermes",
   "runtime_bindings": {
     "agent_id": "docs-agent",
     "as_definition": "AgentSwarm/agents/definitions/docs-agent.md",

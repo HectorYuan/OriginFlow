@@ -69,6 +69,7 @@ DEVIATIONS = {
     ("test-agent", "runtime"): "运行真相 hermes (definitions 10-19 起), schema 已对齐",
     ("monitor-agent", "runtime"): "运行真相 hermes (definitions 10-19 起), schema 已对齐",
     ("system-navigator", "runtime"): "运行真相 hermes (definitions 10-19 起), schema 已对齐",
+    ("docs-agent", "runtime"): "运行真相 hermes (definitions 10-19 起), schema 已对齐",
 }
 
 ERRORS: list[str] = []
