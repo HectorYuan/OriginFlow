@@ -1,0 +1,11 @@
+[Unit]
+Description=ZenSwarm→飞书桥 (S3b)
+
+[Service]
+Type=oneshot
+ExecStart=/home/hector/DevSpace/OriginFlow/scripts/zs_feishu_bridge.sh
+TimeoutStartSec=600
+Environment=ZS_ROOT=/home/hector/DevSpace/ZenSwarm
+Environment=BASE_TOKEN=O2zCbIQDaasdHysET8FcH8oCn6f
+Environment=CHAT_ID=oc_868c2b79a4bfa24a18695350519aa009
+Environment=STATE=/home/hector/DevSpace/ZenSwarm/.team/bus-bridge.state

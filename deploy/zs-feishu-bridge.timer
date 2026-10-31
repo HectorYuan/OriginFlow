@@ -1,0 +1,9 @@
+[Unit]
+Description=ZenSwarm→飞书桥 (task done/fail 播报+Base 同步, 5min, AS-PROP-20261025 S3b)
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
