@@ -1,0 +1,30 @@
+{
+  "agent_id": "solution-expert",
+  "autonomy_scope": "project",
+  "capability_tier": "specialist",
+  "description": "解决方案专家 — AI/数智化转型全栈咨询顾问",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L3",
+  "name": "解决方案专家",
+  "role": "AI/数智化转型全栈咨询顾问",
+  "runtime": "pi",
+  "runtime_bindings": {
+    "agent_id": "solution-expert",
+    "as_definition": "AgentSwarm/agents/definitions/solution-expert.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "solution-expert @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/solution-expert.json",
+    "zcode_subagent": "solution-expert",
+    "zs_agent_toml": "ZenSwarm/.team/agents/solution-expert.toml"
+  },
+  "skills": [
+    "consult",
+    "design",
+    "proposal"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}

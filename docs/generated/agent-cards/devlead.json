@@ -1,0 +1,30 @@
+{
+  "agent_id": "devlead",
+  "autonomy_scope": "project",
+  "capability_tier": "expert",
+  "description": "DevLead 编排 Agent — 跨团队协调、方案评审与升级决策",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L4",
+  "name": "DevLead 编排 Agent",
+  "role": "跨团队协调、方案评审与升级决策",
+  "runtime": "claude-code",
+  "runtime_bindings": {
+    "agent_id": "devlead",
+    "as_definition": "AgentSwarm/agents/definitions/devlead.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "devlead @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/devlead.json",
+    "zcode_subagent": "devlead",
+    "zs_agent_toml": "ZenSwarm/.team/agents/devlead.toml"
+  },
+  "skills": [
+    "orchestrate",
+    "review",
+    "escalate"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}

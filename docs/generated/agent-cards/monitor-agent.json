@@ -1,0 +1,29 @@
+{
+  "agent_id": "monitor-agent",
+  "autonomy_scope": "task",
+  "capability_tier": "consultant",
+  "description": "监控与告警 — EventBus 事件监控 + 异常检测",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L2",
+  "name": "监控与告警",
+  "role": "EventBus 事件监控 + 异常检测",
+  "runtime": "hermes",
+  "runtime_bindings": {
+    "agent_id": "monitor-agent",
+    "as_definition": "AgentSwarm/agents/definitions/monitor-agent.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "monitor-agent @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/monitor-agent.json",
+    "zcode_subagent": "monitor-agent",
+    "zs_agent_toml": "ZenSwarm/.team/agents/monitor-agent.toml"
+  },
+  "skills": [
+    "monitor",
+    "alert"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}

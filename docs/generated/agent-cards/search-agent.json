@@ -1,0 +1,29 @@
+{
+  "agent_id": "search-agent",
+  "autonomy_scope": "task",
+  "capability_tier": "consultant",
+  "description": "统一搜索入口 — 代码/文档/上下文/知识图谱/网络搜索",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L2",
+  "name": "统一搜索入口",
+  "role": "代码/文档/上下文/知识图谱/网络搜索",
+  "runtime": "hermes",
+  "runtime_bindings": {
+    "agent_id": "search-agent",
+    "as_definition": "AgentSwarm/agents/definitions/search-agent.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "search-agent @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/search-agent.json",
+    "zcode_subagent": "search-agent",
+    "zs_agent_toml": "ZenSwarm/.team/agents/search-agent.toml"
+  },
+  "skills": [
+    "search",
+    "context"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}

@@ -1,0 +1,29 @@
+{
+  "agent_id": "test-agent",
+  "autonomy_scope": "task",
+  "capability_tier": "consultant",
+  "description": "测试 — 单元/集成/E2E/性能",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L2",
+  "name": "测试",
+  "role": "单元/集成/E2E/性能",
+  "runtime": "hermes",
+  "runtime_bindings": {
+    "agent_id": "test-agent",
+    "as_definition": "AgentSwarm/agents/definitions/test-agent.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "test-agent @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/test-agent.json",
+    "zcode_subagent": "test-agent",
+    "zs_agent_toml": "ZenSwarm/.team/agents/test-agent.toml"
+  },
+  "skills": [
+    "test",
+    "e2e"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}

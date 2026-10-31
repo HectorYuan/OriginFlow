@@ -1,0 +1,30 @@
+{
+  "agent_id": "backend-agent",
+  "autonomy_scope": "project",
+  "capability_tier": "specialist",
+  "description": "后端开发 — FastAPI/DB/API",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L3",
+  "name": "后端开发",
+  "role": "FastAPI/DB/API",
+  "runtime": "claude-code",
+  "runtime_bindings": {
+    "agent_id": "backend-agent",
+    "as_definition": "AgentSwarm/agents/definitions/backend-agent.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "backend-agent @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/backend-agent.json",
+    "zcode_subagent": "backend-agent",
+    "zs_agent_toml": "ZenSwarm/.team/agents/backend-agent.toml"
+  },
+  "skills": [
+    "code",
+    "test",
+    "review"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}

@@ -1,0 +1,30 @@
+{
+  "agent_id": "qa-agent",
+  "autonomy_scope": "project",
+  "capability_tier": "specialist",
+  "description": "质量保障 — 代码审查、测试、lint、安全扫描",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L3",
+  "name": "质量保障",
+  "role": "代码审查、测试、lint、安全扫描",
+  "runtime": "claude-code",
+  "runtime_bindings": {
+    "agent_id": "qa-agent",
+    "as_definition": "AgentSwarm/agents/definitions/qa-agent.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "qa-agent @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/qa-agent.json",
+    "zcode_subagent": "qa-agent",
+    "zs_agent_toml": "ZenSwarm/.team/agents/qa-agent.toml"
+  },
+  "skills": [
+    "review",
+    "test",
+    "lint"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}

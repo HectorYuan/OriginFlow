@@ -1,0 +1,30 @@
+{
+  "agent_id": "sprint-master",
+  "autonomy_scope": "project",
+  "capability_tier": "expert",
+  "description": "Sprint 编排 — Sprint 编排与门禁",
+  "generated_from": {
+    "schema_content_hash": "9dcd660736f1071a",
+    "source": "OriginForce/docs/team-schema.yaml"
+  },
+  "level": "L4",
+  "name": "Sprint 编排",
+  "role": "Sprint 编排与门禁",
+  "runtime": "claude-code",
+  "runtime_bindings": {
+    "agent_id": "sprint-master",
+    "as_definition": "AgentSwarm/agents/definitions/sprint-master.md",
+    "feishu": "see feishu_mapping.bindings",
+    "herdr_pane_title": "sprint-master @ <task>",
+    "zcode_agent_card": "~/.zcode/agent-cards/sprint-master.json",
+    "zcode_subagent": "sprint-master",
+    "zs_agent_toml": "ZenSwarm/.team/agents/sprint-master.toml"
+  },
+  "skills": [
+    "orchestrate",
+    "schedule",
+    "gate"
+  ],
+  "status": "active",
+  "team": "brand:originforce"
+}
