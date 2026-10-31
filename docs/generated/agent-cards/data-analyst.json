@@ -4,7 +4,7 @@
   "capability_tier": "consultant",
   "description": "数据分析师 — CSV/SQLite 查询与统计",
   "generated_from": {
-    "schema_content_hash": "df8f69613ef006e1",
+    "schema_content_hash": "7311dd063551c656",
     "source": "OriginForce/docs/team-schema.yaml"
   },
   "level": "L2",
