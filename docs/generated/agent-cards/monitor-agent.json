@@ -4,7 +4,7 @@
   "capability_tier": "consultant",
   "description": "监控与告警 — EventBus 事件监控 + 异常检测",
   "generated_from": {
-    "schema_content_hash": "9fbfef60f2b0e097",
+    "schema_content_hash": "50f7af661fff2678",
     "source": "OriginForce/docs/team-schema.yaml"
   },
   "level": "L2",

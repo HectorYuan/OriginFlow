@@ -4,7 +4,7 @@
   "capability_tier": "specialist",
   "description": "质量保障 — 代码审查、测试、lint、安全扫描",
   "generated_from": {
-    "schema_content_hash": "9fbfef60f2b0e097",
+    "schema_content_hash": "50f7af661fff2678",
     "source": "OriginForce/docs/team-schema.yaml"
   },
   "level": "L3",

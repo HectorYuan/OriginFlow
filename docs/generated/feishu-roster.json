@@ -1,6 +1,6 @@
 {
   "generated_from": {
-    "schema_content_hash": "9fbfef60f2b0e097",
+    "schema_content_hash": "50f7af661fff2678",
     "source": "OriginForce/docs/team-schema.yaml"
   },
   "roster": [
@@ -197,7 +197,7 @@
       "acceptance": {
         "alignment_required": true,
         "alignment_status": {
-          "任务流水": "✅ 200 行 = 197 ZS 任务 + 3 遗留 (probe/form/补推)",
+          "任务流水": "✅ 195 行 (197 ZS 任务 - T-040 跳号 - T-171 保留 1) = 195 唯一 task, 零重复",
           "会话索引": "⏳ 待 scanner (S3.5)",
           "成员名册 v3": "✅ 17 席位 = schema members",
           "技能注册": "⏳ 待 AS features.yaml 推送 (S4)",
@@ -214,7 +214,7 @@
         ],
         "user_feedback": "基本可以；表单映射的是本地 neomachine 的情况，做好对齐即可",
         "user_reviewed_at": "2026-11-01",
-        "verdict": "user_approved_with_alignment_note"
+        "verdict": "user_approved_with_alignment_note (对齐义务持续执行中: 任务流水已完成对齐)"
       },
       "base_token": "O2zCbIQDaasdHysET8FcH8oCn6f",
       "field_attr_upgrade_20261031": {
@@ -229,7 +229,7 @@
           "成员名册 v3: 删 8 个表单污染字段 (等级L1-L5/名称中文/记忆域等标题型 text) + 补回误删的 记忆域",
           "任务流水: 删冗余 更新时间(text) — 已有 updated_at 自动戳"
         ],
-        "final_state": "五表零混杂 (严检通过: 16/10/10/7/7 字段与期望完全一致)",
+        "final_state": "五表零混杂 (16/10/10/7/7) + 任务流水 195 行零重复零混杂 (轮1删10 轮2删4 终轮0)",
         "prevention": "席位申请改走提案 FSM (已删污染源表单); 今后禁止对生产表开开放表单",
         "root_cause": "飞书表单的「题目」即「新建字段名」, 不可绑定已有字段 → 对着生产主表开表单必然污染",
         "trigger": "用户发现表单提交自动建混杂字段 (表单问题标题=字段名, 飞书表单机制使然)"
