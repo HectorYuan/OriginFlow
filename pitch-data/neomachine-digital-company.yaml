@@ -1,0 +1,126 @@
+arch_id: neomachine-digital-company
+arch_title: NeoMachine 数字公司业务架构
+arch_title_en: NeoMachine Digital Company Business Architecture
+scenario: 战略评审
+audience: 内部技术评审 + 跨体系协作方（OPC 业务侧 / Origin 组织侧 / Zen 能力侧 / 指南宇宙飞书场景）
+style_variant: review
+source_doc: OriginForce/docs/neo-machine-digital-company-plan-v1.md
+generated: '2026-11-01'
+dimensions_12:
+  战略站位: 9.0
+  技术可行性: 9.0
+  组织成熟度: 7.0
+  执行效率: 8.0
+  产品完整度: 7.0
+  商业模式: 8.0
+  风险管控: 8.5
+  扩展潜力: 9.0
+  合规水平: 8.0
+  品牌价值: 7.5
+  供应链稳定: 9.0
+  创新能力: 9.5
+frameworks:
+- id: strategy-map
+  name: 战略地图
+  source_note: from-plan
+  confidence: confirmed
+  fields:
+    financial:
+      status: filled
+      value: "一人运营的数字公司 — 零人力成本，17 个数字员工覆盖 L1 辅助到 L5 决策全梯队；技术基建全部自建（site/VPS/DNS/飞书集成），运维成本仅 VPS 租金 + API 调用费"
+    customer:
+      status: filled
+      value: "对外：FDE/培训/产品三业务客户（源力觉醒品牌）；对内：Hector 作为唯一人类决策者；飞书侧：指南宇宙租户（tagverse 品牌）作为人类界面"
+    internal:
+      status: filled
+      value: "六层 DDD 架构：L5 集成(OriginFlow) / L4 情报(research+radar+DesignCanon) / L3 治理(AgentSwarm FSM+门禁) / L2 组织(OriginForce schema v2.0+17席位) / L1 执行(ZenSwarm 197任务 git权威) / L0 呈现(herdr 16pane + zcode 路由)"
+    learning:
+      status: filled
+      value: "蒸馏通道 AS→ZS · 回流通道 ZS→AS · DesignCanon 347公理结构化注入 · check3 三轮核对方法论 · 五点自证跨会话回执协议"
+
+- id: value-chain
+  name: 波特价值链
+  source_note: from-plan
+  confidence: confirmed
+  fields:
+    primary_activities:
+      status: filled
+      value: "①提案输入(AS FSM) → ②schema 派席位(OriginForce v2.0) → ③执行交付(ZenSwarm loop2green) → ④验收发布(飞书群播报+Base 同步) → ⑤知识蒸馏(AS 蒸馏通道+DesignCanon)"
+    support_activities:
+      status: filled
+      value: "基础设施：neomachine 设备(zenclaw VPS + opc VPS + 本地)；协作面：herdr TUI 16pane + zcode GUI + 飞书 tagverse 群；质量：五点自证 + check3 三轮核对 + drift 检测 12 类"
+    margin:
+      status: filled
+      value: "一个人 + 17 数字员工 = 完整工程团队产出能力；已交付 197 任务（done 182）+ 7 PR merged + 飞书 Base 5 表 + wiki 16 页 + site 36 页架构图"
+
+- id: business-model-canvas
+  name: 商业模式画布
+  source_note: from-plan
+  confidence: confirmed
+  fields:
+    customer_segments:
+      status: filled
+      value: "①FDE/培训/产品三业务客户（源力觉醒对外）；②需要 AI 研发治理的团队（AgentSwarm 产品化）；③想要可靠 agent 执行器的个人/小团队（ZenSwarm 产品化）；④需要组织数字化方案的咨询客户（OriginForce/OriginFlow）"
+    value_propositions:
+      status: filled
+      value: "①AgentSwarm：AI 研发治理全体系（FSM 门禁/蒸馏/272表）；②ZenSwarm：极简执行内核（git 权威/1010行/单二进制）；③OriginForce+Flow：数字组织即服务（schema→投影→漂移检测→聚合视图）；④DesignCanon：347条设计公理库"
+    channels:
+      status: filled
+      value: "①飞书（tagverse 群+Base+wiki，人类界面）；②site.zenlearning.cn（工程发布站，/arch/ 36页+文章+情报）；③opcos.city（OPC 操作系统门户，已备案）；④futureforce.work（源力觉醒+源力流动品牌门户）"
+    customer_relationships:
+      status: filled
+      value: "飞书群「NeoMachine 执行流水线」自动播报（bus 桥 5min）；Base 名册实时镜像；wiki 知识库沉淀；proposal FSM 全程可追溯"
+    revenue_streams:
+      status: filled
+      value: "三业务（FDE/培训/产品）服务费；AgentSwarm/ZenSwarm 产品化授权；DesignCanon 方法论咨询；OriginFlow 组织数字化方案"
+    key_resources:
+      status: filled
+      value: "neomachine 设备（GPU 工作站 + 3 VPS）；17 数字员工身份体系；DesignCanon 347 公理；197 done 任务经验；7 仓代码资产"
+    key_activities:
+      status: filled
+      value: "提案治理（FSM+门禁）；任务执行（loop2green）；知识蒸馏（AS↔ZS 双通道）；飞书集成（Base/wiki/群播报）；情报采集（radar+research）"
+    key_partnerships:
+      status: filled
+      value: "腾讯云（DNS/域名）；火山引擎（zen 系列部署）；飞书（指南宇宙租户/多维表格/wiki）；GitHub（6 仓代码托管）"
+    cost_structure:
+      status: filled
+      value: "VPS 租金（3台）+ 域名费（7域名/年）+ API 调用费（LLM/飞书）；零人力成本"
+
+- id: platform-business-model
+  name: 平台商业模式图
+  source_note: from-plan
+  confidence: confirmed
+  fields:
+    participants:
+      status: filled
+      value: "生产者：17 数字员工（跨 5 域协同）；消费者：Hector（唯一人类决策者）+ FDE/培训/产品客户 + 飞书指南宇宙租户用户"
+    interactions:
+      status: filled
+      value: "任务派发（herdr pane → zenswarm zen）→ 执行交付（loop2green）→ 事件播报（bus桥→飞书群）→ 知识沉淀（蒸馏→DesignCanon）"
+    value_exchange:
+      status: filled
+      value: "人类输入目标 → 数字员工交付结果 → 结果回流知识库 → 方法论沉淀 → 下一次任务效率提升（正飞轮）"
+    platform_infrastructure:
+      status: filled
+      value: "OriginForce schema（契约SSOT）→ sync_team_schema.py（四投影）→ check_team_drift（验收门）→ zs_feishu_bridge（事件播报）→ OriginFlow dashboard（聚合视图）"
+
+- id: service-blueprint
+  name: 服务蓝图
+  source_note: from-plan
+  confidence: confirmed
+  fields:
+    physical_evidence:
+      status: filled
+      value: "飞书群消息（done/fail 播报）· Base 多维表格（5表）· wiki 知识库（16页）· site 架构图（36页）· GitHub 6仓 · 飞书仪表盘（7组件）"
+    customer_actions:
+      status: filled
+      value: "①飞书群里看播报 ②Base 里查名册/任务 ③wiki 里查人设 ④提案里定目标 ⑤dashboard 里看全局"
+    frontstage:
+      status: filled
+      value: "herdr TUI 16pane（人在终端操作）· zcode GUI（路由派单）· 飞书 tagverse 群（消息播报+指令入口）· Lark Base（数据看板）"
+    backstage:
+      status: filled
+      value: "ZenSwarm 执行内核（git 权威+loop2green）· AgentSwarm 治理体系（FSM+EventBus）· bus_feishu_bridge（事件转发）· sync_team_schema（投影生成）"
+    support_processes:
+      status: filled
+      value: "DesignCanon 公理注入 · check3 三轮核对 · 五点自证回执 · drift 检测 12类 · session-analytics 会话量化 · swarm-radar 情报采集"

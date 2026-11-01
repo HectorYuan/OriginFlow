@@ -1,0 +1,519 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>NeoMachine 数字公司业务架构 · PITCH PACK</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root { --bg:#f7f6f3; --surface:#ffffff; --text:#37352f; --text-2:#787774; --muted:#9b9a97; --primary:#2383e2; --accent:#d44c47; --success:#0f7b0f; --warning:#cb912f; --border:#e9e9e7; --serif:Noto Serif SC,Source Serif Pro,Georgia,serif; --sans:Inter,-apple-system,system-ui,sans-serif; --shadow-sm:0 1px 2px rgba(0,0,0,0.04); --shadow-md:0 4px 12px rgba(0,0,0,0.08); --shadow-lg:0 8px 24px rgba(0,0,0,0.12); --shadow-xl:0 16px 48px rgba(0,0,0,0.16); }.theme-dark { --bg:#191919; --surface:#242424; --text:#e6e6e6; --text-2:#adadad; --muted:#6b6b6b; --primary:#4d9eff; --accent:#ff6b6b; --border:#2e2e2e; --primary-light:#1e3a5f; --danger:#ef5350; --danger-light:#3a1f1f; --ok:#66bb6a; --warn:#ffa726; --pending:#8d8d8d; }.theme-sepia { --bg:#f4ecd8; --surface:#e8dcc4; --text:#5b4636; --text-2:#7d6856; --muted:#8b7355; --primary:#a0522d; --accent:#cd853f; --border:#d4c4a8; --primary-light:#f0e0c4; --danger:#a03024; --danger-light:#f6e3df; --ok:#4f7942; --warn:#b26a00; --pending:#9c8f7a; }.theme-forest { --bg:#1a2e1a; --surface:#2d4a2c; --text:#d4e4d0; --text-2:#a5c1a5; --muted:#88a878; --primary:#66bb6a; --accent:#8bc34a; --border:#2d4a2c; --primary-light:#24392a; --danger:#ef5350; --danger-light:#3a2422; --ok:#81c784; --warn:#ffb74d; --pending:#7d9b7d; }.theme-sunset { --bg:#2d1b3d; --surface:#3d2b4d; --text:#ffe4d6; --text-2:#e0b0c0; --muted:#c0a8b0; --primary:#ff6b6b; --accent:#ffa07a; --border:#4a1942; --primary-light:#46305a; --danger:#ff8a80; --danger-light:#4a2a3a; --ok:#ff8a80; --warn:#ffb74d; --pending:#a08fa8; }.style-review { --primary:#2383e2; --accent:#d44c47; --fs-scale:0.90; }.style-pitch { --primary:#1f2937; --accent:#2383e2; --fs-scale:1.16; }.style-mckinsey { --primary:#003366; --accent:#bfa980; }.style-bcg { --primary:#0073BB; --accent:#003366; }.style-bain { --primary:#D8232A; --accent:#1a1a1a; }.style-notion { --primary:#2383e2; --accent:#d44c47; }.style-linear { --primary:#5E6AD2; --accent:#08090A; }.style-magazine { --primary:#d4c09a; --accent:#c76c48; --serif:Playfair Display,Georgia,serif; }.style-swiss { --primary:#007aff; --accent:#ffd60a; --sans:Inter,Helvetica Neue,sans-serif; }:root { --fs-scale:1; --primary-light:#e3f0fd; --danger:#c62828; --danger-light:#fdecea; --ok:#388e3c; --warn:#ef6c00; --pending:#94a3b8; }body { margin:0;padding:0;font-family:Inter,Helvetica Neue,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background 0.3s,color 0.3s;}.framework-section { max-width: 1320px; margin-left: auto; margin-right: auto; background:var(--surface);border-radius:8px;padding:24px;margin-top:32px;margin-bottom:32px; }.st-table { width:100%; border-collapse:collapse; margin:12px 0 24px 0; border:1px solid var(--border); border-radius:4px; background:var(--bg); table-layout:fixed; }.st-table .st-head th { background:var(--primary-light); padding:8px 12px; font-size:11px; text-align:left; color:var(--text-2); letter-spacing:1px; }.st-table td { padding:4px 12px; font-size:12px; overflow-wrap:anywhere; word-break:break-word; vertical-align:top; }.st-table .c-fld { color:var(--text-2); width:18%; }.st-table .c-st { width:13%; }.st-table .c-val { width:51%; color:var(--text); }.st-table .c-note { width:18%; font-size:10px; color:var(--muted); font-style:italic; }.st-filled { color:var(--ok); font-weight:600; }.st-empty { color:var(--pending); font-weight:600; }.st-inferred { color:var(--warn); font-weight:600; }@media (max-width: 900px) { .facts-grid { grid-template-columns:1fr 1fr !important; } .sw-grid { grid-template-columns:1fr !important; } }@media (max-width: 560px) { .facts-grid { grid-template-columns:1fr !important; } }svg { display: block; max-width: 100%; height: auto; }table td, table th { overflow-wrap:anywhere; word-break:break-word; }.style-switcher { position:fixed; top:16px; right:16px; z-index:100; display:flex; gap:8px; background:var(--surface); padding:8px 12px; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.15); }.style-switcher button { padding:4px 8px; border:1px solid var(--primary); background:transparent; color:var(--primary); border-radius:4px; cursor:pointer; font-size:11px; }.style-switcher button.active { background:var(--primary); color:var(--bg); }.style-switcher select { padding:4px 8px; border:1px solid var(--primary); background:transparent; color:var(--primary); border-radius:4px; font-size:11px; }@media (max-width: 900px) {  .framework-section { padding:16px; margin-left:16px; margin-right:16px; }  .style-switcher { position:static; margin:8px 16px; flex-wrap:wrap; justify-content:flex-start; }  .arch-diagram > div:last-child { grid-template-columns:1fr !important; }  .baoyu-card > div:nth-child(2) { grid-template-columns:72px 1fr !important; gap:12px !important; }  .baoyu-card > div:nth-child(2) > div:last-child { grid-column:1 / -1; text-align:left !important; }  .baoyu-card > div:nth-child(2) > div:last-child > div:first-child { font-size:18px !important; }  .header-meta { margin-left:16px; margin-right:16px; }  h1 { font-size:calc(40px * var(--fs-scale,1)) !important; }  table { font-size:11px !important; }  table td, table th { overflow-wrap:anywhere; word-break:break-word; }  .hero > div:last-child { grid-template-columns:1fr 1fr !important; gap:16px !important; }  .baoyu-card > div:nth-child(2) > div:last-child { display:none !important; }}@media (max-width: 560px) {  .arch-diagram { padding:12px !important; }  .arch-diagram > div:last-child > div { padding:12px !important; }}@media print {  .style-switcher { display:none !important; }  body { background:#fff !important; color:#111 !important; }  .framework-section, .arch-diagram, .baoyu-card, .section-seal, table {    break-inside:avoid; page-break-inside:avoid; box-shadow:none !important; }  .framework-section { border:1px solid #ddd !important; }  h1, h2, h3 { break-after:avoid; page-break-after:avoid; }  a[href^="#sec-"]::after { content:""; }}@media (prefers-reduced-motion: reduce) {  * { transition:none !important; animation:none !important; }}.header-meta { margin:0 32px; padding:16px; background:var(--surface); border-left:4px solid var(--primary); border-radius:4px; }</style><style>.fwc-strategy-map { --fw-accent:var(--primary); }.fwc-cynefin { --fw-accent:#d44c47; }.fwc-ansoff { --fw-accent:#cb912f; }.fwc-value-proposition-canvas { --fw-accent:#1565c0; }.fwc-sipoc { --fw-accent:#2383e2; }.fwc-swot-extended { --fw-accent:#cb912f; }.fwc-rice { --fw-accent:#2383e2; }.fwc-service-blueprint { --fw-accent:var(--primary); }.fwc-platform-business-model { --fw-accent:#2383e2; }.fwc-subscription-economy { --fw-accent:#2383e2; }.fwc-mckinsey-7s { --fw-accent:#0f62fe; }.fwc-risk-matrix-extended { --fw-accent:#c5283d; }.fwc-aarr { --fw-accent:#2383e2; }.fwc-scare-model { --fw-accent:#2383e2; }.fwc-balanced-scorecard-extended { --fw-accent:#0f62fe; }.fwc-lean-canvas { --fw-accent:#2383e2; }.fwc-blue-ocean { --fw-accent:#00838f; }.fwc-stakeholder-matrix { --fw-accent:#2383e2; }.fwc-value-chain { --fw-accent:#0f62fe; }.fwc-porter-five-forces { --fw-accent:#d44c47; }.fwc-vrio-innovation { --fw-accent:#00838f; }.fwc-swot { --fw-accent:#cb912f; }.fwc-risk-matrix { --fw-accent:#c5283d; }.fwc-okr { --fw-accent:#0f62fe; }.fwc-flywheel { --fw-accent:#d44c47; }.fwc-bcg-matrix { --fw-accent:#d44c47; }.fwc-ooda-loop { --fw-accent:#2383e2; }.fwc-competitive-positioning { --fw-accent:#2383e2; }.fwc-dice { --fw-accent:#2383e2; }.fwc-brand-value-assessment { --fw-accent:#6a1b9a; }.fwc-fmea { --fw-accent:#2383e2; }.fwc-decision-tree { --fw-accent:#2383e2; }.fwc-design-thinking { --fw-accent:#0f7b0f; }.fwc-raci { --fw-accent:#2383e2; }.fwc-compliance-scan { --fw-accent:#0f7b0f; }.fwc-north-star { --fw-accent:#cb912f; }.fwc-4p { --fw-accent:#2383e2; }.fwc-business-model-canvas { --fw-accent:#2383e2; }.fwc-ge-matrix { --fw-accent:#0f62fe; }.fwc-customer-journey { --fw-accent:#6a1b9a; }.fwc-persona { --fw-accent:#2383e2; }.framework-section { content-visibility:auto; contain-intrinsic-size: auto 800px; }@media print { .framework-section { content-visibility:visible; } }@page { margin: 14mm 12mm; }* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }.skip-link { position:absolute; left:-9999px; top:0; z-index:200; background:var(--primary); color:#fff; padding:8px 16px; border-radius:0 0 6px 0; }.skip-link:focus { left:0; }</style></head><a class="skip-link" href="#main-content">跳到主内容</a><body class="theme-light style-review"><section class="hero" style="max-width:1100px;margin:0 auto;padding:60px;margin-top:0;background:var(--bg);"><div style="display:inline-block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:4px 12px;border-radius:16px;margin-bottom:28px;font-family:var(--sans);">plan2pitch v0.15.0 · Notion warm minimalism</div><h1 style="font-family:var(--serif);font-size:calc(80px * var(--fs-scale,1));font-weight:700;line-height:1.02;letter-spacing:-0.03em;color:var(--text);margin:0 0 24px 0;">NeoMachine 数字公司业务架构</h1><p style="font-size:22px;font-weight:400;color:var(--text-2);max-width:760px;margin:0 0 48px 0;line-height:1.5;font-family:var(--sans);">战略评审 · 内部技术评审 + 跨体系协作方（OPC 业务侧 / Origin 组织侧 / Zen 能力侧 / 指南宇宙飞书场景）</p><div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:32px;border-top:1px solid var(--border);padding-top:32px;"><div><div style="font-family:var(--serif);font-size:64px;font-weight:700;color:var(--primary);line-height:1;">65.9</div><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2);margin-top:8px;font-family:var(--sans);">综合评分 / 中</div></div><div><div style="font-family:var(--serif);font-size:64px;font-weight:700;color:var(--text);line-height:1;">5</div><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2);margin-top:8px;font-family:var(--sans);">框架 / 1 雷达</div></div><div><div style="font-family:var(--serif);font-size:64px;font-weight:700;color:var(--success);line-height:1;">12</div><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2);margin-top:8px;font-family:var(--sans);">12 维评分</div></div><div><div style="font-family:var(--serif);font-size:64px;font-weight:700;color:var(--primary);line-height:1;">9</div><div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2);margin-top:8px;font-family:var(--sans);">5 主题 × 9 变体</div></div></div></section><div class="style-switcher" id="switcher"><select id="theme-select" onchange="setTheme(this.value)"><option value="light">亮色 light</option><option value="dark">暗色 dark</option><option value="sepia">怀旧 sepia</option><option value="forest">森林 forest</option><option value="sunset">日落 sunset</option></select><select id="variant-select" onchange="setVariant(this.value)"><option value="review">review 高密度</option><option value="pitch">pitch 投影</option><option value="mckinsey">mckinsey 白皮书</option><option value="bcg">bcg 蓝白</option><option value="bain">bain 红白</option><option value="notion">notion 暖极简</option><option value="linear">linear 暗色工程</option><option value="magazine">magazine 杂志风</option><option value="swiss">swiss 瑞士风</option></select></div><script>function setTheme(t) { document.body.className = document.body.className.replace(/theme-\w+/g, "") + " theme-" + t; try{localStorage.setItem("plan2pitch-theme",t)}catch(e){} }function setVariant(v) { document.body.className = document.body.className.replace(/style-\w+/g, "") + " style-" + v; try{localStorage.setItem("plan2pitch-variant",v)}catch(e){} }try{var t=localStorage.getItem("plan2pitch-theme")||"light";document.body.classList.add("theme-"+t);document.getElementById("theme-select").value=t}catch(e){}try{var v=localStorage.getItem("plan2pitch-variant")||"review";document.body.classList.add("style-"+v);document.getElementById("variant-select").value=v}catch(e){}</script><aside class="meta" id="page-top" style="max-width:1100px;margin:0 auto;padding:24px 60px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--bg);border-bottom:1px solid var(--border);font-size:11px;color:var(--text-2);"><span style="font-weight:600;color:var(--text);">plan2pitch v0.15.0 · Notion warm minimalism</span><span style="color:var(--border);">·</span><span>NeoMachine 数字公司业务架构 · 战略评审 · 内部技术评审 + 跨体系协作方（OPC 业务侧 / Origin 组织侧 / Zen 能力侧 / 指南宇宙飞书场景）</span><span style="color:var(--border);">·</span><span>5 框架 · 5 主题 × 9 变体 = 45 套风格矩阵 · v0.15 本地交互雷达（无 CDN 依赖） · 4 大件（hero / 配图 / 信息图 / 商业图表）</span><span style="color:var(--border);">·</span><details style="margin-top:8px;"><summary style="cursor:pointer;font-size:11px;color:var(--muted);letter-spacing:1px;">目录 · 5 框架（点开）</summary><ol style="list-style:none;padding:8px 0 0;margin:0;display:flex;flex-wrap:wrap;gap:6px;"><li><a style="color:var(--primary);font-weight:700;text-decoration:none;" href="#sec-decision">投资决策摘要</a></li><li><a style="color:var(--primary);font-weight:700;text-decoration:none;" href="#sec-12dim">12 维评分</a></li><li style="color:var(--border);">|</li><li><a href="#sec-1">1. 战略地图</a></li><li><a href="#sec-2">2. 价值链</a></li><li><a href="#sec-3">3. 商业模式画布</a></li><li><a href="#sec-4">4. 平台商业模式</a></li><li><a href="#sec-5">5. 服务蓝图</a></li><li style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;letter-spacing:1.5px;color:var(--muted);">— 评审 / 诊断 / 审查 —</li><li><a style="color:var(--text-2);text-decoration:none;" href="#sec-g2">A-1 商业评审 G2</a></li><li><a style="color:var(--text-2);text-decoration:none;" href="#sec-7stage">A-2 7 阶段诊断摘要</a></li><li><a style="color:var(--text-2);text-decoration:none;" href="#sec-polish">A-3 语言审查</a></li></ol></details></aside><section id="sec-decision" class="framework-section" style="margin:32px 0;padding:32px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:8px;"><h2 style="font-family:var(--serif);font-size:26px;color:var(--text);font-weight:700;margin:0 0 8px 0;">投资决策摘要</h2><p style="font-size:10px;color:var(--muted);margin:0 0 20px 0;letter-spacing:1.5px;text-transform:uppercase;">DECISION BRIEF · 来源 本主题 12 维 + key_facts SSOT + 风险矩阵聚合 · 置信 inferred（覆盖度口径）</p><div style="display:flex;gap:32px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:16px;"><div><span style="font-family:var(--serif);font-size:56px;font-weight:700;color:var(--primary);line-height:1;">65.9</span><span style="font-size:13px;color:var(--text-2);margin-left:8px;">综合评分 / 中</span></div><div style="font-size:12px;color:var(--muted);max-width:520px;line-height:1.6;">口径提示：本分数为<strong>框架覆盖完整度</strong>，不是业务质量分——高完整度只说明该维度有框架在追踪。质量结论看各框架章「真值映射状态条」。</div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0;" class="facts-grid"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="sw-grid"><div style="background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px;"><div style="font-size:12px;font-weight:700;color:var(--ok);">强项 Top3</div><div style="font-size:13px;color:var(--text);margin-top:6px;">创新能力 9.5 / 合规水平 8.0 / 产品竞争力 7.7</div></div><div style="background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--danger);border-radius:8px;padding:12px 16px;"><div style="font-size:12px;font-weight:700;color:var(--danger);">弱项 Top3（优先补强）</div><div style="font-size:13px;color:var(--text);margin-top:6px;">风险因素 0 / 团队能力 5.7 / 供应链 6.0</div></div></div><p style="margin:20px 0 0 0;font-size:11px;color:var(--muted);">本页 5 个框架的全量字段可在文末 <code>framework-data</code> JSON 块中程序化提取复算。</p></section>
+    <section id="sec-12dim" class="framework-section" style="margin:48px 0;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <h2 style="font-family:Inter,system-ui,sans-serif;font-size:26px;color:var(--primary);font-weight:700;margin:0 0 8px 0;">12 维评分</h2>
+      <p style="font-size:10px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">来源 本主题框架字段聚合 · 置信 inferred（覆盖度口径，非质量分）</p>
+      <p style="font-size:11px;color:var(--muted);margin:0 0 24px 0;letter-spacing:1.5px;">
+        TWELVE-DIMENSION SCORECARD · 借鉴 十二维评分模型 v1.0 · 加权公式 Σ(score × weight) × 10 = 65.9（中）
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+        <div><svg viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="12 维评分雷达图">
+      <style>.radar-bg{fill:var(--bg);}.radar-poly{fill:var(--primary);fill-opacity:0.25;stroke:var(--primary);stroke-width:2;}</style>
+      <rect class="radar-bg" x="0" y="0" width="600" height="600"/>
+      <circle cx="300.0" cy="300.0" r="60.0" fill="none" stroke="var(--border)" stroke-width="1" opacity="0.7"/>
+<circle cx="300.0" cy="300.0" r="120.0" fill="none" stroke="var(--border)" stroke-width="1" opacity="0.7"/>
+<circle cx="300.0" cy="300.0" r="180.0" fill="none" stroke="var(--border)" stroke-width="1" opacity="0.7"/>
+<circle cx="300.0" cy="300.0" r="240.0" fill="none" stroke="var(--border)" stroke-width="1" opacity="0.7"/>
+
+      <line x1="300.0" y1="300.0" x2="300.0" y2="60.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="420.0" y2="92.2" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="507.8" y2="180.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="540.0" y2="300.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="507.8" y2="420.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="420.0" y2="507.8" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="300.0" y2="540.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="180.0" y2="507.8" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="92.2" y2="420.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="60.0" y2="300.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="92.2" y2="180.0" stroke="var(--border)" stroke-width="1"/>
+<line x1="300.0" y1="300.0" x2="180.0" y2="92.2" stroke="var(--border)" stroke-width="1"/>
+
+      <polygon class="radar-poly" points="300.0,120.0 386.4,150.4 435.1,222.0 436.8,300.0 460.0,392.4 384.0,445.5 300.0,300.0 210.0,455.9 133.7,396.0 120.0,300.0 175.3,228.0 186.0,102.5"/>
+      <text x="300.0" y="120.0" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">7.5</text>
+<text x="386.4" y="150.4" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">7.2</text>
+<text x="435.1" y="222.0" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">6.5</text>
+<text x="436.8" y="300.0" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">5.7</text>
+<text x="460.0" y="392.4" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">7.7</text>
+<text x="384.0" y="445.5" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">7.0</text>
+<text x="300.0" y="300.0" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">0</text>
+<text x="210.0" y="455.9" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">7.5</text>
+<text x="133.7" y="396.0" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">8.0</text>
+<text x="120.0" y="300.0" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">7.5</text>
+<text x="175.3" y="228.0" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">6.0</text>
+<text x="186.0" y="102.5" font-size="9" fill="var(--primary)" text-anchor="middle" font-weight="700">9.5</text>
+
+      <text x="300.0" y="35.0" font-size="11" fill="var(--text)" text-anchor="middle" dominant-baseline="middle">财务健康</text>
+<text x="432.5" y="70.5" font-size="11" fill="var(--text)" text-anchor="start" dominant-baseline="middle">市场地位</text>
+<text x="529.5" y="167.5" font-size="11" fill="var(--text)" text-anchor="start" dominant-baseline="middle">技术实力</text>
+<text x="565.0" y="300.0" font-size="11" fill="var(--text)" text-anchor="start" dominant-baseline="middle">团队能力</text>
+<text x="529.5" y="432.5" font-size="11" fill="var(--text)" text-anchor="start" dominant-baseline="middle">产品竞争力</text>
+<text x="432.5" y="529.5" font-size="11" fill="var(--text)" text-anchor="start" dominant-baseline="middle">竞争格局</text>
+<text x="300.0" y="565.0" font-size="11" fill="var(--text)" text-anchor="middle" dominant-baseline="middle">风险因素</text>
+<text x="167.5" y="529.5" font-size="11" fill="var(--text)" text-anchor="end" dominant-baseline="middle">成长潜力</text>
+<text x="70.5" y="432.5" font-size="11" fill="var(--text)" text-anchor="end" dominant-baseline="middle">合规水平</text>
+<text x="35.0" y="300.0" font-size="11" fill="var(--text)" text-anchor="end" dominant-baseline="middle">品牌价值</text>
+<text x="70.5" y="167.5" font-size="11" fill="var(--text)" text-anchor="end" dominant-baseline="middle">供应链</text>
+<text x="167.5" y="70.5" font-size="11" fill="var(--text)" text-anchor="end" dominant-baseline="middle">创新能力</text>
+
+      <text x="300.0" y="590.0" font-size="12" fill="var(--text-2)" text-anchor="middle">评分: 0-10</text>
+    </svg></div>
+        <div>
+          <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+            <thead>
+              <tr style="background:var(--primary-light);">
+                <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">维度</th>
+                <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">权重</th>
+                <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">评分</th>
+                <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">级别</th>
+                <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">加权分</th>
+              </tr>
+            </thead>
+            <tbody><tr>
+          <td style="padding:8px 12px;font-size:12px;">财务健康</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">15%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">7.5</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">1.12</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">市场地位</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">12%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">7.2</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.86</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">技术实力</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">12%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#ef6c00;">6.5</td>
+          <td style="padding:8px 12px;font-size:11px;color:#ef6c00;font-weight:600;">中</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.78</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">团队能力</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">10%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#ef6c00;">5.7</td>
+          <td style="padding:8px 12px;font-size:11px;color:#ef6c00;font-weight:600;">中</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.57</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">产品竞争力</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">10%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">7.7</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.77</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">竞争格局</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">8%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">7.0</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.56</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">风险因素</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">8%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#94a3b8;">0.0</td>
+          <td style="padding:8px 12px;font-size:11px;color:#94a3b8;font-weight:600;">待补</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.00</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">成长潜力</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">7%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">7.5</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.53</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">合规水平</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">5%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">8.0</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.40</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">品牌价值</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">5%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">7.5</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.38</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">供应链</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">4%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#ef6c00;">6.0</td>
+          <td style="padding:8px 12px;font-size:11px;color:#ef6c00;font-weight:600;">中</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.24</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:12px;">创新能力</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">4%</td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:#388e3c;">9.5</td>
+          <td style="padding:8px 12px;font-size:11px;color:#388e3c;font-weight:600;">强</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--muted);">0.38</td>
+        </tr></tbody>
+          </table>
+          <div style="padding:12px 16px;background:var(--success);border-left:4px solid var(--ok);border-radius:4px;margin-bottom:12px;">
+            <strong style="color:var(--success);">强项</strong>
+            <span style="font-size:12px;color:var(--text);">创新能力 / 合规水平 / 产品竞争力</span>
+          </div>
+          <div style="padding:12px 16px;background:var(--danger);border-left:4px solid #c62828;border-radius:4px;">
+            <strong style="color:var(--danger);">弱项</strong>
+            <span style="font-size:12px;color:var(--text);">供应链 / 团队能力</span>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin:16px 0 0 0;line-height:1.6;">
+            <strong>评分说明</strong>：本分数为<strong>「框架覆盖完整度」分</strong>——按各维度被多少框架、以何种字段填充状态覆盖加权推断，<strong>不是业务质量分</strong>：高完整度只说明该维度有框架在追踪，不等于该维度做得好。业务质量结论请看各框架章的「真值映射状态条」。0 分 = 框架未覆盖该维度。
+            借鉴自 十二维评分模型 v1.0（公开版）。
+          </p>
+        </div>
+      </div>
+    </section>
+    <details style="max-width:1100px;margin:0 auto;padding:8px 60px;border-bottom:1px solid var(--border);background:var(--bg);"><summary style="cursor:pointer;font-size:11px;color:var(--muted);letter-spacing:1px;">阅读指引 · 术语表（点开）</summary><div style="font-size:12px;color:var(--text-2);line-height:2;padding:8px 0 12px;"><b>12 维评分</b>：框架覆盖完整度分（0-10×权重加权），非业务质量分 · <b>真值映射状态条</b>：每框架字段填充实况（已填/待补/推断），可逐条核验 · <b>置信 from-plan</b>：来自方案原文；<b>inferred</b>：按事实推断 · <b>数字契约</b>：全册关键数字单一真源（key_facts），构建期断言校验 · <b>决策闸门</b>：未解除前不应放行投入的待拍板项 · <b>幕封</b>：章节间的全宽视觉分隔条</div></details><a href="#page-top" class="backtop" style="position:fixed;right:20px;bottom:20px;z-index:99;display:inline-block;padding:8px 14px;border-radius:20px;background:var(--primary);color:#fff;font-size:12px;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.25);">↑ 目录</a><main style="max-width:1320px;margin:0 auto;padding:24px 32px;" id="main-content">
+<div class="section-seal" style="margin:32px 0;padding:48px 24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;">
+  <div style="display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Framework Seal</div>
+  <h2 style="font-family:var(--serif);font-size:36px;font-weight:700;color:var(--text);margin:0 0 8px 0;letter-spacing:1px;">战略地图</h2>
+  <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);letter-spacing:1.5px;">STRATEGY-MAP · plan2pitch v0.15.0 · notion warm</div>
+</div><section id="sec-1" class="framework-section" style="margin:32px 0;padding:0;padding-top:80px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);overflow:hidden;">
+<div class="arch-diagram fwc-strategy-map" style="margin:24px 0;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;">
+  <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:baseline;">
+    <div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">ARCHITECTURE · STRATEGY-MAP</div>
+      <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin:8px 0 0 0;">战略地图</h3>
+    </div>
+    <div style="font-family:var(--sans);font-size:11px;color:var(--muted);letter-spacing:1px;">4/4 已填</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">financial</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">一人运营的数字公司 — 零人力成本，17 个数字员工覆盖 L1 辅助到 L5 决策全梯队；技术基建全部自建（site/VPS/DNS/飞书集成），运维成本仅 VPS 租金 + API 调用费</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">customer</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">对外：FDE/培训/产品三业务客户（源力觉醒品牌）；对内：Hector 作为唯一人类决策者；飞书侧：指南宇宙租户（tagverse 品牌）作为人类界面</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">internal</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">六层 DDD 架构：L5 集成(OriginFlow) / L4 情报(research+radar+DesignCanon) / L3 治理(AgentSwarm FSM+门禁) / L2 组织(OriginForce schema v2.0+17席位) / L1 执行(ZenSwarm 197任务 git权威) / L0 呈现(herdr 16pane + zcode 路由)</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">learning</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">蒸馏通道 AS→ZS · 回流通道 ZS→AS · DesignCanon 347公理结构化注入 · check3 三轮核对方法论 · 五点自证跨会话回执协议</div>
+    </div>
+  </div>
+</div><div style="padding:24px;"><h2 style="font-family:var(--serif);font-size:32px;color:var(--text);font-weight:700;margin:0 0 8px 0;letter-spacing:-0.01em;">1. 战略地图</h2><p style="font-size:11px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">strategy-map · 来源 from-plan · 置信 confirmed</p>
+<div class="baoyu-card fwc-strategy-map" style="margin:24px 0;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle at top right, var(--fw-accent)22, transparent 70%);border-radius:50%;transform:translate(50%,-50%);"></div>
+  <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:24px;align-items:center;">
+    <div style="width:96px;height:96px;background:linear-gradient(135deg, var(--fw-accent) 0%, var(--fw-accent)88 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 8px 24px var(--fw-accent)44;">📊</div>
+    <div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;">4 维度 · 4 已填</div>
+      <div style="font-size:13px;color:var(--text-2);line-height:1.6;">financial / customer / internal / learning</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--fw-accent);line-height:1.1;max-width:200px;overflow-wrap:anywhere;">STRATEGY-MAP</div>
+      <div style="font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;">战略地图</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;display:flex;gap:2px;">
+    <div style="flex:3;background:var(--fw-accent);"></div>
+    <div style="flex:2;background:var(--fw-accent)aa;"></div>
+    <div style="flex:1;background:var(--fw-accent)66;"></div>
+    <div style="flex:1;background:var(--fw-accent)33;"></div>
+  </div>
+</div><details style="margin:16px 0;"><summary style="cursor:pointer;font-size:12px;font-weight:600;color:var(--text-2);letter-spacing:1.5px;">▶ [真值映射状态条] 字段填充实况（点击展开）</summary><table class="st-table"><colgroup><col style="width:18%;"><col style="width:14%;"><col style="width:50%;"><col style="width:18%;"></colgroup><thead><tr class="st-head"><th scope="col">字段</th><th scope="col">状态</th><th scope="col">值（前 120 字）</th><th scope="col">备注</th></tr></thead><tbody><td class="c-fld">financial</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">一人运营的数字公司 — 零人力成本，17 个数字员工覆盖 L1 辅助到 L5 决策全梯队；技术基建全部自建（site/VPS/DNS/飞书集成），运维成本仅 VPS 租金 + API 调用费</td><td></td></tr><td class="c-fld">customer</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">对外：FDE/培训/产品三业务客户（源力觉醒品牌）；对内：Hector 作为唯一人类决策者；飞书侧：指南宇宙租户（tagverse 品牌）作为人类界面</td><td></td></tr><td class="c-fld">internal</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">六层 DDD 架构：L5 集成(OriginFlow) / L4 情报(research+radar+DesignCanon) / L3 治理(AgentSwarm FSM+门禁) / L2 组织(OriginForce schema v2...</td><td></td></tr><td class="c-fld">learning</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">蒸馏通道 AS→ZS · 回流通道 ZS→AS · DesignCanon 347公理结构化注入 · check3 三轮核对方法论 · 五点自证跨会话回执协议</td><td></td></tr></tbody></table></details></div></section>
+<div class="section-seal" style="margin:32px 0;padding:48px 24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;">
+  <div style="display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Framework Seal</div>
+  <h2 style="font-family:var(--serif);font-size:36px;font-weight:700;color:var(--text);margin:0 0 8px 0;letter-spacing:1px;">波特价值链</h2>
+  <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);letter-spacing:1.5px;">VALUE-CHAIN · plan2pitch v0.15.0 · notion warm</div>
+</div><section id="sec-2" class="framework-section" style="margin:32px 0;padding:0;padding-top:80px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);overflow:hidden;">
+<div class="arch-diagram fwc-value-chain" style="margin:24px 0;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;">
+  <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:baseline;">
+    <div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">ARCHITECTURE · VALUE-CHAIN</div>
+      <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin:8px 0 0 0;">波特价值链</h3>
+    </div>
+    <div style="font-family:var(--sans);font-size:11px;color:var(--muted);letter-spacing:1px;">3/3 已填</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">primary activities</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">①提案输入(AS FSM) → ②schema 派席位(OriginForce v2.0) → ③执行交付(ZenSwarm loop2green) → ④验收发布(飞书群播报+Base 同步) → ⑤知识蒸馏(AS 蒸馏通道+DesignCanon)</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">support activities</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">基础设施：neomachine 设备(zenclaw VPS + opc VPS + 本地)；协作面：herdr TUI 16pane + zcode GUI + 飞书 tagverse 群；质量：五点自证 + check3 三轮核对 + drift 检测 12 类</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">margin</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">一个人 + 17 数字员工 = 完整工程团队产出能力；已交付 197 任务（done 182）+ 7 PR merged + 飞书 Base 5 表 + wiki 16 页 + site 36 页架构图</div>
+    </div>
+  </div>
+</div><div style="padding:24px;"><h2 style="font-family:var(--serif);font-size:32px;color:var(--text);font-weight:700;margin:0 0 8px 0;letter-spacing:-0.01em;">2. 波特价值链</h2><p style="font-size:11px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">value-chain · 来源 from-plan · 置信 confirmed</p>
+<div class="baoyu-card fwc-value-chain" style="margin:24px 0;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle at top right, var(--fw-accent)22, transparent 70%);border-radius:50%;transform:translate(50%,-50%);"></div>
+  <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:24px;align-items:center;">
+    <div style="width:96px;height:96px;background:linear-gradient(135deg, var(--fw-accent) 0%, var(--fw-accent)88 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 8px 24px var(--fw-accent)44;">📊</div>
+    <div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;">3 维度 · 3 已填</div>
+      <div style="font-size:13px;color:var(--text-2);line-height:1.6;">primary activities / support activities / margin</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--fw-accent);line-height:1.1;max-width:200px;overflow-wrap:anywhere;">VALUE-CHAIN</div>
+      <div style="font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;">波特价值链</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;display:flex;gap:2px;">
+    <div style="flex:3;background:var(--fw-accent);"></div>
+    <div style="flex:2;background:var(--fw-accent)aa;"></div>
+    <div style="flex:1;background:var(--fw-accent)66;"></div>
+    <div style="flex:1;background:var(--fw-accent)33;"></div>
+  </div>
+</div><details style="margin:16px 0;"><summary style="cursor:pointer;font-size:12px;font-weight:600;color:var(--text-2);letter-spacing:1.5px;">▶ [真值映射状态条] 字段填充实况（点击展开）</summary><table class="st-table"><colgroup><col style="width:18%;"><col style="width:14%;"><col style="width:50%;"><col style="width:18%;"></colgroup><thead><tr class="st-head"><th scope="col">字段</th><th scope="col">状态</th><th scope="col">值（前 120 字）</th><th scope="col">备注</th></tr></thead><tbody><td class="c-fld">primary_activities</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">①提案输入(AS FSM) → ②schema 派席位(OriginForce v2.0) → ③执行交付(ZenSwarm loop2green) → ④验收发布(飞书群播报+Base 同步) → ⑤知识蒸馏(AS 蒸馏通道+Design...</td><td></td></tr><td class="c-fld">support_activities</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">基础设施：neomachine 设备(zenclaw VPS + opc VPS + 本地)；协作面：herdr TUI 16pane + zcode GUI + 飞书 tagverse 群；质量：五点自证 + check3 三轮核对 + ...</td><td></td></tr><td class="c-fld">margin</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">一个人 + 17 数字员工 = 完整工程团队产出能力；已交付 197 任务（done 182）+ 7 PR merged + 飞书 Base 5 表 + wiki 16 页 + site 36 页架构图</td><td></td></tr></tbody></table></details></div></section>
+<div class="section-seal" style="margin:32px 0;padding:48px 24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;">
+  <div style="display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Framework Seal</div>
+  <h2 style="font-family:var(--serif);font-size:36px;font-weight:700;color:var(--text);margin:0 0 8px 0;letter-spacing:1px;">商业模式画布</h2>
+  <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);letter-spacing:1.5px;">BUSINESS-MODEL-CANVAS · plan2pitch v0.15.0 · notion warm</div>
+</div><section id="sec-3" class="framework-section" style="margin:32px 0;padding:0;padding-top:80px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);overflow:hidden;">
+<div class="arch-diagram fwc-business-model-canvas" style="margin:24px 0;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;">
+  <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:baseline;">
+    <div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">ARCHITECTURE · BUSINESS-MODEL-CANVAS</div>
+      <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin:8px 0 0 0;">商业模式画布</h3>
+    </div>
+    <div style="font-family:var(--sans);font-size:11px;color:var(--muted);letter-spacing:1px;">9/9 已填</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">客户细分</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">①FDE/培训/产品三业务客户（源力觉醒对外）；②需要 AI 研发治理的团队（AgentSwarm 产品化）；③想要可靠 agent 执行器的个人/小团队（ZenSwarm 产品化）；④需要组织数字化方案的咨询客户（OriginForce/OriginFlow）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">价值主张</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">①AgentSwarm：AI 研发治理全体系（FSM 门禁/蒸馏/272表）；②ZenSwarm：极简执行内核（git 权威/1010行/单二进制）；③OriginForce+Flow：数字组织即服务（schema→投影→漂移检测→聚合视图）；④DesignCanon：347条设计公理库</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">渠道</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">①飞书（tagverse 群+Base+wiki，人类界面）；②site.zenlearning.cn（工程发布站，/arch/ 36页+文章+情报）；③opcos.city（OPC 操作系统门户，已备案）；④futureforce.work（源力觉醒+源力流动品牌门户）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">客户关系</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">飞书群「NeoMachine 执行流水线」自动播报（bus 桥 5min）；Base 名册实时镜像；wiki 知识库沉淀；proposal FSM 全程可追溯</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">收入流</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">三业务（FDE/培训/产品）服务费；AgentSwarm/ZenSwarm 产品化授权；DesignCanon 方法论咨询；OriginFlow 组织数字化方案</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">关键资源</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">neomachine 设备（GPU 工作站 + 3 VPS）；17 数字员工身份体系；DesignCanon 347 公理；197 done 任务经验；7 仓代码资产</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">关键活动</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">提案治理（FSM+门禁）；任务执行（loop2green）；知识蒸馏（AS↔ZS 双通道）；飞书集成（Base/wiki/群播报）；情报采集（radar+research）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">重要伙伴</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">腾讯云（DNS/域名）；火山引擎（zen 系列部署）；飞书（指南宇宙租户/多维表格/wiki）；GitHub（6 仓代码托管）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">成本结构</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">VPS 租金（3台）+ 域名费（7域名/年）+ API 调用费（LLM/飞书）；零人力成本</div>
+    </div>
+  </div>
+</div><div style="padding:24px;"><h2 style="font-family:var(--serif);font-size:32px;color:var(--text);font-weight:700;margin:0 0 8px 0;letter-spacing:-0.01em;">3. 商业模式画布</h2><p style="font-size:11px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">business-model-canvas · 来源 from-plan · 置信 confirmed</p>
+<div class="baoyu-card fwc-business-model-canvas" style="margin:24px 0;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle at top right, var(--fw-accent)22, transparent 70%);border-radius:50%;transform:translate(50%,-50%);"></div>
+  <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:24px;align-items:center;">
+    <div style="width:96px;height:96px;background:linear-gradient(135deg, var(--fw-accent) 0%, var(--fw-accent)88 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 8px 24px var(--fw-accent)44;">📊</div>
+    <div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;">9 维度 · 9 已填</div>
+      <div style="font-size:13px;color:var(--text-2);line-height:1.6;">客户细分 / 价值主张 / 渠道 / 客户关系 / 收入流 / 关键资源…</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--fw-accent);line-height:1.1;max-width:200px;overflow-wrap:anywhere;">BUSINESS-MODEL-CANVAS</div>
+      <div style="font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;">商业模式画布</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;display:flex;gap:2px;">
+    <div style="flex:3;background:var(--fw-accent);"></div>
+    <div style="flex:2;background:var(--fw-accent)aa;"></div>
+    <div style="flex:1;background:var(--fw-accent)66;"></div>
+    <div style="flex:1;background:var(--fw-accent)33;"></div>
+  </div>
+</div><details style="margin:16px 0;"><summary style="cursor:pointer;font-size:12px;font-weight:600;color:var(--text-2);letter-spacing:1.5px;">▶ [真值映射状态条] 字段填充实况（点击展开）</summary><table class="st-table"><colgroup><col style="width:18%;"><col style="width:14%;"><col style="width:50%;"><col style="width:18%;"></colgroup><thead><tr class="st-head"><th scope="col">字段</th><th scope="col">状态</th><th scope="col">值（前 120 字）</th><th scope="col">备注</th></tr></thead><tbody><td class="c-fld">客户细分</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">①FDE/培训/产品三业务客户（源力觉醒对外）；②需要 AI 研发治理的团队（AgentSwarm 产品化）；③想要可靠 agent 执行器的个人/小团队（ZenSwarm 产品化）；④需要组织数字化方案的咨询客户（OriginForce/...</td><td></td></tr><td class="c-fld">价值主张</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">①AgentSwarm：AI 研发治理全体系（FSM 门禁/蒸馏/272表）；②ZenSwarm：极简执行内核（git 权威/1010行/单二进制）；③OriginForce+Flow：数字组织即服务（schema→投影→漂移检测→聚合视图...</td><td></td></tr><td class="c-fld">渠道</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">①飞书（tagverse 群+Base+wiki，人类界面）；②site.zenlearning.cn（工程发布站，/arch/ 36页+文章+情报）；③opcos.city（OPC 操作系统门户，已备案）；④futureforce.wor...</td><td></td></tr><td class="c-fld">客户关系</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">飞书群「NeoMachine 执行流水线」自动播报（bus 桥 5min）；Base 名册实时镜像；wiki 知识库沉淀；proposal FSM 全程可追溯</td><td></td></tr><td class="c-fld">收入流</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">三业务（FDE/培训/产品）服务费；AgentSwarm/ZenSwarm 产品化授权；DesignCanon 方法论咨询；OriginFlow 组织数字化方案</td><td></td></tr><td class="c-fld">关键资源</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">neomachine 设备（GPU 工作站 + 3 VPS）；17 数字员工身份体系；DesignCanon 347 公理；197 done 任务经验；7 仓代码资产</td><td></td></tr><td class="c-fld">关键活动</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">提案治理（FSM+门禁）；任务执行（loop2green）；知识蒸馏（AS↔ZS 双通道）；飞书集成（Base/wiki/群播报）；情报采集（radar+research）</td><td></td></tr><td class="c-fld">重要伙伴</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">腾讯云（DNS/域名）；火山引擎（zen 系列部署）；飞书（指南宇宙租户/多维表格/wiki）；GitHub（6 仓代码托管）</td><td></td></tr><td class="c-fld">成本结构</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">VPS 租金（3台）+ 域名费（7域名/年）+ API 调用费（LLM/飞书）；零人力成本</td><td></td></tr></tbody></table></details></div></section>
+<div class="section-seal" style="margin:32px 0;padding:48px 24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;">
+  <div style="display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Framework Seal</div>
+  <h2 style="font-family:var(--serif);font-size:36px;font-weight:700;color:var(--text);margin:0 0 8px 0;letter-spacing:1px;">平台商业模式图</h2>
+  <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);letter-spacing:1.5px;">PLATFORM-BUSINESS-MODEL · plan2pitch v0.15.0 · notion warm</div>
+</div><section id="sec-4" class="framework-section" style="margin:32px 0;padding:0;padding-top:80px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);overflow:hidden;">
+<div class="arch-diagram fwc-platform-business-model" style="margin:24px 0;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;">
+  <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:baseline;">
+    <div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">ARCHITECTURE · PLATFORM-BUSINESS-MODEL</div>
+      <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin:8px 0 0 0;">平台商业模式图</h3>
+    </div>
+    <div style="font-family:var(--sans);font-size:11px;color:var(--muted);letter-spacing:1px;">4/4 已填</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">participants</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">生产者：17 数字员工（跨 5 域协同）；消费者：Hector（唯一人类决策者）+ FDE/培训/产品客户 + 飞书指南宇宙租户用户</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">interactions</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">任务派发（herdr pane → zenswarm zen）→ 执行交付（loop2green）→ 事件播报（bus桥→飞书群）→ 知识沉淀（蒸馏→DesignCanon）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">value exchange</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">人类输入目标 → 数字员工交付结果 → 结果回流知识库 → 方法论沉淀 → 下一次任务效率提升（正飞轮）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">platform infrastructure</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">OriginForce schema（契约SSOT）→ sync_team_schema.py（四投影）→ check_team_drift（验收门）→ zs_feishu_bridge（事件播报）→ OriginFlow dashboard（聚合视图）</div>
+    </div>
+  </div>
+</div><div style="padding:24px;"><h2 style="font-family:var(--serif);font-size:32px;color:var(--text);font-weight:700;margin:0 0 8px 0;letter-spacing:-0.01em;">4. 平台商业模式图</h2><p style="font-size:11px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">platform-business-model · 来源 from-plan · 置信 confirmed</p>
+<div class="baoyu-card fwc-platform-business-model" style="margin:24px 0;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle at top right, var(--fw-accent)22, transparent 70%);border-radius:50%;transform:translate(50%,-50%);"></div>
+  <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:24px;align-items:center;">
+    <div style="width:96px;height:96px;background:linear-gradient(135deg, var(--fw-accent) 0%, var(--fw-accent)88 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 8px 24px var(--fw-accent)44;">📊</div>
+    <div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;">4 维度 · 4 已填</div>
+      <div style="font-size:13px;color:var(--text-2);line-height:1.6;">participants / interactions / value exchange / platform infrastructure</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--fw-accent);line-height:1.1;max-width:200px;overflow-wrap:anywhere;">PLATFORM-BUSINESS-MODEL</div>
+      <div style="font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;">平台商业模式图</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;display:flex;gap:2px;">
+    <div style="flex:3;background:var(--fw-accent);"></div>
+    <div style="flex:2;background:var(--fw-accent)aa;"></div>
+    <div style="flex:1;background:var(--fw-accent)66;"></div>
+    <div style="flex:1;background:var(--fw-accent)33;"></div>
+  </div>
+</div><details style="margin:16px 0;"><summary style="cursor:pointer;font-size:12px;font-weight:600;color:var(--text-2);letter-spacing:1.5px;">▶ [真值映射状态条] 字段填充实况（点击展开）</summary><table class="st-table"><colgroup><col style="width:18%;"><col style="width:14%;"><col style="width:50%;"><col style="width:18%;"></colgroup><thead><tr class="st-head"><th scope="col">字段</th><th scope="col">状态</th><th scope="col">值（前 120 字）</th><th scope="col">备注</th></tr></thead><tbody><td class="c-fld">participants</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">生产者：17 数字员工（跨 5 域协同）；消费者：Hector（唯一人类决策者）+ FDE/培训/产品客户 + 飞书指南宇宙租户用户</td><td></td></tr><td class="c-fld">interactions</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">任务派发（herdr pane → zenswarm zen）→ 执行交付（loop2green）→ 事件播报（bus桥→飞书群）→ 知识沉淀（蒸馏→DesignCanon）</td><td></td></tr><td class="c-fld">value_exchange</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">人类输入目标 → 数字员工交付结果 → 结果回流知识库 → 方法论沉淀 → 下一次任务效率提升（正飞轮）</td><td></td></tr><td class="c-fld">platform_infrastructure</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">OriginForce schema（契约SSOT）→ sync_team_schema.py（四投影）→ check_team_drift（验收门）→ zs_feishu_bridge（事件播报）→ OriginFlow dashboar...</td><td></td></tr></tbody></table></details></div></section>
+<div class="section-seal" style="margin:32px 0;padding:48px 24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;">
+  <div style="display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Framework Seal</div>
+  <h2 style="font-family:var(--serif);font-size:36px;font-weight:700;color:var(--text);margin:0 0 8px 0;letter-spacing:1px;">服务蓝图</h2>
+  <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);letter-spacing:1.5px;">SERVICE-BLUEPRINT · plan2pitch v0.15.0 · notion warm</div>
+</div><section id="sec-5" class="framework-section" style="margin:32px 0;padding:0;padding-top:80px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);overflow:hidden;">
+<div class="arch-diagram fwc-service-blueprint" style="margin:24px 0;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:8px;">
+  <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:baseline;">
+    <div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">ARCHITECTURE · SERVICE-BLUEPRINT</div>
+      <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin:8px 0 0 0;">服务蓝图</h3>
+    </div>
+    <div style="font-family:var(--sans);font-size:11px;color:var(--muted);letter-spacing:1px;">5/5 已填</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">physical evidence</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">飞书群消息（done/fail 播报）· Base 多维表格（5表）· wiki 知识库（16页）· site 架构图（36页）· GitHub 6仓 · 飞书仪表盘（7组件）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">customer actions</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">①飞书群里看播报 ②Base 里查名册/任务 ③wiki 里查人设 ④提案里定目标 ⑤dashboard 里看全局</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">frontstage</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">herdr TUI 16pane（人在终端操作）· zcode GUI（路由派单）· 飞书 tagverse 群（消息播报+指令入口）· Lark Base（数据看板）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">backstage</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">ZenSwarm 执行内核（git 权威+loop2green）· AgentSwarm 治理体系（FSM+EventBus）· bus_feishu_bridge（事件转发）· sync_team_schema（投影生成）</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--fw-accent);border-radius:8px;padding:16px;box-shadow:var(--shadow-md);">
+      <div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">support processes</div>
+      <div style="font-family:var(--sans);font-size:12px;color:var(--text-2);line-height:1.55;">DesignCanon 公理注入 · check3 三轮核对 · 五点自证回执 · drift 检测 12类 · session-analytics 会话量化 · swarm-radar 情报采集</div>
+    </div>
+  </div>
+</div><div style="padding:24px;"><h2 style="font-family:var(--serif);font-size:32px;color:var(--text);font-weight:700;margin:0 0 8px 0;letter-spacing:-0.01em;">5. 服务蓝图</h2><p style="font-size:11px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">service-blueprint · 来源 from-plan · 置信 confirmed</p>
+<div class="baoyu-card fwc-service-blueprint" style="margin:24px 0;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle at top right, var(--fw-accent)22, transparent 70%);border-radius:50%;transform:translate(50%,-50%);"></div>
+  <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:24px;align-items:center;">
+    <div style="width:96px;height:96px;background:linear-gradient(135deg, var(--fw-accent) 0%, var(--fw-accent)88 100%);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 8px 24px var(--fw-accent)44;">📊</div>
+    <div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;">5 维度 · 5 已填</div>
+      <div style="font-size:13px;color:var(--text-2);line-height:1.6;">physical evidence / customer actions / frontstage / backstage / support processes</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:var(--serif);font-size:28px;font-weight:700;color:var(--fw-accent);line-height:1.1;max-width:200px;overflow-wrap:anywhere;">SERVICE-BLUEPRINT</div>
+      <div style="font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;">服务蓝图</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;display:flex;gap:2px;">
+    <div style="flex:3;background:var(--fw-accent);"></div>
+    <div style="flex:2;background:var(--fw-accent)aa;"></div>
+    <div style="flex:1;background:var(--fw-accent)66;"></div>
+    <div style="flex:1;background:var(--fw-accent)33;"></div>
+  </div>
+</div><details style="margin:16px 0;"><summary style="cursor:pointer;font-size:12px;font-weight:600;color:var(--text-2);letter-spacing:1.5px;">▶ [真值映射状态条] 字段填充实况（点击展开）</summary><table class="st-table"><colgroup><col style="width:18%;"><col style="width:14%;"><col style="width:50%;"><col style="width:18%;"></colgroup><thead><tr class="st-head"><th scope="col">字段</th><th scope="col">状态</th><th scope="col">值（前 120 字）</th><th scope="col">备注</th></tr></thead><tbody><td class="c-fld">physical_evidence</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">飞书群消息（done/fail 播报）· Base 多维表格（5表）· wiki 知识库（16页）· site 架构图（36页）· GitHub 6仓 · 飞书仪表盘（7组件）</td><td></td></tr><td class="c-fld">customer_actions</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">①飞书群里看播报 ②Base 里查名册/任务 ③wiki 里查人设 ④提案里定目标 ⑤dashboard 里看全局</td><td></td></tr><td class="c-fld">frontstage</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">herdr TUI 16pane（人在终端操作）· zcode GUI（路由派单）· 飞书 tagverse 群（消息播报+指令入口）· Lark Base（数据看板）</td><td></td></tr><td class="c-fld">backstage</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">ZenSwarm 执行内核（git 权威+loop2green）· AgentSwarm 治理体系（FSM+EventBus）· bus_feishu_bridge（事件转发）· sync_team_schema（投影生成）</td><td></td></tr><td class="c-fld">support_processes</td><td class="c-st"><span class="st-filled">[已填]</span></td><td class="c-val">DesignCanon 公理注入 · check3 三轮核对 · 五点自证回执 · drift 检测 12类 · session-analytics 会话量化 · swarm-radar 情报采集</td><td></td></tr></tbody></table></details></div></section></main>
+    <section id="sec-g2" class="framework-section" style="margin:48px 0;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <h2 style="font-family:Inter,system-ui,sans-serif;font-size:26px;color:var(--primary);font-weight:700;margin:0 0 8px 0;">商业评审 G2</h2>
+      <p style="font-size:10px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">来源 本主题 12 维 + 风险矩阵字段聚合 · 置信 inferred</p>
+      <p style="font-size:11px;color:var(--muted);margin:0 0 24px 0;letter-spacing:1.5px;">
+        G2 BUSINESS REVIEW · 复用 business-partner 模板 · 战略对齐 / ROI / 风险
+      </p>
+      <div style="font-size:13px;line-height:1.7;color:var(--text);">
+        <h3 style="margin:0 0 8px 0;color:var(--primary-light);font-size:16px;">战略对齐</h3>
+        <p style="margin:0 0 16px 16px;padding-left:8px;border-left:2px solid var(--border);">
+          与 §5.3 场景路由默认组合 <strong>战略评审</strong>：<span style="color:var(--success);font-weight:600;">✓ 对齐</span><br>
+          与 M1 首批 10 核心：5 框架（BM Canvas / 5 力 / SWOT / 7S / 风险矩阵）- <span style="color:var(--success);font-weight:600;">✓ 全部命中</span><br>
+          与 pitch-pack 流程：7 步（SCOPE → EXTRACT → MATCH → LOAD → RENDER → COMPOSE → VERIFY）- <span style="color:var(--success);font-weight:600;">✓ 全过</span>
+        </p>
+        <h3 style="margin:16px 0 8px 0;color:var(--primary-light);font-size:16px;">ROI 评估</h3>
+        <p style="margin:0 0 16px 16px;padding-left:8px;border-left:2px solid var(--border);">
+          决策类 ROI（12 维风险因素 0 + 风险矩阵）：<strong>低</strong>（直接输出 R1-R5 缓解路径）<br>战略类 ROI（12 维成长潜力 7.5 + 5 力）：<strong>高</strong>（战略定位与增长空间见对应框架章）<br>内部 ROI（12 维技术实力 6.5 + 产品竞争力 7.7）：<strong>高</strong>
+        </p>
+        <h3 style="margin:16px 0 8px 0;color:var(--primary-light);font-size:16px;">风险提示</h3>
+        <p style="margin:0 0 16px 16px;padding-left:8px;border-left:2px solid var(--border);">
+          <strong>市场风险</strong>：5 力替代品/新进入者 = 见波特五力章节<br><strong>执行风险</strong>：本主题未赋能风险矩阵字段（见风险矩阵章节的字段填充实况）
+        </p>
+      </div>
+    </section>
+    
+    <section id="sec-7stage" class="framework-section" style="margin:48px 0;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <h2 style="font-family:Inter,system-ui,sans-serif;font-size:26px;color:var(--primary);font-weight:700;margin:0 0 8px 0;">7 阶段诊断摘要</h2>
+      <p style="font-size:10px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">来源 本主题框架字段聚合 · 置信 inferred</p>
+      <p style="font-size:11px;color:var(--muted);margin:0 0 24px 0;letter-spacing:1.5px;">
+        SEVEN-STAGE DIAGNOSIS · 复用 十二维评分模型 v1.0
+      </p>
+      <ol style="font-size:13px;line-height:1.8;color:var(--text);padding-left:24px;">
+        <li><strong>信息收集</strong>：源文档 = <code>OriginForce/docs/neo-machine-digital-company-plan-v1.md</code></li>
+        <li><strong>初步评估</strong>：5 框架已渲染，每框架 1 句核心结论（见各 framework section）</li>
+        <li><strong>深度分析</strong>：跨框架关联 = 同主题 5 框架的横向对照（战略 ↔ 竞争 ↔ 风险 ↔ 落地互证）；量化交叉校准见 12 维评分页</li>
+        <li><strong>风险识别</strong>：本主题未赋能风险矩阵字段（见风险矩阵章节的字段填充实况）</li>
+        <li><strong>机会发现</strong>：强项维度 = 创新能力 9.5 / 合规水平 8.0 / 产品竞争力 7.7；对应框架章内含可延伸方向</li>
+        <li><strong>综合评价</strong>：见 12 维评分页（加权总分 0-100）</li>
+        <li><strong>建议输出</strong>：
+          <ol style="margin-top:8px;padding-left:24px;">
+            <li>优先补强弱项：风险因素 0 / 团队能力 5.7 / 供应链 6.0（见 12 维评分页弱项栏）</li>
+            <li>每框架章均附真值映射状态条，可逐条核验字段来源与置信度</li>
+            <li>语言审查：自动改写后剩余 4 处待人工 review（详见「语言审查」章）</li>
+          </ol>
+        </li>
+      </ol>
+    </section>
+    
+    <section id="sec-polish" class="framework-section" style="margin:48px 0;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+      <h2 style="font-family:Inter,system-ui,sans-serif;font-size:26px;color:var(--primary);font-weight:700;margin:0 0 8px 0;">语言审查</h2>
+      <p style="font-size:10px;color:var(--muted);margin:0 0 16px 0;letter-spacing:1.5px;text-transform:uppercase;">来源 本页文本模式扫描 · 置信 inferred</p>
+      <p style="font-size:11px;color:var(--muted);margin:0 0 24px 0;letter-spacing:1.5px;">
+        LANGUAGE REVIEW · 语言表达审查（34 类 AI 写作模式 · 风格规则 v0.1）· <strong>0 处 finding</strong>
+      </p>
+      <p style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:16px;">
+        本页是<strong>建议</strong>而非自动改写，需人工确认后再逐条套用 before/after。
+        强规则参见 <code>language/style-rules.md</code> 第 1-5 组（战略动词 / big-number / 斩钉截铁 / 日期前置 / 段落不超 5 行）。
+      </p>
+      <table style="width:100%;border-collapse:collapse;border:1px solid var(--border);">
+        <thead>
+          <tr style="background:var(--primary-light);">
+            <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">模式 ID</th>
+            <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">描述</th>
+            <th scope="col" style="padding:8px 12px;font-size:11px;text-align:center;color:var(--text-2);">命中数</th>
+            <th scope="col" style="padding:8px 12px;font-size:11px;text-align:left;color:var(--text-2);">示例</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+          <td style="padding:8px 12px;font-size:11px;color:var(--text-2);">engineering_verbs</td>
+          <td style="padding:8px 12px;font-size:12px;">工程动词（应改商业动词） <span style="font-size:10px;color:var(--muted);">[inferred]</span></td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:var(--warning);text-align:center;">3</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--text);">"撬动"<br>"撬动"<br>"撬动"</td>
+        </tr><tr>
+          <td style="padding:8px 12px;font-size:11px;color:var(--text-2);">p1_14_em_dash</td>
+          <td style="padding:8px 12px;font-size:12px;">Em Dash 滥用 <span style="font-size:10px;color:var(--muted);">[共识]</span></td>
+          <td style="padding:8px 12px;font-size:14px;font-weight:700;color:var(--warning);text-align:center;">1</td>
+          <td style="padding:8px 12px;font-size:11px;color:var(--text);">"-"</td>
+        </tr></tbody>
+      </table>
+    </section>
+    <section class="framework-section" style="margin:32px 0;padding:48px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-family:var(--sans);">商业图表 · 12 维评分</div><h2 style="font-family:var(--serif);font-size:48px;font-weight:700;color:var(--text);margin:0 0 32px 0;letter-spacing:-0.01em;">综合评分雷达</h2><div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:48px;text-align:center;margin-bottom:24px;"><div style="font-family:var(--serif);font-size:14px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;">Σ(score × weight) × 10</div><span style="font-family:var(--serif);font-size:128px;font-weight:700;color:var(--primary);line-height:1;">65.9</span><span style="display:inline-block;font-size:14px;letter-spacing:2px;padding:6px 16px;border-radius:4px;background:var(--bg);color:var(--text-2);margin-left:20px;vertical-align:middle;font-weight:600;">中</span></div><div id="radar-12dim" style="width:100%;height:520px;margin:24px 0;position:relative;"><svg viewBox="0 0 600 600" role="img" aria-label="12 维评分雷达图（各维度 0-10 分，hover 顶点查看得分）" style="width:100%;height:520px;background:var(--bg);border:1px solid var(--border);border-radius:8px;"><text x="300" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text)">12 维评分雷达 · 本地交互</text><polygon points="300.0,248.0 321.0,253.6 336.4,269.0 342.0,290.0 336.4,311.0 321.0,326.4 300.0,332.0 279.0,326.4 263.6,311.0 258.0,290.0 263.6,269.0 279.0,253.6" fill="none" stroke="var(--border)" stroke-width="1"/><text x="304" y="260" font-size="8" fill="var(--muted)">2</text><polygon points="300.0,206.0 342.0,217.3 372.7,248.0 384.0,290.0 372.7,332.0 342.0,362.7 300.0,374.0 258.0,362.7 227.3,332.0 216.0,290.0 227.3,248.0 258.0,217.3" fill="none" stroke="var(--border)" stroke-width="1"/><text x="304" y="218" font-size="8" fill="var(--muted)">4</text><polygon points="300.0,164.0 363.0,180.9 409.1,227.0 426.0,290.0 409.1,353.0 363.0,399.1 300.0,416.0 237.0,399.1 190.9,353.0 174.0,290.0 190.9,227.0 237.0,180.9" fill="none" stroke="var(--border)" stroke-width="1"/><text x="304" y="176" font-size="8" fill="var(--muted)">6</text><polygon points="300.0,122.0 384.0,144.5 445.5,206.0 468.0,290.0 445.5,374.0 384.0,435.5 300.0,458.0 216.0,435.5 154.5,374.0 132.0,290.0 154.5,206.0 216.0,144.5" fill="none" stroke="var(--border)" stroke-width="1"/><text x="304" y="134" font-size="8" fill="var(--muted)">8</text><polygon points="300.0,80.0 405.0,108.1 481.9,185.0 510.0,290.0 481.9,395.0 405.0,471.9 300.0,500.0 195.0,471.9 118.1,395.0 90.0,290.0 118.1,185.0 195.0,108.1" fill="none" stroke="var(--border)" stroke-width="1"/><text x="304" y="92" font-size="8" fill="var(--muted)">10</text><line x1="300" y1="290" x2="300.0" y2="80.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="405.0" y2="108.1" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="481.9" y2="185.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="510.0" y2="290.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="481.9" y2="395.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="405.0" y2="471.9" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="300.0" y2="500.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="195.0" y2="471.9" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="118.1" y2="395.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="90.0" y2="290.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="118.1" y2="185.0" stroke="var(--border)" stroke-width="1"/><line x1="300" y1="290" x2="195.0" y2="108.1" stroke="var(--border)" stroke-width="1"/><polygon points="300.0,132.5 375.6,159.1 418.2,221.8 419.7,290.0 440.0,370.8 373.5,417.3 300.0,290.0 221.3,426.4 154.5,374.0 142.5,290.0 190.9,227.0 200.2,117.2" fill="var(--primary)" fill-opacity="0.22" stroke="var(--primary)" stroke-width="2.5"/><circle class="rd-vertex" data-dim="财务健康" data-score="7.5" cx="300.0" cy="132.5" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="市场地位" data-score="7.2" cx="375.6" cy="159.1" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="技术实力" data-score="6.5" cx="418.2" cy="221.8" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="团队能力" data-score="5.7" cx="419.7" cy="290.0" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="产品竞争力" data-score="7.7" cx="440.0" cy="370.8" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="竞争格局" data-score="7.0" cx="373.5" cy="417.3" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="风险因素" data-score="0.0" cx="300.0" cy="290.0" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="成长潜力" data-score="7.5" cx="221.3" cy="426.4" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="合规水平" data-score="8.0" cx="154.5" cy="374.0" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="品牌价值" data-score="7.5" cx="142.5" cy="290.0" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="供应链" data-score="6.0" cx="190.9" cy="227.0" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><circle class="rd-vertex" data-dim="创新能力" data-score="9.5" cx="200.2" cy="117.2" r="5" fill="var(--primary)" stroke="var(--surface)" stroke-width="2" style="cursor:pointer"/><text x="300.0" y="50.0" text-anchor="middle" font-size="11" fill="var(--text-2)" dominant-baseline="middle">财务健康</text><text x="420.0" y="82.2" text-anchor="start" font-size="11" fill="var(--text-2)" dominant-baseline="middle">市场地位</text><text x="507.8" y="170.0" text-anchor="start" font-size="11" fill="var(--text-2)" dominant-baseline="middle">技术实力</text><text x="540.0" y="290.0" text-anchor="start" font-size="11" fill="var(--text-2)" dominant-baseline="middle">团队能力</text><text x="507.8" y="410.0" text-anchor="start" font-size="11" fill="var(--text-2)" dominant-baseline="middle">产品竞争力</text><text x="420.0" y="497.8" text-anchor="start" font-size="11" fill="var(--text-2)" dominant-baseline="middle">竞争格局</text><text x="300.0" y="530.0" text-anchor="middle" font-size="11" fill="var(--text-2)" dominant-baseline="middle">风险因素</text><text x="180.0" y="497.8" text-anchor="end" font-size="11" fill="var(--text-2)" dominant-baseline="middle">成长潜力</text><text x="92.2" y="410.0" text-anchor="end" font-size="11" fill="var(--text-2)" dominant-baseline="middle">合规水平</text><text x="60.0" y="290.0" text-anchor="end" font-size="11" fill="var(--text-2)" dominant-baseline="middle">品牌价值</text><text x="92.2" y="170.0" text-anchor="end" font-size="11" fill="var(--text-2)" dominant-baseline="middle">供应链</text><text x="180.0" y="82.2" text-anchor="end" font-size="11" fill="var(--text-2)" dominant-baseline="middle">创新能力</text></svg><div id="rd-tip" style="display:none;position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--text);box-shadow:var(--shadow-md);z-index:10;white-space:nowrap;"></div></div><script>(function(){var tip=document.getElementById("rd-tip");document.querySelectorAll("#radar-12dim .rd-vertex").forEach(function(v){  v.addEventListener("mouseenter",function(e){var r=v.getBoundingClientRect(),c=v.closest("#radar-12dim").getBoundingClientRect();    tip.style.display="block";tip.style.left=(r.left-c.left+r.width+8)+"px";tip.style.top=(r.top-c.top-6)+"px";    tip.textContent=v.getAttribute("data-dim")+" : "+v.getAttribute("data-score")+"/10";});  v.addEventListener("mouseleave",function(){tip.style.display="none";});});})();</script><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);padding:32px;margin-top:24px;"><div style="font-family:var(--serif);font-size:18px;color:var(--text-2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">12 维分布（横向条形）</div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">财务健康</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:75.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">7.5</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">市场地位</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:72.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">7.2</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">技术实力</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #2383e2, #5e8cf7);border-radius:8px;width:65.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">6.5</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">团队能力</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #2383e2, #5e8cf7);border-radius:8px;width:57.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">5.7</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">产品竞争力</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:77.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">7.7</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">竞争格局</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:70.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">7.0</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">风险因素</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:var(--border);border-radius:8px;width:0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--muted);text-align:right;">待补</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">成长潜力</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:75.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">7.5</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">合规水平</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:80.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">8.0</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">品牌价值</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:75.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">7.5</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">供应链</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #2383e2, #5e8cf7);border-radius:8px;width:60.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">6.0</div></div><div style="display:grid;grid-template-columns:100px 1fr 60px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">创新能力</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg, #0f7b0f, #4caf50);border-radius:8px;width:95.0%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:16px;color:var(--text);text-align:right;">9.5</div></div></div></section><section class="framework-section" style="margin:32px 0;padding:48px;background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-family:var(--sans);">商业图表 · 风险矩阵</div><h2 style="font-family:var(--serif);font-size:48px;font-weight:700;color:var(--text);margin:0 0 32px 0;letter-spacing:-0.01em;">风险评估</h2><div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow-md);padding:32px;margin-top:24px;"><div style="font-family:var(--serif);font-size:18px;color:var(--text-2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;">5 风险评估（高→低）</div><div style="display:grid;grid-template-columns:140px 1fr 100px;gap:12px;align-items:center;margin-bottom:8px;"><div style="font-size:13px;color:var(--text);font-weight:500;font-family:var(--sans);">风险数据待填充</div><div style="height:16px;background:var(--bg);border-radius:8px;overflow:hidden;position:relative;"><div style="height:100%;background:linear-gradient(90deg,#94a3b8,#cbd5e1);border-radius:8px;width:54%;"></div></div><div style="font-family:var(--serif);font-weight:700;font-size:13px;color:var(--text);text-align:right;">3/5</div></div></div></section><script type="application/json" id="framework-data">{"arch_id": "neomachine-digital-company", "arch_title": "NeoMachine 数字公司业务架构", "scenario": "战略评审", "audience": "内部技术评审 + 跨体系协作方（OPC 业务侧 / Origin 组织侧 / Zen 能力侧 / 指南宇宙飞书场景）", "version": "0.15.0", "schema_version": 2, "framework_count": 5, "scores_12": [["财务健康", 7.5], ["市场地位", 7.2], ["技术实力", 6.5], ["团队能力", 5.7], ["产品竞争力", 7.7], ["竞争格局", 7.0], ["风险因素", 0], ["成长潜力", 7.5], ["合规水平", 8.0], ["品牌价值", 7.5], ["供应链", 6.0], ["创新能力", 9.5]], "weighted_total": 65.9, "grade": "中", "key_facts": {}, "decision_gates": [], "frameworks": [{"id": "strategy-map", "name": "战略地图", "source_note": "from-plan", "confidence": "confirmed", "fields": {"financial": {"status": "filled", "value": "一人运营的数字公司 — 零人力成本，17 个数字员工覆盖 L1 辅助到 L5 决策全梯队；技术基建全部自建（site/VPS/DNS/飞书集成），运维成本仅 VPS 租金 + API 调用费", "note": null}, "customer": {"status": "filled", "value": "对外：FDE/培训/产品三业务客户（源力觉醒品牌）；对内：Hector 作为唯一人类决策者；飞书侧：指南宇宙租户（tagverse 品牌）作为人类界面", "note": null}, "internal": {"status": "filled", "value": "六层 DDD 架构：L5 集成(OriginFlow) / L4 情报(research+radar+DesignCanon) / L3 治理(AgentSwarm FSM+门禁) / L2 组织(OriginForce schema v2.0+17席位) / L1 执行(ZenSwarm 197任务 git权威) / L0 呈现(herdr 16pane + zcode 路由)", "note": null}, "learning": {"status": "filled", "value": "蒸馏通道 AS→ZS · 回流通道 ZS→AS · DesignCanon 347公理结构化注入 · check3 三轮核对方法论 · 五点自证跨会话回执协议", "note": null}}}, {"id": "value-chain", "name": "波特价值链", "source_note": "from-plan", "confidence": "confirmed", "fields": {"primary_activities": {"status": "filled", "value": "①提案输入(AS FSM) → ②schema 派席位(OriginForce v2.0) → ③执行交付(ZenSwarm loop2green) → ④验收发布(飞书群播报+Base 同步) → ⑤知识蒸馏(AS 蒸馏通道+DesignCanon)", "note": null}, "support_activities": {"status": "filled", "value": "基础设施：neomachine 设备(zenclaw VPS + opc VPS + 本地)；协作面：herdr TUI 16pane + zcode GUI + 飞书 tagverse 群；质量：五点自证 + check3 三轮核对 + drift 检测 12 类", "note": null}, "margin": {"status": "filled", "value": "一个人 + 17 数字员工 = 完整工程团队产出能力；已交付 197 任务（done 182）+ 7 PR merged + 飞书 Base 5 表 + wiki 16 页 + site 36 页架构图", "note": null}}}, {"id": "business-model-canvas", "name": "商业模式画布", "source_note": "from-plan", "confidence": "confirmed", "fields": {"customer_segments": {"status": "filled", "value": "①FDE/培训/产品三业务客户（源力觉醒对外）；②需要 AI 研发治理的团队（AgentSwarm 产品化）；③想要可靠 agent 执行器的个人/小团队（ZenSwarm 产品化）；④需要组织数字化方案的咨询客户（OriginForce/OriginFlow）", "note": null}, "value_propositions": {"status": "filled", "value": "①AgentSwarm：AI 研发治理全体系（FSM 门禁/蒸馏/272表）；②ZenSwarm：极简执行内核（git 权威/1010行/单二进制）；③OriginForce+Flow：数字组织即服务（schema→投影→漂移检测→聚合视图）；④DesignCanon：347条设计公理库", "note": null}, "channels": {"status": "filled", "value": "①飞书（tagverse 群+Base+wiki，人类界面）；②site.zenlearning.cn（工程发布站，/arch/ 36页+文章+情报）；③opcos.city（OPC 操作系统门户，已备案）；④futureforce.work（源力觉醒+源力流动品牌门户）", "note": null}, "customer_relationships": {"status": "filled", "value": "飞书群「NeoMachine 执行流水线」自动播报（bus 桥 5min）；Base 名册实时镜像；wiki 知识库沉淀；proposal FSM 全程可追溯", "note": null}, "revenue_streams": {"status": "filled", "value": "三业务（FDE/培训/产品）服务费；AgentSwarm/ZenSwarm 产品化授权；DesignCanon 方法论咨询；OriginFlow 组织数字化方案", "note": null}, "key_resources": {"status": "filled", "value": "neomachine 设备（GPU 工作站 + 3 VPS）；17 数字员工身份体系；DesignCanon 347 公理；197 done 任务经验；7 仓代码资产", "note": null}, "key_activities": {"status": "filled", "value": "提案治理（FSM+门禁）；任务执行（loop2green）；知识蒸馏（AS↔ZS 双通道）；飞书集成（Base/wiki/群播报）；情报采集（radar+research）", "note": null}, "key_partnerships": {"status": "filled", "value": "腾讯云（DNS/域名）；火山引擎（zen 系列部署）；飞书（指南宇宙租户/多维表格/wiki）；GitHub（6 仓代码托管）", "note": null}, "cost_structure": {"status": "filled", "value": "VPS 租金（3台）+ 域名费（7域名/年）+ API 调用费（LLM/飞书）；零人力成本", "note": null}}}, {"id": "platform-business-model", "name": "平台商业模式图", "source_note": "from-plan", "confidence": "confirmed", "fields": {"participants": {"status": "filled", "value": "生产者：17 数字员工（跨 5 域协同）；消费者：Hector（唯一人类决策者）+ FDE/培训/产品客户 + 飞书指南宇宙租户用户", "note": null}, "interactions": {"status": "filled", "value": "任务派发（herdr pane → zenswarm zen）→ 执行交付（loop2green）→ 事件播报（bus桥→飞书群）→ 知识沉淀（蒸馏→DesignCanon）", "note": null}, "value_exchange": {"status": "filled", "value": "人类输入目标 → 数字员工交付结果 → 结果回流知识库 → 方法论沉淀 → 下一次任务效率提升（正飞轮）", "note": null}, "platform_infrastructure": {"status": "filled", "value": "OriginForce schema（契约SSOT）→ sync_team_schema.py（四投影）→ check_team_drift（验收门）→ zs_feishu_bridge（事件播报）→ OriginFlow dashboard（聚合视图）", "note": null}}}, {"id": "service-blueprint", "name": "服务蓝图", "source_note": "from-plan", "confidence": "confirmed", "fields": {"physical_evidence": {"status": "filled", "value": "飞书群消息（done/fail 播报）· Base 多维表格（5表）· wiki 知识库（16页）· site 架构图（36页）· GitHub 6仓 · 飞书仪表盘（7组件）", "note": null}, "customer_actions": {"status": "filled", "value": "①飞书群里看播报 ②Base 里查名册/任务 ③wiki 里查人设 ④提案里定目标 ⑤dashboard 里看全局", "note": null}, "frontstage": {"status": "filled", "value": "herdr TUI 16pane（人在终端操作）· zcode GUI（路由派单）· 飞书 tagverse 群（消息播报+指令入口）· Lark Base（数据看板）", "note": null}, "backstage": {"status": "filled", "value": "ZenSwarm 执行内核（git 权威+loop2green）· AgentSwarm 治理体系（FSM+EventBus）· bus_feishu_bridge（事件转发）· sync_team_schema（投影生成）", "note": null}, "support_processes": {"status": "filled", "value": "DesignCanon 公理注入 · check3 三轮核对 · 五点自证回执 · drift 检测 12类 · session-analytics 会话量化 · swarm-radar 情报采集", "note": null}}}]}</script><footer style="margin:48px 32px;padding:16px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:1.5px;">plan2pitch · v0.15.0 · variant: review · 5 框架 · 5 主题 × 9 变体 = 45 套风格矩阵</footer></body></html>
