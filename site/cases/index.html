@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>落地案例 · NeoMachine 数字公司</title><style>:root{--bg:oklch(0.17 0.012 232);--surface:oklch(0.205 0.013 232);--fg:oklch(0.93 0.006 200);--muted:oklch(0.66 0.014 220);--accent:oklch(0.82 0.14 168);--border:oklch(0.30 0.015 225);--serif:Georgia,"Noto Serif SC",serif;--sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"SF Mono",Menlo,Consolas,monospace;--maxw:1160px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.65}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--border)}header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+.brand{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--fg)}
+nav a{margin-left:18px;color:var(--muted);font-size:14px}nav a.on,nav a:hover{color:var(--accent)}
+h1{font-family:var(--serif);font-size:42px;margin:44px 0 10px;letter-spacing:.01em}
+h2{font-family:var(--serif);font-size:24px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h3{font-family:var(--serif);font-size:17px;margin:26px 0 8px}
+.lede{color:var(--muted);font-size:16px;max-width:720px}
+.grid{display:grid;gap:14px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:820px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.card h3{margin:0 0 6px;font-size:15px;font-family:var(--sans)}.card p{margin:0;color:var(--muted);font-size:13.5px}
+.tag{display:inline-block;font-family:var(--mono);font-size:11.5px;color:var(--accent);border:1px solid var(--border);border-radius:99px;padding:1px 9px}
+.tag.lv{color:var(--fg)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:500;font-size:12px}.mono{font-family:var(--mono);font-size:13px}
+.stats{display:flex;gap:14px;margin:26px 0 0;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 20px;min-width:120px}
+.stat b{font-family:var(--mono);font-size:26px;color:var(--accent);display:block}
+.stat span{color:var(--muted);font-size:13px}
+.stat.ok b{color:var(--accent)}.stat.warn b{color:oklch(0.78 0.14 75)}.stat.bad b{color:oklch(0.66 0.19 25)}
+footer{margin:56px 0 30px;padding-top:14px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
+.ev{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13.5px}
+.ev .src{font-family:var(--mono);font-size:11.5px;color:var(--accent);border:1px solid var(--border);border-radius:4px;padding:0 5px;white-space:nowrap}
+.ev .sha{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.ev .txt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.donut-wrap{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+.legend{font-size:13.5px}.legend div{display:flex;align-items:center;gap:8px;padding:3px 0}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.levels-row{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);align-items:start}
+.levels-row>.lv{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:16px;padding-top:10px}
+.cards-flow{display:flex;flex-wrap:wrap;gap:10px}
+.mini{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;min-width:230px;flex:1}
+.mini h4{margin:0 0 4px;font-size:14.5px}
+.mini .meta{color:var(--muted);font-size:12.5px}
+.kb{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:820px){.kb{grid-template-columns:1fr}}
+.kb-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px}
+.kb-col h4{margin:0 0 8px;font-size:13px;color:var(--muted);font-weight:500;display:flex;justify-content:space-between}
+.kb-item{display:block;font-size:13px;padding:7px 8px;border:1px solid var(--border);border-radius:7px;margin-bottom:7px;background:var(--bg)}
+.kb-item .sub{display:block;color:var(--muted);font-size:11.5px}
+.case{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px 26px;margin-top:18px}
+.case h2{margin-top:0;border:none;padding:0}
+.case .meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:12px}
+.case h3{font-size:15px;margin:18px 0 6px}
+.case p,.case li{font-size:14px;color:var(--fg)}
+.case p{margin:8px 0}
+.case ol,.case ul{margin:6px 0;padding-left:22px}
+.callout{border-left:3px solid var(--accent);background:var(--bg);padding:8px 14px;margin:12px 0;font-size:13.5px;color:var(--muted);border-radius:0 6px 6px 0}
+.ext::after{content:"↗";font-size:10px;margin-left:3px;color:var(--muted)}
+.filter-note{color:var(--muted);font-size:12.5px;margin-top:6px}
+</style></head>
+<body><header><div class="wrap"><a class="brand" href="/">NeoMachine 数字公司</a><nav><a href="/index.html">门户</a><a href="/dashboard.html">总控台</a><a href="/team/index.html">名册</a><a href="/intel/index.html">情报</a><a href="/cases/index.html" class=on>案例</a></nav></div></header>
+<main class="wrap"><h1>落地案例</h1>
+<p class="lede">恢复 / 漂移 / 桥 三篇实战复盘 · 每篇标注 md 真相源（teamwork-snapshot 决策日志 / OriginForce 方案 / 桥脚本）。</p>
+<article class="case" id="36-file-recovery"><h2>36 文件恢复复盘</h2><div class="meta">事故复盘 · 2026-10-30 · AgentSwarm 仓 · 真相源 docs/generated/teamwork-snapshot.md</div><h3>发生了什么</h3><p>2026-10-30，AgentSwarm 仓 36 个 tracked 文件从磁盘消失。归因走「跨会话询问与回执协议」：herdr agent prompt 双发两个并行会话（wR:p1A DIST / wR:p15 PYST），要求各席位按<strong>五点自证</strong>回执 —— ①操作面清单 ②是否我方 ③可查证据 ④本会话执行过的 git 危险命令 ⑤内容归属核对。</p><h3>处置过程</h3><ol>
+<li>p1A 回执「②非我」入档（commit 6e3a3d567a）：32 件路径与我操作面交集 0，执行过的删除仅三类且均有据可查。</li>
+<li>按回执方案② <span class="mono">git checkout --</span> 恢复，我方不恢复、不 add -A。</li>
+<li>01:06:35 全部 36 件恢复；staged 1368→0（1364 = conflicts/ 生成物取消跟踪被撤）。</li>
+<li>origin/HEAD 全程零损。</li></ol><h3>关联事件：310b 回退</h3><p>同周期 310b 事故：无路径参数 commit 吃整个 index，index 是陈旧工作树，496 文件被回退。恢复方法论 = <strong>blob 三方比对</strong>（好基线 / 坏提交 / origin 现状）精确提取受害集，commit 1e6b758565 外科恢复到 fadd 版，fsm.py PR#605 dryrun 守卫 + 17 测试全过，已推 origin behind=0。</p><h3>五点自证（制度产物）</h3><p>跨会话询问回执机制自本次事件启用，全文见 multisessions 技能「跨会话询问与回执协议」。遗留：「谁删的」无认领者（32 件全属他线）—— 再发同类事件按五点自证追责；p1A 措辞（我方不恢复）与行为（同分钟恢复）不一致，已记档为下轮追问点。</p><h3>经验固化</h3><ol><li>多会话共享工作区禁止无路径参数 commit（310b 根因，吃整个 index）</li><li>删除前逐件对 DB + 工作区 + 并行注册表核对，不按提交来源一刀切</li><li>归因靠协议回执，不靠猜测；回执必须可查证（路径交集、命令清单）</li></ol></article><article class="case" id="schema-drift-zero"><h2>Schema 漂移清零</h2><div class="meta">治理实战 · 2026-10-19→2026-11-01 · OriginForce+OriginFlow · 真相源 OriginForce/docs/neo-machine-digital-company-plan-v1.md</div><h3>起点：检测器自报 24 ERROR</h3><p>team-schema v2.0（17 席位、L1-L5 双轨）落地后，<span class="mono">check_team_drift.py</span> 检测器自报 <strong>24 ERROR</strong>：三处真相同步约定中 zcode 副本已漂移 —— 投影（AS frontmatter / ZS toml / zcode cards / 飞书 roster）与 schema 契约不一致。</p><h3>判定规则</h3><div class="callout">24 ERROR 逐条对齐，判定规则：<strong>schema 为准</strong>，definitions 改；schema 错的改 schema。</div><h3>清零路径</h3><p>改完之后，drift 检测器从报警器变成生成器的验收测试 —— <span class="mono">sync_team_schema.py --dry-run</span> 预览 diff → 实跑四投影 → 末尾自动 drift 验收闭环。</p><h3>现状</h3><p>2026-11-01 实测：<strong>成员 17 | binding 17 | ERROR 0 | WARN 0 ✓ 无 ERROR 级漂移</strong>。cron 6h 巡检常驻，12 类检测覆盖投影合规验收门。</p><h3>经验固化</h3><ol><li>契约（schema）与投影必须有机器可验的等价检查，否则漂移静默累积</li><li>「schema 为准」的裁决规则消除了双向修改的死循环</li><li>检测器复用为生成器的验收测试 —— 同一逻辑源 schema_common.py</li></ol></article><article class="case" id="bridge-zero-to-live"><h2>桥从零到通</h2><div class="meta">集成实战 · 2026-10-31 · OriginFlow S3b · 真相源 scripts/zs_feishu_bridge.sh + teamwork 决策日志</div><h3>目标</h3><p>ZenSwarm 执行流水自动进飞书：轮询 ZS git log（task done/fail/create 事件）→ 群「NeoMachine 执行流水线」播报 + Base 任务流水状态 upsert。人在飞书侧看到每一件任务的生死。</p><h3>从零到通的坑</h3><ol>
+<li><span class="mono">git --since=@0</span> invalid —— <span class="mono">@0</span> 不是合法 epoch 表达，需实际 epoch 数值。</li>
+<li>state 文件存增量 ts，取值必须 <strong>ts+1</strong> 防同秒重复播报。</li>
+<li>best-effort 单工设计：桥挂了 ZS 不依赖飞书，执行层零耦合。</li></ol><h3>打通状态</h3><p>2026-10-31 启用：state = <span class="mono">.team/bus-bridge.state</span>；历史 197 任务已入 Base 任务流水（200 行含 probe/form 遗留），群已播报 50+；timer 5min 常驻。当前最近同步 <strong>11-01 01:30</strong>，群 chat_id <span class="mono">oc_868c…aa009</span>。</p><h3>派工约定</h3><div class="callout">herdr pane 敲 <span class="mono">zenswarm zen @&lt;席位&gt; &lt;task-id&gt;</span> → done 事件自动入群 + Base。</div><h3>经验固化</h3><ol><li>跨系统集成先定单工方向：执行层不依赖展示层</li><li>增量游标（state ts）是轮询桥的最小可靠性单元，+1 处理边界</li><li>历史数据回灌（197 任务）与增量播报分开跑，避免首跑风暴</li></ol></article>
+<footer>gen_site.py 骨架 + w0:p3 填充 · 2026-11-01 21:04 · 数据源 schema v2.0 / ZS tasks / AS DB / drift / git log</footer>
+</main></body></html>
