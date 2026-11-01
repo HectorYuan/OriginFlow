@@ -74,6 +74,22 @@ TOOLS_TEMPLATE = """# TOOLS · {name} 工具锚点
 
 {mcp_tools}
 
+## 派活与回执（pane↔task↔commit 溯源）
+
+- 派活即绑定（pane↔task↔commit 溯源；单源 AS `skills/herdr-workspace-ops.yaml` Step 3a/3b）：
+  ```bash
+  PY=/home/hector/DevSpace/AgentSwarm/.venv/bin/python3
+  TRACE_ID=$($PY -c 'from swarm.coordination import new_trace_id; print(new_trace_id())')
+  # 向他人 pane 派活时：先绑后派
+  $PY -m swarm.herdr_bindings.manager bind "<pane-id>" "$(pwd)" --task-id "<swarm task_id>" --trace-id "$TRACE_ID"
+  herdr agent prompt "<pane-id>" "[trace=$TRACE_ID][task=<swarm task_id>] <任务书>" --wait
+  # 完成后：回执带 trace + 释放绑定
+  herdr agent prompt wW:p7 "<席位>已完成 <交付物> trace=$TRACE_ID"
+  $PY -m swarm.herdr_bindings.manager unbind "<pane-id>"
+  ```
+- 被派活时：任务书若带 `[trace=...][task=...]` 前缀，回执必须原样带回 `trace=`（否则全链路对不上）。
+- 观测闸自检（只读）：`$PY -m swarm.herdr_bindings.manager list`（空 = 溯源链断）。
+
 ## 委派队友
 
 | 场景 | 委派给 | 备注 |
