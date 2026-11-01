@@ -1,6 +1,6 @@
 {
   "generated_from": {
-    "schema_content_hash": "ee947225abf57fc1",
+    "schema_content_hash": "9fbfef60f2b0e097",
     "source": "OriginForce/docs/team-schema.yaml"
   },
   "roster": [
@@ -195,16 +195,26 @@
   "tenant": {
     "base": {
       "acceptance": {
+        "alignment_required": true,
+        "alignment_status": {
+          "任务流水": "✅ 200 行 = 197 ZS 任务 + 3 遗留 (probe/form/补推)",
+          "会话索引": "⏳ 待 scanner (S3.5)",
+          "成员名册 v3": "✅ 17 席位 = schema members",
+          "技能注册": "⏳ 待 AS features.yaml 推送 (S4)",
+          "项目台账": "✅ 9 行 = 六层 8 项目 + 1"
+        },
         "checklist": [
           "主键 = 席位 ID (首字段)",
-          "10 字段: 4 select 校验列 + 5 text + 职责",
-          "15 行数据 (check_team_drift 成员数一致)",
-          "4 视图: 表格 / 看板·按等级 / 看板·按自主范围 / 在役席位(筛选)",
-          "垃圾字段清零 (无模板残留)",
-          "知识库: 源力觉醒智能科技 wiki 下「数字员工」节点树 (总览+15 席位页)"
+          "16 字段 = schema 成员属性对齐 (4 select 校验 + text 们 + 3 formula + 2 link + user)",
+          "可编排 = 多选干净值",
+          "4 视图 + 仪表盘 7 组件",
+          "五表零混杂 (16/10/10/7/7)",
+          "wiki 16 页",
+          "★ 对齐义务: Base 各表字段 ↔ 本地 neomachine 实际状态持续对齐 (任务流水←ZS bus / 会话索引←scanner / 技能注册←AS registry / 项目台账←实际仓况), 不做一次性快照"
         ],
-        "user_reviewed_at": null,
-        "verdict": "pending_user_review"
+        "user_feedback": "基本可以；表单映射的是本地 neomachine 的情况，做好对齐即可",
+        "user_reviewed_at": "2026-11-01",
+        "verdict": "user_approved_with_alignment_note"
       },
       "base_token": "O2zCbIQDaasdHysET8FcH8oCn6f",
       "field_attr_upgrade_20261031": {
@@ -213,6 +223,16 @@
         "user类型": "成员.备份负责人(人) 关联真实飞书人",
         "暴露缺口": "项目台账 ops-agent / docs-agent 不在 schema 15 席位 → link 无法回填 (2/9), 需补席位",
         "自动戳": "任务.updated_at / 会话.created_at 替换手填 text"
+      },
+      "field_audit_20261031": {
+        "cleanup": [
+          "成员名册 v3: 删 8 个表单污染字段 (等级L1-L5/名称中文/记忆域等标题型 text) + 补回误删的 记忆域",
+          "任务流水: 删冗余 更新时间(text) — 已有 updated_at 自动戳"
+        ],
+        "final_state": "五表零混杂 (严检通过: 16/10/10/7/7 字段与期望完全一致)",
+        "prevention": "席位申请改走提案 FSM (已删污染源表单); 今后禁止对生产表开开放表单",
+        "root_cause": "飞书表单的「题目」即「新建字段名」, 不可绑定已有字段 → 对着生产主表开表单必然污染",
+        "trigger": "用户发现表单提交自动建混杂字段 (表单问题标题=字段名, 飞书表单机制使然)"
       },
       "fields": [
         "席位ID",
@@ -237,7 +257,16 @@
           "link字段": [
             "负责席位 (link)→成员名册 v3"
           ],
+          "rows": 200,
           "table_id": "tblwbkAENRUCnXHC",
+          "对齐验收": {
+            "T-040": "ZS 本身跳号不存在 (非漏推)",
+            "checked_at": "2026-11-01",
+            "method": "task_id 唯一性抽验 21 个 (含 T-171 补推确认) + rev=200 行数对账",
+            "verdict": "aligned",
+            "抽验": "20 task_id count=1 唯一, T-040 count=0 属 ZS 跳号",
+            "行数对账": "Base rev=200 = 197 ZS 任务 + probe 1 + form 测试遗留 1 + T-171 补推 1"
+          },
           "自动戳": [
             "自动更新时间(updated_at)"
           ]
