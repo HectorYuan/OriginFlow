@@ -78,6 +78,8 @@ def test_mcp_for_seat_returns_dash_for_real_seat_without_mcp():
 
 # ── mcp_for_seat: 有声明 ───────────────────────────────────────
 def test_mcp_for_seat_table_header_for_declared_seat():
+    if not (gip.AS / "agents" / "definitions" / "backend-agent.md").is_file():
+        pytest.skip("AS definitions 缺失 (无 sibling 仓环境), 无法验证声明席位")
     out = gip.mcp_for_seat("backend-agent", matrix=["swarm"])
     assert out.startswith(TABLE_HEAD), out
     assert "swarm_code_search" in out
