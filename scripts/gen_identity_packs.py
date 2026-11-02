@@ -89,6 +89,7 @@ TOOLS_TEMPLATE = """# TOOLS · {name} 工具锚点
   ```
 - 被派活时：任务书若带 `[trace=...][task=...]` 前缀，回执必须原样带回 `trace=`（否则全链路对不上）。
 - 观测闸自检（只读）：`$PY -m swarm.herdr_bindings.manager list`（空 = 溯源链断）。
+- 取件即绑定（终态通道，优先用它代替上面的手工四步）：`swarm tasks claim-next --pane "<本 pane_id>" --worktree "$(pwd)"` 一次完成"领任务+写绑定+生成 trace_id"；干完 `swarm tasks release --pane "<本 pane_id>" --status completed`。同 pane 只允许一条活跃绑定；本通道跑顺且无绑定告警连续 7 天归零后，跨 pane 派发例外即撤（提案 AS-PROP-20261102-XSESS-DISPATCH-EXCEPT §5 退场锚）。
 
 ## 委派队友
 
