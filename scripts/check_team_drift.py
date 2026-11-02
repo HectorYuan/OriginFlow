@@ -32,6 +32,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from check_projection_guard import guard_routing_segment  # noqa: E402 — 单源守卫判据
 from schema_common import (  # noqa: E402
     AS_ROOT,
     FEISHU_ROSTER,
@@ -70,6 +71,7 @@ DEVIATIONS = {
     ("monitor-agent", "runtime"): "运行真相 hermes (definitions 10-19 起), schema 已对齐",
     ("system-navigator", "runtime"): "运行真相 hermes (definitions 10-19 起), schema 已对齐",
     ("docs-agent", "runtime"): "运行真相 hermes (definitions 10-19 起), schema 已对齐",
+    ("ceo", "runtime"): "CEO 用 hermes 运行时（Hector 指定），非 claude-code 默认",
 }
 
 ERRORS: list[str] = []
@@ -374,9 +376,13 @@ def check_zcode_cards(schema: dict, bindings: list[dict]) -> None:
 
 
 def check_routing_table(schema: dict) -> None:
-    """S2-⑩ 路由表: generated:roster 标记段存在性 + 与 schema 渲染全等（hash 隐含比对）。"""
-    if not ROUTING_TABLE.exists():
-        err(f"路由表缺失: {ROUTING_TABLE}")
+    """S2-⑩ 路由表: generated:roster 标记段存在性 + 与 schema 渲染全等（hash 隐含比对）。
+
+    标记段存在性判据单源自 check_projection_guard（守卫脚本与漂移检测共用, 防两处判据漂移）。
+    """
+    guard_msg = guard_routing_segment(ROUTING_TABLE)
+    if guard_msg:
+        err(guard_msg)
         return
     text = ROUTING_TABLE.read_text(encoding="utf-8")
     expected = render_roster_markdown(schema)
@@ -386,7 +392,7 @@ def check_routing_table(schema: dict) -> None:
         re.S,
     )
     if not mm:
-        err(f"路由表缺 generated:roster 标记段: {ROUTING_TABLE}")
+        err(f"路由表 generated:roster 段结构不完整（缺 END 标记）: {ROUTING_TABLE}")
         return
     if mm.group(0) != expected:
         err("路由表 generated:roster 段与 schema 渲染不一致（陈旧或被手改）")
