@@ -1,0 +1,5 @@
+# 域名待定，发布时替换为绝对 URL
+User-agent: *
+Allow: /
+
+Sitemap: /sitemap.xml

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="NeoMachine">
+  <!-- NeoMachine 六层体系：六边形象征六层，内嵌 N 字标；品牌色 accent oklch(0.82 0.14 168) -->
+  <rect width="32" height="32" rx="6" fill="oklch(0.17 0.012 232)"/>
+  <path d="M16 3.4 27.3 9.9v12.2L16 28.6 4.7 22.1V9.9Z"
+        fill="none" stroke="oklch(0.82 0.14 168)" stroke-width="1.7"
+        stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M12.2 21.4V10.6L19.8 21.4V10.6"
+        fill="none" stroke="oklch(0.82 0.14 168)" stroke-width="2.1"
+        stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
