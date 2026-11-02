@@ -29,6 +29,7 @@ agents/ 目录是 symlink 指向 OriginForce 真相源，修改会直接影响�
 
 > 派活协议单源在 AgentSwarm `skills/herdr-workspace-ops.yaml` Step 3a/3b
 > (AS HERDR-BINDING-WIRE P1+P3, TRINITY-COMM P1)。OriginFlow 照模板跑, 不自定义协议。
+> 协议依据：跨会话沟通协议 **v1.2 §1a 授权派发链**（正本 `AgentSwarm/docs/governance/cross-session-communication.md`）——禁令已收窄为"非授权派发会话不得代发"，授权判据=发起席位身份包明示的 pane 行；三硬前置缺一按未授权处置。例外带退场锚，终态为 `AS-PROP-20261102-L1-CLAIM-DISPATCH` 的取件即绑定。
 
 > **前置**: 本仓 python 未装 swarm 包, 一律用 AS venv 解释器（跨仓 DB 路径由包位置解析, 不随 cwd 漂移, 已实测）:
 > `PY=/home/hector/DevSpace/AgentSwarm/.venv/bin/python3`
