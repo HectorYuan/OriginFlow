@@ -83,4 +83,27 @@ footer{margin:56px 0 30px;padding-top:14px;border-top:1px solid var(--border);co
 <footer>gen_site.py 骨架 + w0:p3 填充 · 2026-11-01 21:04 · 数据源 schema v2.0 / ZS tasks / AS DB / drift / git log</footer>
 </main>
 
+
+<script>
+// 席位梯队表排序
+document.querySelectorAll('table th').forEach((th, idx) => {
+  th.style.cursor = 'pointer';
+  th.addEventListener('click', () => {
+    const table = th.closest('table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const asc = th.dataset.asc !== 'true';
+    th.dataset.asc = asc;
+    rows.sort((a, b) => {
+      const av = a.cells[idx].textContent.trim();
+      const bv = b.cells[idx].textContent.trim();
+      const an = parseFloat(av), bn = parseFloat(bv);
+      if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
+      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  });
+});
+</script>
+
 </body></html>
