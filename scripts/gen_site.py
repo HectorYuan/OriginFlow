@@ -188,23 +188,31 @@ PAGES = [
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser(description="NeoMachine site 静态生成器")
+    ap.add_argument("--force", action="store_true", help="覆盖已存在页 (仅可配 --only index)")
+    ap.add_argument("--only", choices=("index", "pages"), help="只生成 index 或四子页 (默认两者)")
+    args = ap.parse_args()
+    if args.force and args.only != "index":
+        ap.error("--force 仅允许配 --only index — 四子页为手写内容, 禁止覆盖")
     ctx = build_context()
     for d in ("", "team", "intel", "cases"):
         (SITE / d).mkdir(exist_ok=True)
-    idx = SITE / "index.html"
-    if not idx.exists():
-        idx.write_text(render_index(ctx), encoding="utf-8")
-        print(f"gen  {idx}")
-    else:
-        print(f"skip {idx} (已存在, 不覆盖)")
-    for rel, title, active, h1, todo in PAGES:
-        p = SITE / rel
-        if p.exists():
-            print(f"skip {p} (已存在, 不覆盖)")
-            continue
-        body = f'<h1>{h1}</h1><p class="lede">NeoMachine 六层体系子页。</p><div class="todo">{todo}</div>'
-        p.write_text(page(title, body, active), encoding="utf-8")
-        print(f"gen  {p}")
+    if args.only != "pages":
+        idx = SITE / "index.html"
+        if not idx.exists() or args.force:
+            idx.write_text(render_index(ctx), encoding="utf-8")
+            print(f"gen  {idx}")
+        else:
+            print(f"skip {idx} (已存在, 不覆盖)")
+    if args.only != "index":
+        for rel, title, active, h1, todo in PAGES:
+            p = SITE / rel
+            if p.exists():
+                print(f"skip {p} (已存在, 不覆盖)")
+                continue
+            body = f'<h1>{h1}</h1><p class="lede">NeoMachine 六层体系子页。</p><div class="todo">{todo}</div>'
+            p.write_text(page(title, body, active), encoding="utf-8")
+            print(f"gen  {p}")
 
 
 if __name__ == "__main__":
