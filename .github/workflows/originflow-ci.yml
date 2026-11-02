@@ -1,0 +1,96 @@
+name: originflow-ci
+
+# 设计说明 (T-224 修订版, CEO 实测后重写):
+# 本仓的 sync/drift 不是自包含的 —— 它们读 4 个 sibling 仓 + 用户级 ~/.zcode 状态:
+#   ../OriginForce/docs/team-schema.yaml   (schema 真相源)
+#   ../AgentSwarm/agents/definitions/*.md  (as_definition)
+#   ../AgentSwarm/team/teams.yaml          (teams 比对源)
+#   ../ZenSwarm/.team/agents/*.toml        (ZS 投影)
+#   ~/.zcode/agents/*.md + ~/.zcode/agent-cards/*.json  (zcode 注册, 由 AS 脚本生成)
+# 干净 runner 里这些都不存在, 直接跑 sync/drift 必 ERROR 20+。
+# 因此 CI 必须: 先 clone 四仓到 sibling 位置 → 生成 ~/.zcode → 再 sync → 再 drift。
+# 实测链路 (2026-11-03): zcode sync rc=0 → schema sync rc=0 → drift rc=0 (ERROR 0)。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: originflow-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      # ── 1. checkout 主仓到 sibling 布局位置（sibling 是硬约束）───────────
+      - name: Checkout OriginFlow
+        uses: actions/checkout@v4
+        with:
+          path: OriginFlow
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      # ── 2. clone 三个 sibling 仓（均为公开仓，可匿名 clone）───────────────
+      - name: Clone sibling repos
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          git clone --depth 1 https://github.com/HectorYuan/originforce.git OriginForce
+          git clone --depth 1 -b develop https://github.com/HectorYuan/AgentSwarm.git AgentSwarm
+          git clone --depth 1 -b main    https://github.com/HectorYuan/ZenSwarm.git ZenSwarm
+          echo "--- sibling layout ---"
+          ls -d OriginForce AgentSwarm ZenSwarm OriginFlow
+
+      # ── 3. seed 用户级 ~/.zcode（干净 runner 里没有，缺则 sync 报 ERROR）──
+      - name: Seed ~/.zcode routing table
+        run: |
+          mkdir -p "$HOME/.zcode"
+          printf '# ROUTING\n\n<!-- BEGIN generated:roster schema_content_hash=ci-seed -->\n<!-- END generated:roster -->\n' > "$HOME/.zcode/ROUTING_TABLE.md"
+
+      # ── 4. 生成 zcode 注册（~/.zcode/agents/*.md + agent-cards）──────────
+      # 必须在 drift 之前：drift 检查 ~/.zcode/agents/<seat>.md 是否存在。
+      - name: Generate zcode registrations
+        working-directory: AgentSwarm
+        run: python scripts/sync_agents_to_zcode_subagents.py
+
+      # ── 5. sync 四投影 ─────────────────────────────────────────────────
+      - name: Sync team schema projections
+        working-directory: OriginFlow
+        run: python scripts/sync_team_schema.py --force
+
+      # ── 6. drift：必须 ERROR 0 才通过 ───────────────────────────────────
+      # check_team_drift.py 末行输出「成员 N | binding N | ERROR N | WARN N」，
+      # 有 ERROR 时脚本自身 exit 1 —— 直接看退出码，不接管道吞码。
+      - name: Drift check (must be ERROR 0)
+        working-directory: OriginFlow
+        run: python scripts/check_team_drift.py
+
+      # ── 7. 投影守卫（路由表生成段在位性）───────────────────────────────
+      - name: Projection guard
+        working-directory: OriginFlow
+        run: python scripts/check_projection_guard.py
+
+      # ── 8. site build：生成 index 并验证内容 ────────────────────────────
+      - name: Build site index
+        working-directory: OriginFlow
+        run: python scripts/gen_site.py --force --only index
+
+      - name: Verify index output
+        working-directory: OriginFlow
+        run: |
+          test -f site/index.html
+          grep -q '席位' site/index.html
+          echo "OK: site/index.html 存在且含「席位」"
+
+      # ── 9. 单元测试 ───────────────────────────────────────────────────
+      - name: Unit tests
+        working-directory: OriginFlow
+        run: python -m pytest tests/ -q --no-header
