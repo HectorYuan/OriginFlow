@@ -1,0 +1,2279 @@
+{
+ "timestamp": "2026-11-03 00:04:22",
+ "schema": {
+  "total": 18,
+  "by_level": {
+   "L4": [
+    {
+     "agent_id": "devlead",
+     "name": "DevLead 编排 Agent",
+     "tier": "expert",
+     "runtime": "claude-code",
+     "status": "active"
+    },
+    {
+     "agent_id": "sprint-master",
+     "name": "Sprint 编排",
+     "tier": "expert",
+     "runtime": "claude-code",
+     "status": "active"
+    }
+   ],
+   "L5": [
+    {
+     "agent_id": "product-owner",
+     "name": "Product Owner",
+     "tier": "elite",
+     "runtime": "claude-code",
+     "status": "active"
+    },
+    {
+     "agent_id": "ceo",
+     "name": "CEO — NeoMachine 数字公司",
+     "tier": "elite",
+     "runtime": "hermes",
+     "status": "active"
+    }
+   ],
+   "L3": [
+    {
+     "agent_id": "architect-agent",
+     "name": "架构师",
+     "tier": "specialist",
+     "runtime": "claude-code",
+     "status": "active"
+    },
+    {
+     "agent_id": "backend-agent",
+     "name": "后端开发",
+     "tier": "specialist",
+     "runtime": "claude-code",
+     "status": "active"
+    },
+    {
+     "agent_id": "frontend-agent",
+     "name": "前端开发",
+     "tier": "specialist",
+     "runtime": "claude-code",
+     "status": "active"
+    },
+    {
+     "agent_id": "pm-agent",
+     "name": "产品经理",
+     "tier": "specialist",
+     "runtime": "claude-code",
+     "status": "active"
+    },
+    {
+     "agent_id": "qa-agent",
+     "name": "质量保障",
+     "tier": "specialist",
+     "runtime": "claude-code",
+     "status": "active"
+    },
+    {
+     "agent_id": "solution-expert",
+     "name": "解决方案专家",
+     "tier": "specialist",
+     "runtime": "pi",
+     "status": "active"
+    },
+    {
+     "agent_id": "ops-agent",
+     "name": "运维部署 Agent",
+     "tier": "specialist",
+     "runtime": "claude-code",
+     "status": "active"
+    }
+   ],
+   "L2": [
+    {
+     "agent_id": "data-analyst",
+     "name": "数据分析师",
+     "tier": "consultant",
+     "runtime": "hermes",
+     "status": "active"
+    },
+    {
+     "agent_id": "search-agent",
+     "name": "统一搜索入口",
+     "tier": "consultant",
+     "runtime": "hermes",
+     "status": "active"
+    },
+    {
+     "agent_id": "test-agent",
+     "name": "测试",
+     "tier": "consultant",
+     "runtime": "hermes",
+     "status": "active"
+    },
+    {
+     "agent_id": "monitor-agent",
+     "name": "监控与告警",
+     "tier": "consultant",
+     "runtime": "hermes",
+     "status": "active"
+    },
+    {
+     "agent_id": "docs-agent",
+     "name": "文档编写 Agent",
+     "tier": "consultant",
+     "runtime": "hermes",
+     "status": "active"
+    }
+   ],
+   "L1": [
+    {
+     "agent_id": "system-navigator",
+     "name": "系统导航",
+     "tier": "utility",
+     "runtime": "hermes",
+     "status": "active"
+    },
+    {
+     "agent_id": "principle-check",
+     "name": "原则审查",
+     "tier": "utility",
+     "runtime": "claude-code",
+     "status": "active"
+    }
+   ]
+  },
+  "members": [
+   {
+    "agent_id": "devlead",
+    "name": "DevLead 编排 Agent",
+    "level": "L4",
+    "capability_tier": "expert",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "project+feedback",
+    "can_orchestrate": [
+     "L1",
+     "L2",
+     "L3",
+     "L4",
+     "L5"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/devlead.md",
+    "role": "跨团队协调、方案评审与升级决策",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "product-owner",
+    "name": "Product Owner",
+    "level": "L5",
+    "capability_tier": "elite",
+    "autonomy_scope": "org",
+    "runtime": "claude-code",
+    "memory": "org+feedback",
+    "can_orchestrate": [
+     "L1",
+     "L2",
+     "L3",
+     "L4",
+     "L5"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/product-owner.md",
+    "role": "方案推进、向 CEO 汇报",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "architect-agent",
+    "name": "架构师",
+    "level": "L3",
+    "capability_tier": "specialist",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "task",
+    "can_orchestrate": [
+     "L1",
+     "L2"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/architect-agent.md",
+    "role": "系统与组件架构设计",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "backend-agent",
+    "name": "后端开发",
+    "level": "L3",
+    "capability_tier": "specialist",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "task",
+    "can_orchestrate": [
+     "L1",
+     "L2"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/backend-agent.md",
+    "role": "FastAPI/DB/API",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "frontend-agent",
+    "name": "前端开发",
+    "level": "L3",
+    "capability_tier": "specialist",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "task",
+    "can_orchestrate": [
+     "L1",
+     "L2"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/frontend-agent.md",
+    "role": "React 组件、Agent Chat UI",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "pm-agent",
+    "name": "产品经理",
+    "level": "L3",
+    "capability_tier": "specialist",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "task",
+    "can_orchestrate": [
+     "L1",
+     "L2"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/pm-agent.md",
+    "role": "需求、PRD",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "sprint-master",
+    "name": "Sprint 编排",
+    "level": "L4",
+    "capability_tier": "expert",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "project+feedback",
+    "can_orchestrate": [
+     "L1",
+     "L2",
+     "L3",
+     "L4"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/sprint-master.md",
+    "role": "Sprint 编排与门禁",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "data-analyst",
+    "name": "数据分析师",
+    "level": "L2",
+    "capability_tier": "consultant",
+    "autonomy_scope": "task",
+    "runtime": "hermes",
+    "memory": "session",
+    "can_orchestrate": [
+     "L1"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/data-analyst.md",
+    "role": "CSV/SQLite 查询与统计",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "search-agent",
+    "name": "统一搜索入口",
+    "level": "L2",
+    "capability_tier": "consultant",
+    "autonomy_scope": "task",
+    "runtime": "hermes",
+    "memory": "session",
+    "can_orchestrate": [
+     "L1"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/search-agent.md",
+    "role": "代码/文档/上下文/知识图谱/网络搜索",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "qa-agent",
+    "name": "质量保障",
+    "level": "L3",
+    "capability_tier": "specialist",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "task",
+    "can_orchestrate": [
+     "L1",
+     "L2"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/qa-agent.md",
+    "role": "代码审查、测试、lint、安全扫描",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "test-agent",
+    "name": "测试",
+    "level": "L2",
+    "capability_tier": "consultant",
+    "autonomy_scope": "task",
+    "runtime": "hermes",
+    "memory": "session",
+    "can_orchestrate": [
+     "L1"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/test-agent.md",
+    "role": "单元/集成/E2E/性能",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "monitor-agent",
+    "name": "监控与告警",
+    "level": "L2",
+    "capability_tier": "consultant",
+    "autonomy_scope": "task",
+    "runtime": "hermes",
+    "memory": "session",
+    "can_orchestrate": [
+     "L1"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/monitor-agent.md",
+    "role": "EventBus 事件监控 + 异常检测",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "system-navigator",
+    "name": "系统导航",
+    "level": "L1",
+    "capability_tier": "utility",
+    "autonomy_scope": "task",
+    "runtime": "hermes",
+    "memory": "session",
+    "can_orchestrate": [],
+    "registered_in": "AgentSwarm/agents/definitions/system-navigator.md",
+    "role": "Feature/CLI-MCP/Skill 三层路由",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "principle-check",
+    "name": "原则审查",
+    "level": "L1",
+    "capability_tier": "utility",
+    "autonomy_scope": "task",
+    "runtime": "claude-code",
+    "memory": "session",
+    "can_orchestrate": [],
+    "registered_in": "AgentSwarm/agents/definitions/principle-check.md",
+    "role": "七条统一原则审查",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "solution-expert",
+    "name": "解决方案专家",
+    "level": "L3",
+    "capability_tier": "specialist",
+    "autonomy_scope": "project",
+    "runtime": "pi",
+    "memory": "task",
+    "can_orchestrate": [
+     "L1",
+     "L2"
+    ],
+    "registered_in": "OriginForce/agents/solution-expert/ (8 文件身份包)",
+    "role": "AI/数智化转型全栈咨询顾问",
+    "team": "brand:originforce",
+    "status": "active",
+    "notes": "已在 AgentSwarm 067b7608fd 合并 L3 身份体"
+   },
+   {
+    "agent_id": "ops-agent",
+    "name": "运维部署 Agent",
+    "level": "L3",
+    "capability_tier": "specialist",
+    "autonomy_scope": "project",
+    "runtime": "claude-code",
+    "memory": "task",
+    "can_orchestrate": [
+     "L1",
+     "L2"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/ops-agent.md",
+    "role": "CI/CD、监控、故障处理、基础设施管理",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "docs-agent",
+    "name": "文档编写 Agent",
+    "level": "L2",
+    "capability_tier": "consultant",
+    "autonomy_scope": "task",
+    "runtime": "hermes",
+    "memory": "session",
+    "can_orchestrate": [
+     "L1"
+    ],
+    "registered_in": "AgentSwarm/agents/definitions/docs-agent.md",
+    "role": "技术文档、API 文档、用户指南、架构文档",
+    "team": "brand:originforce",
+    "status": "active"
+   },
+   {
+    "agent_id": "ceo",
+    "name": "CEO — NeoMachine 数字公司",
+    "level": "L5",
+    "capability_tier": "elite",
+    "autonomy_scope": "org",
+    "runtime": "hermes",
+    "memory": "org+feedback",
+    "can_orchestrate": [
+     "L1",
+     "L2",
+     "L3",
+     "L4",
+     "L5"
+    ],
+    "registered_in": "OriginForce/agents/ceo/IDENTITY.md",
+    "role": "战略决策、资源调配、跨部门协调、最终发布、向 Hector 汇报",
+    "team": "brand:originforce",
+    "status": "active"
+   }
+  ]
+ },
+ "zs_tasks": {
+  "total": 211,
+  "states": {
+   "done": 199,
+   "wip": 8,
+   "fail": 1,
+   "dropped": 2,
+   "ready": 1
+  },
+  "tasks": [
+   {
+    "task_id": "T-001",
+    "title": "M0a walking skeleton: task/rule/verify chain with fake LLM",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-002",
+    "title": "A2 real-LLM smoke: session writes hello-real.txt",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-003",
+    "title": "M0b-D: real distill of T-002 green session S-1791823946-dev",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-004",
+    "title": "M1-H: fuse + sentry + lease reclaim + timer",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-005",
+    "title": "M1-F: R1 self-learning loop (rule propose + decide)",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-006",
+    "title": "B-probe: E1 axiom injection into distill + parallel dev mechanism (deps/next/mul",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-007",
+    "title": "E1 probe: 缓存本地 vs 每次远程查询的取舍决定",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-008",
+    "title": "M9-eval: 并行评估三件套（file_lock+commit-cross-detect+resource_profiler）",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-009",
+    "title": "M6-axioms: 全量 10 系列公理指针+摘要（E0-E6+5系列）",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-010",
+    "title": "R1-protocol: <tool_call> XML 回退是失败不是终稿（修复+新 fail_class）",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-013",
+    "title": "shadow task 防御：create 入口去重（最小面，v0.1.2 内增补）",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-014",
+    "title": "M7 预算规则化：loc.sh 改读 .team/budget.toml（v0.1.2 内增补）",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-015",
+    "title": "[v0.1.3-prep] M-V0.1.3-prep: verify ROOT 化 + CI workflow + VERSIONING 同步 + ADR 修",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-016",
+    "title": "M10-a 分形骨架 · Task struct 加 kind+parent_id+TaskKind newtype+done 传递校验+shadow (kin",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-017",
+    "title": "公理自核对 + V1 修复：删 L0-L0-901-auto.md 双 L0 前缀（meta.md 命名契约对齐）",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-018",
+    "title": "M10-c L0 规则数据层 + L0-001 v1.2 升格 + skills 3 模板 + 9 整合点低+中耦合落地（v0.1.4 内增补，0 core）",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-019",
+    "title": "M10-d scope 字段双注入 · traj JSONL + assemble prompt + R1 跨层过滤 + journal 扩列（v0.1.4 内",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-020",
+    "title": "R3 决议采纳（v0.1.4 内增补起步）：cap 1010→1020 + meta.md J2 续期 + ADR-002 + r3-decision-resu",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-021",
+    "title": "[v0.1.4] 发版收尾：git tag + gh release 补发（ADR 必选第 5 步）+ 并发重核对 journal 入库",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-022",
+    "title": "F2 死链接线：CLI layer done 子命令 + kind 分流 emit + L0-201/202/203 rule::check 转活（v0.1.4",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-023",
+    "title": "公理链全量：补 E0 太极本体公理（docs/axioms/E0-taiji.md + index.toml loaded 31 条，4 优化点·公理链全量推进",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-024",
+    "title": "M10-e expect_fingerprint 复合 · task.rs 新增 expect_fingerprint 字段 + verify_acceptan",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-025",
+    "title": "M10-f runner 进程治理 · scripts/*_runner.sh 加 instance_lock + MAX_LOOP 熔断 + 性能 profi",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-026",
+    "title": "M10-g M-multi 分解 · 多任务集成 commit 工作产物 + commit lock 机制设计（v0.1.5 候补, 0 core, 设计哲学独",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-027",
+    "title": "L0-301 诚实化 + knowledge.write 接线：block→warn + dormant 状态注记 + cmd_distill emit/che",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-028",
+    "title": "B5 幂等修复：cmd_distill 同 fixture 重放应 exit 0（content-unchanged 跳过 add+commit, 0→+4 c",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-029",
+    "title": "R3 终审: A5/Ca6/Ca7 公理溯源 (meta.md zone=human, expires=2027-04-12)",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-030",
+    "title": "R3 终审实施: 公理来源政策修订（real-world + 元哲学）+ A5/Ca6/Ca7 接受（0 core）",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-031",
+    "title": "M-L1~L3: agents/ 目录 + session.head.json + cmd_agent {list,whoami,register,peers}",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-032",
+    "title": "M-L4~L6: bus::emit_message + cmd_bus send/inbox + guard::agent_lease + cmd_agent",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-033",
+    "title": "fractal4agents 技能: 3-ary 递归基函数 (Koch 雪花拓扑) 生成 + 验证数亿级 agent 网络 (0 core, 纯 docs/s",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-034",
+    "title": "S-001.0 / T-034 自学习转化链 · axiom 层多 cycle 闭环 (fractal4agents depth 5 × 5 cycle + S",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-035",
+    "title": "S-001.1 / T-035 系统科学显性化 · axiom_topo_check v2 实证层 (T-041 + T-042 落地, 4 优化点 #3 10",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-036",
+    "title": "S-001.2 / T-036 sprint retrospective · 5 维自评 + M-001 候补设计 (0 core, 纯 docs)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-038",
+    "title": "fractal 树状 HTML 可视化: scripts/fractal_to_html.sh (深度 BFS 坐标 + 8 卦着色 + parent→chil",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-039",
+    "title": "八卦方位图 agents 集群: scripts/gua_scatter.sh (8 卦 compass + 卦内 2-dim 投影, 0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-041",
+    "title": "4 优化点闭合实证: 公理判定×fractal4agents 拓扑 (axiom_topo_check) + 转化链记忆环 distill 落地 (0 core",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-042",
+    "title": "系统科学显性化收官: axiom_topo_check 扩到全公理系 (14 可机验 + N/A 显式) + T-034 合流验收点 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-043",
+    "title": "接收 fractal4agents 评审 (并行会话 17 项) — 修 O1/O3 真缺陷 + O6 protocol + O8 同构证明 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-044",
+    "title": "viewer: hover 显示 profile 详情 (fractal_to_html + gua_scatter 内嵌 key dims, 0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-045",
+    "title": "评审高优收尾: O4 八卦 8 态 status 空间 + O5 五行激活链 (activate/connect) + O7 lifecycle 四时 (0 c",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-046",
+    "title": "core 回收批 1: DISTILL_PROMPT 外置 .team/skills/distill-prompt.md (硬指令: 必须用 write_fil",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-047",
+    "title": "递归循环三缺口闭合 · find_task_commit 多 key + mark-done alias + R-001 roadmap 实体 + R2 引用衰",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-048",
+    "title": "v0.2.0 发版收尾: tag + gh release 补发 (ADR 必选第5步三度漏执行) + VERSIONING v0.3.0 语义修订 (user",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-049",
+    "title": "viewer polish: 3 bug 修复 (gua hash→卦名 / viewBox 负x / 八卦方位角90°错位)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-050",
+    "title": "R2 衰减检查纳入 sentry 跑批 (loop2 缺口: rule_staleness 月跑化, 0 core bash)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-051",
+    "title": "评审中优收尾: O9 arity 参数化 + O10 并发锁 + O11 decommission 逆运算 + O13 Hasse 图 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-052",
+    "title": "V4 B1 原子修复 (task done save→commit 窗口回滚, 0 净行) + roadmap_align 节奏闸 (QA 必做#4, 0 co",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-053",
+    "title": "axiom_selfcheck 静态机验: 公理库自验 6 检查 (index 一致/knowledge 在位/provenance 完备/inferred=0",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-054",
+    "title": "E1 探针重跑 (T-053 TOML 死链修复后): 34 公理全量注入→真 LLM 行为转化验证 (决策: 跨系统对等第一切入点)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-055",
+    "title": "A 路线: runtime write_file 引导强化 — gateway SYSTEM_PROMPT 加 write_file-only-for-file",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-056",
+    "title": "X 方案核心: run_session 消息结构升级 (String→Vec<Value> + role=tool 配对 + tool_call_id) — 派",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-057",
+    "title": "X 方案对冲: core 回收批 2 — 熔断降级 L0 规则数据 + 租约简化 mtime (§9.1 预定序, core -20~25, L0-508 回收",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-058",
+    "title": "traj 记 tool args 摘要 (L4 充足理由律观测端, 0 core — 防未来根因分析再盲跑)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-059",
+    "title": "元收获蒸馏技能化: axiom-decision SKILL + L0-506/507/508 三规则 + S-AXIOM-DECISION knowledge",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-060",
+    "title": "臂过滤机制: assemble ZENSWARM_AXIOM_SET env 多臂 + loaded 过滤复活 (修 T-009 死数据, +3 core, V",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-061",
+    "title": "V2 pilot: 取舍题×3臂×n=3 矩阵 (zero/full/E1+B 对口) + 判据预注册 + ab_probe v2 多臂机验 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-062",
+    "title": "viewers 增强: fractal4agents 卦变集成 (gua=parent+1 mod 64) + 卦典色彩/维度投影 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-063",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] 灰度发布 vs 全量发布：ZenSwarm 新版本上线策略取舍。必须在 4",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-064",
+    "title": "profile 工具链: profile_compute (卦典维度拼装) + profile_search (按卦/维度 KNN) + MatrAIx sch",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-065",
+    "title": "loop3 · R2 命中留痕 (rule.hit bus 事件) + 4 runner 事件驱动 (轮询→wake, 0 core 净)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-066",
+    "title": "loop4 · 分形不变量 (高层 gate 必含 child verify) + M-DRY/R-DRY 点亮 milestone/roadmap 事件谱 (",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-067",
+    "title": "profile_to_soul: 卦+5维 → 自然语言 soul.md 桥接 (T-031 soul_path 双向锚, 0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-068",
+    "title": "V2 全量矩阵: 3 新题型×3臂×n=3 (27 sessions) 跨题型特异性 + 密度>总量假设检验 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-069",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] ZenSwarm 任务连续 3 次 verify 失败后的处置策略取舍（熔",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-070",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] ZenSwarm 新模块的任务分解与撤销设计（拆分后如何可逆撤销）。必须在",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-071",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] ZenSwarm 长任务迭代预算与超时收敛策略取舍（几轮内收敛/超时怎么办",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-072",
+    "title": "0.2.1 补打 + patch 级发版留痕规则 (L0-600 公理体系式) + 0.3.0 发版 (开发进度留痕)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-073",
+    "title": "V3 pilot 场景1: 矛盾检测 (L2) — 2 臂×n=3 行为二值机验 (对口=L系列注入, 0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-074",
+    "title": "T-074 cadence 当量闸强化 — equivalent_evidence.sh cron 周跑 + alerts + cadence journal ",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-075-2",
+    "title": "core 回收批 2 (L0-506 闸启) — 熔断 → L0 规则数据 + 租约 → mtime 判定 (预计 −50~60 行)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-075",
+    "title": "T-075 core 回收批 1 数据层外置 — DISTILL_PROMPT + cli usage 外置 (L0-600 §2 节奏闸: ≤5 commit",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-076",
+    "title": "AS/RF 对等首批 ≥5 任务连接 + 承接清单显性化 (ZS↔AS 双向跨系统测试)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-077",
+    "title": "T-077 集成 verify — equivalent_evidence.sh 接入 verify 链 + 0.6/1.0 双门联动",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-078",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] 第一步：立即 write_file 写 iter-probe.txt 初稿",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-079",
+    "title": "V3-s3b: 收敛场景两臂 rounds20 公平重跑 (预算修正, 判据不动) — 给 S3 定论 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-080",
+    "title": "v0.4.0 multi_commit_lock (meta.md R3 段 + src/task.rs::create 多任务锁, +2~3 core, J7",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-081",
+    "title": "Multi-Task trailer 协议 (cli.rs emit \"Multi-Task: id1+id2\" + 解析, +2~3 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-082",
+    "title": "K.multi skill (fractal4agents 扩展: 派工编排层, +3~5 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-083",
+    "title": "5 层验收流并发压测 (T-F-S-M-R dry-run 串联 done 触发 unlock 链, +1 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-084",
+    "title": "zen @dev 实战 ≥5 单 (5 层各 1 单, 验命令面 + output, 0~2 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-085",
+    "title": "README.md 成稿（项目介绍 7 节：定位/机制/安全/快速开始/目录/契约/版本阶梯）",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-086",
+    "title": "docs/BRANCHING.md + CONTRIBUTING.md 成稿（分支模型 dev+main 双干 + 贡献薄壳）",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-087",
+    "title": "分支纪律落地：.gitattributes(bus/alerts merge=union) + L0-701 分支生命周期规则",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-088",
+    "title": "分支全环实证：task/T-088 分支 TRIGGER→merge dev→mark-done + runner dev 分支判定 + journal",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-089",
+    "title": "v0.3.4 dim 邻域倾斜单源修复: scripts/dim_tilt.sh + 四脚本 (scatter/compute/soul/search) 接线 ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-090",
+    "title": "V4 链1 记忆链: assemble knowledge 读端接线 (记忆环闭合) + 3 臂 pilot (zero/memory/direct × n=2",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-091",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] 灰度发布 vs 全量发布：ZenSwarm 新版本上线策略取舍。必须在 4",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-092",
+    "title": "版本车票 gate：L0-702 规则 + version_gate.sh 核对确认 + .team/releases/ 车票数据（公理参照设计）",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-093",
+    "title": "V4 链1 修复轮: traj() 粒度升级 (write_file 全文入 args + summary 字段补写 + final content) + li",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-094",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] 灰度发布 vs 全量发布决策 (S3 体例版). 必须在 4 轮内: 1)",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-095",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] qa 复核 (一次性终态, 禁占位骨架). 全程 6 轮内: 第 1 轮 ",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-096",
+    "title": "V4 链3 bus 多 agent 链 pilot: T-094/095 载体 + v4_bus_chain.sh 仪器 + 双发跑批 — R1=2.09 PA",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-097",
+    "title": "架构技能栈收口批: code2arch/idea2arch 双技能 + 自检补充 + P0 生成基建 (tokens.toml/arch_gen/arch-cd",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-098",
+    "title": "P1 plan2arch: SKILL v1.0 + 三技状态图例统一 (tokens) + 实况图 dogfood (v0.4.0/R-002 题材)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-099",
+    "title": "V4 链1 n=3 幅度扩展轮 (定论): 判据不动重跑 — memory≡zero≡0 三发, direct=19 稳, 传递效应不可测 (装载≠使用行为实证",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-100",
+    "title": "V4 链3 修复重跑: cli.rs inbox --body (0 净行) + qa 零注入重跑 — R1=3.00/R2=0.82 双 PASS, bus ",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-101",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] loop2green 五步修复 (双约束: write-first 硬序 ",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-102",
+    "title": "[EXPERIMENT-CARRIER 勿改勿复用 dispatch-ignore] 修复 scripts/v2-bug-target.sh 缺陷 (plain",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-103",
+    "title": "P2 图形 DSL 正式化: lane/gate/group/note 一等元素 + 外部 SVG hex->var() 转换后端 (D2/Mermaid 可选",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-104",
+    "title": "V4 链2 loop 链 pilot: 三臂跑批 + 仪器四修 — L1/L2 PASS, loop-1 唯一三全中样本 (根因+公理+实修)",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-105",
+    "title": "V3-s3c: 收敛场景三防线重开 (短批≤5min/归属断言/全路径 title) — 给 S3 定论 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-106",
+    "title": "V4 链2 n=3 定论轮: pilot 信号被否定 — loop 三全中 0, 五段结构净负担 (F3 1/3<6/6), F2 公理引用 9 发全 0; 三",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-107",
+    "title": "V4 投产收尾: CI 双补 (axiom_selfcheck + version_gate step) + 公理使用三反向原则文档化 (0 core)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-108",
+    "title": "task-prioritization-matrix 技能: P×U 4象限评估框架 + completed 段 + 评估记录 schema + 矩阵 runn",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-109",
+    "title": "自学习断点三修: distill --from journal (S1) + sentry §3.9 loop-distill-lag (S2) + loop_",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-110",
+    "title": "check3 遗留四修: distill 3次重试 (R2-A1) + verify_m1 H1e 幻影ck转正 (R1) + lag判据 git时间单源 (三",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-111",
+    "title": "L0-703/L0-702 车票四态序口径对表 (check3 三轮发现: L0-703 第41/63行顺序与 L0-702 权威序不一致)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-112",
+    "title": "规则蒸馏 (P×U #1): T-046 方向重试, L0 规则反模式 → 新 L0 规则, fixture 模式 + sanitize 复用 (0 core,",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-113",
+    "title": "ab-probe + axiom-audit 技能包装 (axiom-probe V1-V4 资产 SKILL 化, dryrun 调 P×U 矩阵 4 任务示",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-114",
+    "title": "[submatch-skill] L0-707 §0 verify-submatch.sh 5 维公理测试落地 (A4/B5/Ca1/L2/L4 + E5/E6",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-115",
+    "title": "[submatch-skill] issue2feature 5 阶闭环实证 (5 sentry 试金石 + verify 语义化 20/20)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-116",
+    "title": "分流试点A: 20261018 蒸馏清账全账 journal (45 session+3 journal+3 lease 回收+gate 30% 拒绝率, AS",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-117",
+    "title": "分流试点B: AGENTS.md 实证倒查首轮报告 (扫 AS 近30天拦截事件→规则退役候选清单, 仅报告不改规则, AS 分流次单)",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-118",
+    "title": "AS 分流: R3 distill-lag 三告警合一 (session/journal/loop → 单条对象参数化, 倒查报告 R3 回流落地)",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-119",
+    "title": "AS 分流: R1 stale-lease 逐条告警降级聚合日报 (615/907=67.8% 噪声, 通道退役+数据层巡检, 倒查 R1 回流)",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-120",
+    "title": "AS 分流: session TTL 30 天清理 (DESIGN §信息三分已定义未实现, JSONL 过程日志非终态, 蒸馏后证据已固化 git)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-121",
+    "title": "AS 分流: R5 二轮机会数口径 — 40 条规则逐条统计 trigger event 在 bus.jsonl 发生次数 vs 拦截次数, 机会数>0 且拦截",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-122",
+    "title": "AS 分流: R4 trailer-degradation 告警聚合 (L0-001+L0-401 有效拦截保留, 近重复刷屏 113 条 → 每窗口一条聚合形",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-123",
+    "title": "session/loop 蒸馏打通 S1-S3: lag 双类账本 (final+rounds>=5 价值口径) + sentry 双告警 + loop_rev",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-124",
+    "title": "AS 分流: AS 规则库倒查二轮 ZS 侧镜像 — AS AGENTS.md 治理条款逐条机会数扫描 (报告 docs/audits/agentsmd-aud",
+    "state": "fail",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-125",
+    "title": "蒸馏鲁棒性+对表: handoff_watermark 零重叠结论 + UA 归因关闭 (模型方差) + distill attempt3 切 fallback",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-126",
+    "title": "check3 硬缺口修复: 三 runner 分支判定补齐 + gate 离线降级/isDraft/短hash 防护 + README 现状刷新 + L0-60",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-127",
+    "title": "B4 补评审: project-intro-branching v1.1 + version-ticket-gate 三方评审 (工程 + syssci 2 席",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-128",
+    "title": "CEO 裁决落地: C1 merge_gate.sh 执行器 + C5 支配序显性化 + C13 版本语义归一 (L0-600 为准)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-129",
+    "title": "AS 分流: 在途提案对账巡检 ZS 侧镜像 (AUTO-20261020-001 实施, 39 提案四元组核对, 报告落 AS docs/audits/pro",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-130",
+    "title": "AS 分流: 假 completed 哨兵上线 (AUTO-20261020-002, ZS 水位镜像)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-131",
+    "title": "[HANDOFF] 调度台会话回收台账: v0.3.4→v0.4.3 十版跨度水位读数 + 在途全清 + S4 立项队列 + 续航资产指针 + 纪律速记 (T-",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-132",
+    "title": "S4 自动 runner 立项: done 事件→异步蒸馏 (T-131 handoff 唯一在途项, scripts/auto_distill_runner.",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-133",
+    "title": "B4 遗留 C2+C3: 传感器接通 — sentry 分支纪律巡检(禁squash机验+main直推+done落点) + L0-708 中文触发姊妹规则 + ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-134",
+    "title": "T-eval-code 认领: core 回收评估实证 (core 976/1010 达 J10 门, axiom_selfcheck 7/7 + topo 1",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-135",
+    "title": "B4 遗留 C10+C11: gate 硬化 — release-drift 积压告警(阈值进数据层) + version_gate 退出码三态(0/3/1 防",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-136",
+    "title": "B4 剩余批量闭合: C4 gate 负例自测入门禁 + C6 human_approved_ref + C7~C9 设计规约 + C12 expires 续期",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-137",
+    "title": "S4 runner 缺陷修复 + 运行时产物 gitignore 化: per-sid 锁陈旧回收 (distill 失败留锁永久楔死) + .team/.f ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-138",
+    "title": "ACP/A2A 目标 stable 版本锁定决策包 (DESIGN §9.4 [USER] 待决): 外部标准现状 + 候选版本 + vendored gold",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-139",
+    "title": "[WRITE-FIRST 协议: r1 教训 12 轮全烧侦察零写入, 本任务是新文件无读墙, 首轮即 write_file src/acp.rs 骨架, 禁先",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-140",
+    "title": "runtime 技能动态匹配落地 (DESIGN §3.1, 0.5 runtime 核心包判据④ / F-007): .team/skills 运行时扫描 +",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-141",
+    "title": "M-002 假 done reconcile: 三证据核对 (M-001 仍 ready / milestones journal 缺 / Milestone:",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-142",
+    "title": "[nightly-align] 夜间版本整体合并对齐 v1 (参照 AS 夜维 v2): main→dev 单向回合 + merge_gate 六闸 + 锁互斥",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-143",
+    "title": "合并闸/lag 判据三项修复: O-a merge_gate 闸后还原 Cargo.lock (闸致脏致 merge 拒绝 + 移动 3 路基线造伪冲突) + ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-144",
+    "title": "0.5 runtime 核心包 (F-007 判据①②③, DESIGN §3.2/§3.3): 工具 envelope {ok,data,error} 统一进",
+    "state": "done",
+    "agent": "",
+    "attempts": 3
+   },
+   {
+    "task_id": "T-145",
+    "title": "0.6 runtime 上下文预算分配器 + 位置敏感排序 (DESIGN §3.3, M-001 runtime 协议包判据④): soul/契约/规则弹性预",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-146",
+    "title": "0.6 runtime 双模型路由 (DESIGN §3.2, M-001 runtime 协议包判据⑤): forward 主环主力模型 / reverse ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-147",
+    "title": "v0.5.0 判据口径对齐: version-loop.sh 闸判定改为服从 VERSIONING 立法层 (0.5.0 判据集 = 10 nano + cad",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-148",
+    "title": "cadence 周记生产机制: scripts/cadence_weekly.sh + zenswarm-cadence.{service,timer} — 9",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-149",
+    "title": "O-e prompt-bloat 改测真实 context 装配面: 原判据测 session 轨迹总量但 runtime::assemble 根本不装载 se",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-150",
+    "title": "O-f 分支纪律存量豁免名单 data 化: sentry §3.10(b) 的 4 个 sha 硬编码在脚本里 (治理豁免要改代码), 移至 .team/co",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-151",
+    "title": "G 节奏闸判据绑批次维度 + 阈值 data 化: roadmap_align pace 判据原用全仓 24h commit 总数 vs 阈 5, 在多会话并发",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-152",
+    "title": "0.5 runtime 包 cap 预批落地 (2026-10-21 用户 \"都通过；开始推进\"): budget.toml core 1010→1080 + ",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-153",
+    "title": "[WRITE-FIRST 微任务: 首轮即执行下方精确命令, 禁侦察; dispatcher 已双实证 = sh -c sed 持久写入 OK + 修正模式预跑",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-154",
+    "title": "gate_selftest 工作树兼容修复: chain-bus-feature-done 读 .team/bus.jsonl (gitignore 的运行时产",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-155",
+    "title": "v0.4.5 发版收口: 90 commits 批次留痕 (B4 尾批 + T-144 loop6 + cap 预批 + 24 蒸馏批) — 车票四态全链 do",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-156",
+    "title": "用户裁决三项落地: ①981f157 存量豁免入数据层 (branch-discipline 告警消除) ②distill_lag 锚点盲区回看窗 3 天 (数",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-157",
+    "title": "journal 蒸馏存量清账机制化: scripts/distill_backlog_runner.sh + zenswarm-distill-backlog.",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-158",
+    "title": "sentry fuse-due 误报修复: done 态排除 (T-144 attempts=3 但已成功收口, 无需熔断判定)",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-159",
+    "title": "done-带病 sentry 巡检 (F-008, 本日两例实证: M-002 历史假 done + T-144 瞬时 seal 错配): scripts/do",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-160",
+    "title": "治理清欠批: M-005.toml 嵌套引号语法修 (严格解析器 line12 直接失败) + R-001 climb_section 措辞漂移修正 (0.5 ",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-161",
+    "title": "edit 原语 apply_patch 落地 (F-008, 派工第二堵墙: write_file 整文件替换 + 200 字符读墙实证 journal 202",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-162",
+    "title": "fake-final 结构闸 (F-008, T-144 两轮零写入诚实 final 靠人眼抓实证): run_session Final 臂补结构条件 — e",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-163",
+    "title": "CHECK3 接三个自动化点 (daemon/nightly/ceo_gate) [AS-PROP-20261017-CHECK3]",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-164",
+    "title": "CTCS LEVEL_2->LEVEL_3 灰度切换 + load_info 接线 [AS-PROP-20261009-LEVEL-3-ROUTE]",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-165",
+    "title": "0.6 runtime 协议包 cap 预批 J11 执行 (2026-10-22 用户 \"按照推荐推进\" 指令, 承接 T-152 备案的 0.6 动工前再议",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-166",
+    "title": "vendored 协议快照进仓 (acp-a2a-version-lock.md §3 件一, 锁定版执行): specs/vendor/a2a-v1.0.1/",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-167",
+    "title": "conformance_align.sh (acp-a2a-version-lock.md §3 件二): 校验 ①vendor 目录版本 ↔ SOURCES.",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-168",
+    "title": "golden message 回放集 (acp-a2a-version-lock.md §3 件三, 随 T-139): 以 AS a2a_server.py ",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-169",
+    "title": "sentry release-no-ticket 测项修正: 排除产物类 commit (knowledge(/journal:/docs() 的 key 嵌被",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-170",
+    "title": "9 整合点全集实战判据机验化: 落地 9/9 已核, 但'实战'层有缺口 (无 journal 用 scope 段 / Multi-Task trailer 零",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-171",
+    "title": "version-loop MANUAL 行加终审留痕指针 + 证据采集器入口: 0.5.0 判据的'9 整合点全集实战'为 zone=human 终审项 (20",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-172",
+    "title": "distill 空 content panic 修复 (loop8 实证, cli.rs:288): LLM 偶发空回复时 content[0..=0] 空串越",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-173",
+    "title": "仓库零状态律立法 (L0-906): 规则文件 + 白名单数据层 + sentry §3.14 检测 (0 core) — 判据=程序运行中写入而非扩展名, 只",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-174",
+    "title": "write hello",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-175",
+    "title": "b1",
+    "state": "dropped",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-176",
+    "title": "b3",
+    "state": "dropped",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-177",
+    "title": "v0.4.6 发版收口: 169 commits 批次留痕 (0.5 闸 F-007 闭合 + 0.6 协议包 5/5 + loop8/9 T-145/146 ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-178",
+    "title": "v0.4.7 发版收口: 17 commits 批次留痕 (0.4.6 发版链收尾 T-177 + T-173 零状态律复核 + 11 篇知识蒸馏批) — 节奏",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-179",
+    "title": "loop2green×发车接线 P0 (loop10, 三断点 D1/D2/D3): release_check.sh (节奏闸+release_pre emi",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-180",
+    "title": "v0.4.8 发版收口: loop10 接线批 (三断点 D1/D2/D3 + release-train 技能化 + L0-512 材料) — release",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-181",
+    "title": "0.4.9 波次: 观察项收敛 (O-f/O-e 取证闭环) + T-174/175/176 测试残留 dropped (追认范式) + #7 fingerpr",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-182",
+    "title": "v0.4.9 发版收口: loop11 波次 (观察项收敛 + 残留清理 + fingerprint 首实证) — release_auto 二次 dogfoo",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-183",
+    "title": "L0-512 升格落地 (zone=human 2026-10-25 '继续 + 升格即可'): 规则 expires→2099-12-31 + 升格记录段 +",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-184",
+    "title": "横向优化整合波 (loop12): m0a 断言升级18处+仪器免疫清扫 + zenswarm serve 激活(acp 真监听) + cadence off-",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-185",
+    "title": "v0.4.10 发版收口: loop12 横向波 14 commits — release_auto 四次 dogfood",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-186",
+    "title": "acp message 真派工 + knowledge 引用衰减 (loop13): message+task_id → spawn_agent_session",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-187",
+    "title": "v0.4.11 发版收口: loop13 acp message 派工 + 引用衰减 — release_auto 五次 dogfood",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-188",
+    "title": "acp 端到端闭环实证 + AS-RF 周记行核销 (loop14): 独立 ws serve→session→message→真派工→子进程 zen 开跑全链",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-189",
+    "title": "edit 原语 apply_patch 落地 (F-008, T-161): exec_tool 新增 apply_patch (old 精确串唯一命中→new",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-190",
+    "title": "fake-final 结构闸 (F-008, T-162): run_session Final 臂补结构条件 — expect_files 非空且零 file",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-191",
+    "title": "v0.4.12 发版收口: loop14/15 波 (acp 端到端 + apply_patch + fake-final 结构闸) — release_aut",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-192",
+    "title": "feature_runner 上 systemd timer (gate 自动闭合, 用户跟踪机制缺口的第二补): scripts/systemd/zenswa",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-193",
+    "title": "一键状态板 scripts/status.sh (用户问 '任务处理没有跟踪机制? 如何确知完成了' 的机制补): 五面 = 门闸就绪(含 GATE-READY",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-194",
+    "title": "verify_m0 补 Rust 套件门禁 (rt 组): 本地合并闸六闸走 verify_m0 而 verify_m0 不跑 cargo test → Rus",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-195",
+    "title": "spawn 子进程崩溃 lease 残留 → pid 活性回收 (loop15, 锁范式第4现): guard::lease_acquire 仅 7200s m",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-196",
+    "title": "v0.4.13 发版收口: acp 真 LLM 全链闭环 + T-195 lease 活性回收 + 测试卫生修复 — release_auto 七次 dogfo",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-197",
+    "title": "generate.sh 裁决仪器诊断移交: trap 内 exec 重定向发生在失败之后 → 63 个 .out/.err 实测全空 (100% 诊断失效, p",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-198",
+    "title": "签票前置三项修: ①采集器判据源改 git 权威 (bus.jsonl 被轮转 1300→42 行, R1/scope 实战判据读 bus 随轮转失效; 改读 ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-199",
+    "title": "0.6.0 签票 + J12 core 帽预批 决策包: 签票材料 (0.6.0 判据 4 项机验 PASS + 5 任务逐个裸跑验收 5/5 真闭合 + 9 ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-200",
+    "title": "版本序列纠正 + L0-703 周期检查补闸: 撤回 0.6.0 备票 (0.4.13→0.6.0 跳整个 0.5.0 档, 违 L0-703 minor 收敛",
+    "state": "done",
+    "agent": "",
+    "attempts": 2
+   },
+   {
+    "task_id": "T-201",
+    "title": "S3c 端到端验证: 桥播报链",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-203",
+    "title": "site 门户主页 — hero + 六层卡 + 席位梯队 + 事件流 + 导航",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-204",
+    "title": "site 聚合页 — 状态指标卡 + 梯队表 + SVG donut + 事件流 + 漂移",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-205",
+    "title": "site 子页三件 — 名册(team) + 情报(intel) + 案例(cases)",
+    "state": "done",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-206",
+    "title": "v0.5.0 发版收口: runtime 能力跃迁 minor (首个 0.x.0) — 判据 7 PASS+MANUAL 留痕, 13 patch 周期, 周",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-207",
+    "title": "site dashboard 六层架构卡区块 — 设计文档 §2.2 第3行要求 6 卡片, 与主页口径一致 (原任务书称 T-206~208, 因 T-206",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-208",
+    "title": "site intel 第 21 条研究文档收口 — multidimensional-table-2026-review 条目 + 删除畸形冗余 ul (原任务",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-209",
+    "title": "OriginFlow docs/cases/ 真相源目录 — 三篇案例 md (36文件恢复 / Schema漂移清零 / 桥从零到通), 内容取自页内文案零编",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-210",
+    "title": "签发语义自动化 + A 档回归 (loop16): ①--approved-ref 落 true+真锚 (A3) ②release_train_smoke 冒烟",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-211",
+    "title": "v0.5.1 发版收口: loop16 签发语义自动化+A 档回归 (新环首版, H7 冒烟已闸拦) — release_auto 八轮 dogfood",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-212",
+    "title": "head.json ended 翻转 (观测脱管收尾): cmd_zen 会话收尾时把 {sid}.head.json status active → ende",
+    "state": "ready",
+    "agent": "",
+    "attempts": 0
+   },
+   {
+    "task_id": "T-213",
+    "title": "J12 core 帽预批落地 (zone=human 2026-11-02 '按照建议处理'): budget.toml core 1240→1320 +80 ",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-214",
+    "title": "generate.sh 裁决仪器修复 (案 A 方案 A, T-197 移交档 §3.3): 已知失败点显式落盘确定性诊断 (_fail_ctx 函数: mkd",
+    "state": "done",
+    "agent": "",
+    "attempts": 1
+   },
+   {
+    "task_id": "T-215",
+    "title": "规则体系优化调研 + 方案 (loop17): 参照 design canon 347 公理库 — canon 四制度对标 (canonical_id/stat",
+    "state": "wip",
+    "agent": "",
+    "attempts": 0
+   }
+  ]
+ },
+ "as_db": {
+  "proposals": 2472,
+  "tasks": 2151,
+  "milestones": 13,
+  "proposal_states": {
+   "archived": 809,
+   "completed": 717,
+   "cancelled": 708,
+   "needs_revision": 44,
+   "superseded": 42,
+   "proposed": 35,
+   "reviewing": 30,
+   "implementing": 28,
+   "rejected": 27,
+   "draft": 12,
+   "submitted": 9,
+   "approved": 6,
+   "confirmed": 5
+  }
+ },
+ "drift": {
+  "errors": 0,
+  "ok": true,
+  "raw": "—— 成员 18 | binding 18 | ERROR 0 | WARN 0 ✓ 无 ERROR 级漂移"
+ },
+ "bridge": {
+  "last_ts": 1793467841,
+  "last_sync": "11-01 01:30",
+  "chat_id": "oc_868c2b79a4bfa24a18695350519aa009"
+ },
+ "events": [
+  {
+   "source": "ZS",
+   "emoji": "🟢",
+   "text": "task(T-211): done",
+   "sha": "fd36ed0"
+  },
+  {
+   "source": "AS",
+   "emoji": "📜",
+   "text": "chore(proposal:AUTO-20261102-016): create proposal AUTO-20261102-016: 写被拒三类错误码分离",
+   "sha": "f908297152"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🔴",
+   "text": "task(T-214): fail #1 (verify_failed)",
+   "sha": "f0c97c8"
+  },
+  {
+   "source": "AS",
+   "emoji": "📜",
+   "text": "chore(proposal:AUTO-20261102-018): create proposal AUTO-20261102-018: 写被拒三类错误码分离",
+   "sha": "e6db2ebf3b"
+  },
+  {
+   "source": "AS",
+   "emoji": "📜",
+   "text": "feat(dlq): LED-011 null 分类率阈值告警实施+核销 — check_null_classification_rate (72h/30%, ",
+   "sha": "d7df69f4ad"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🔵",
+   "text": "task(T-215): create",
+   "sha": "c903d3d"
+  },
+  {
+   "source": "AS",
+   "emoji": "📜",
+   "text": "chore(proposals): AUTO-20261102-010 正文区混入 frontmatter 注释的结构修复 — 删多余注释 + 文件为准回填 D",
+   "sha": "c60516aab1"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🟢",
+   "text": "task(T-213): done",
+   "sha": "b160811"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🔵",
+   "text": "task(T-213): create",
+   "sha": "a34768b"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🟢",
+   "text": "task(T-151): reconcile — 剔除现态 pace 断言 (done 验收断言'当前治理态'=时变第三次实证, T-206 发版批次合法超限即",
+   "sha": "9e351cb"
+  },
+  {
+   "source": "AS",
+   "emoji": "📜",
+   "text": "fix(nightly): S3 主树合并改隔离 worktree — 7x24 多会话下主树 staged 永非空, git merge 直接在主树跑必冲突;",
+   "sha": "9500159806"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🔵",
+   "text": "task(T-212): head.json ended 翻转登记 (观测脱管收尾, 实施类挂 peer 车道) + L0-703 跳档通道永久关闭入法 (us",
+   "sha": "8eb4783"
+  },
+  {
+   "source": "AS",
+   "emoji": "📜",
+   "text": "chore(proposal:AUTO-20261102-017): create proposal AUTO-20261102-017: 写被拒三类错误码分离",
+   "sha": "8ac7265420"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🟢",
+   "text": "task(T-159): done_drift 假 done 腿 — git --all-match (id+done 同 commit) 判定, 兼容合并 d",
+   "sha": "7866d75"
+  },
+  {
+   "source": "ZS",
+   "emoji": "🔴",
+   "text": "task(T-213): fail #1 (verify_failed)",
+   "sha": "77db63f"
+  }
+ ],
+ "herdr": {
+  "total": 33,
+  "by_workspace": {
+   "wR": [
+    {
+     "pane_id": "wR:p1E",
+     "label": "as-pi-agentswarm",
+     "agent": "pi",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p13",
+     "label": "as-pi-designer",
+     "agent": "pi",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p1V",
+     "label": "as-omp",
+     "agent": "omp",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p21",
+     "label": "",
+     "agent": "omp",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p1X",
+     "label": "as-droid",
+     "agent": "droid",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p1M",
+     "label": "as-mcode",
+     "agent": "mcode",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p1K",
+     "label": "as-mcode-2",
+     "agent": "mcode",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p24",
+     "label": "",
+     "agent": "mcode",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p25",
+     "label": "",
+     "agent": "mcode",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p1D",
+     "label": "as-crush",
+     "agent": "crush",
+     "status": "working"
+    },
+    {
+     "pane_id": "wR:p8",
+     "label": "as-qodercli",
+     "agent": "qodercli",
+     "status": "idle"
+    }
+   ],
+   "wW": [
+    {
+     "pane_id": "wW:pB",
+     "label": "",
+     "agent": "hermes",
+     "status": "idle"
+    },
+    {
+     "pane_id": "wW:p9",
+     "label": "devlead-wW",
+     "agent": "",
+     "status": "unknown"
+    },
+    {
+     "pane_id": "wW:pE",
+     "label": "originforce-devlead-omp",
+     "agent": "omp",
+     "status": "working"
+    },
+    {
+     "pane_id": "wW:pF",
+     "label": "originforce-devlead-droid",
+     "agent": "droid",
+     "status": "done"
+    },
+    {
+     "pane_id": "wW:p5",
+     "label": "originforce-contract",
+     "agent": "pi",
+     "status": "done"
+    },
+    {
+     "pane_id": "wW:p6",
+     "label": "originforce-claude",
+     "agent": "claude",
+     "status": "idle"
+    }
+   ],
+   "w0": [
+    {
+     "pane_id": "w0:p1",
+     "label": "originflow-site-pi",
+     "agent": "pi",
+     "status": "working"
+    },
+    {
+     "pane_id": "w0:p3",
+     "label": "originflow-omp",
+     "agent": "omp",
+     "status": "done"
+    },
+    {
+     "pane_id": "w0:p4",
+     "label": "originflow-opencode",
+     "agent": "opencode",
+     "status": "done"
+    },
+    {
+     "pane_id": "w0:p6",
+     "label": "neomachine-dashboard",
+     "agent": "",
+     "status": "unknown"
+    },
+    {
+     "pane_id": "w0:p2",
+     "label": "originflow-spare",
+     "agent": "",
+     "status": "unknown"
+    }
+   ],
+   "wY": [
+    {
+     "pane_id": "wY:p4",
+     "label": "",
+     "agent": "crush",
+     "status": "working"
+    },
+    {
+     "pane_id": "wY:p1",
+     "label": "zenswarm-omp",
+     "agent": "omp",
+     "status": "idle"
+    },
+    {
+     "pane_id": "wY:p3",
+     "label": "zenswarm-droid",
+     "agent": "droid",
+     "status": "idle"
+    }
+   ],
+   "wN": [
+    {
+     "pane_id": "wN:p9",
+     "label": "devspace-pi",
+     "agent": "pi",
+     "status": "working"
+    },
+    {
+     "pane_id": "wN:pC",
+     "label": "devspace-pi-done",
+     "agent": "pi",
+     "status": "working"
+    },
+    {
+     "pane_id": "wN:pP",
+     "label": "devspace-shell",
+     "agent": "",
+     "status": "unknown"
+    }
+   ],
+   "w13": [
+    {
+     "pane_id": "w13:p1",
+     "label": "",
+     "agent": "",
+     "status": "unknown"
+    },
+    {
+     "pane_id": "w13:p4",
+     "label": "",
+     "agent": "",
+     "status": "unknown"
+    },
+    {
+     "pane_id": "w13:p5",
+     "label": "",
+     "agent": "",
+     "status": "unknown"
+    },
+    {
+     "pane_id": "w13:p2",
+     "label": "",
+     "agent": "",
+     "status": "unknown"
+    },
+    {
+     "pane_id": "w13:p3",
+     "label": "",
+     "agent": "",
+     "status": "unknown"
+    }
+   ]
+  }
+ }
+}
