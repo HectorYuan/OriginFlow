@@ -5,7 +5,7 @@
       → git log (subprocess) → drift (check_team_drift.py) → site/*.html
 约束: ≤200 行 · 仅标准库 + pyyaml + tomllib · 零 JS 框架 (site-architecture.md §3.4)
 幂等: 目标文件已存在则跳过不覆盖 — dashboard.html 与三子页由 w0:p3 omp 填充。"""
-import re, sqlite3, subprocess, tomllib
+import argparse, json, re, sqlite3, subprocess, tomllib
 from datetime import datetime
 from html import escape
 from pathlib import Path
@@ -74,6 +74,17 @@ def git_events(n: int = 10) -> list[dict]:
     return ev[:n]
 
 
+def load_events(n: int = 10) -> list[dict]:
+    """事件流优先读 site/dashboard-data.json (与 dashboard.html 同源); 缺文件回落 git_events。"""
+    try:
+        data = json.loads((SITE / "dashboard-data.json").read_text(encoding="utf-8"))
+        evs = [{"ts": str(e.get("sha", ""))[:7], "subj": escape(str(e.get("text", ""))[:100]),
+                "src": e.get("source", "")} for e in data.get("events", [])[:n]]
+        return evs
+    except Exception:
+        return git_events(n)
+
+
 def load_tasks() -> dict:
     tasks = []
     for f in sorted((ZS / ".team/tasks").glob("*.toml")):
@@ -128,7 +139,7 @@ def build_context() -> dict:
     by_level: dict[str, list] = {}
     for m in members:
         by_level.setdefault(m.get("level", "?"), []).append(m)
-    return {"members": members, "by_level": by_level, "zs": zt, "props": as_proposals(), "drift": drift_errors(), "events": git_events(10)}
+    return {"members": members, "by_level": by_level, "zs": zt, "props": as_proposals(), "drift": drift_errors(), "events": load_events(10)}
 
 
 def layer_cards(ctx: dict) -> str:
