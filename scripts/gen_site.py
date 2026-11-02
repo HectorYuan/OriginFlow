@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
 """gen_site.py — NeoMachine site 静态生成器 (L5 集成层, 归 w0:p1)。
 
-管线: schema v2.0 (yaml.safe_load) → ZS .team/tasks/*.toml (tomllib)
-      → git log (subprocess) → drift (check_team_drift.py) → site/*.html
+管线: 采集层复用 dashboard_data.py (collect_schema/zs_tasks/as_db/drift/events 单源)
+      → render_index → site/*.html (四子页骨架 main 幂等生成)
 约束: ≤200 行 · 仅标准库 + pyyaml + tomllib · 零 JS 框架 (site-architecture.md §3.4)
 幂等: 目标文件已存在则跳过不覆盖 — dashboard.html 与三子页由 w0:p3 omp 填充。"""
-import argparse, json, re, sqlite3, subprocess, tomllib
+import argparse, json, sys
 from datetime import datetime
 from html import escape
 from pathlib import Path
 
-import yaml
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # 同目录采集层 (脚本直跑)
+import dashboard_data as dd
 
 OF = Path(__file__).resolve().parent.parent
 SITE = OF / "site"
-ZS = OF.parent / "ZenSwarm"
-AS = OF.parent / "AgentSwarm"
-SCHEMA = Path("/home/hector/DevSpace/OriginForce/docs/team-schema.yaml")
 
 # 六层体系 (真相源: gen_dashboard_cli.py 同款口径)
 LAYERS = [
@@ -58,65 +56,39 @@ th{color:var(--muted);font-weight:500;font-size:12px}.mono{font-family:var(--mon
 NAV = [("index.html", "门户"), ("dashboard.html", "总控台"), ("team/index.html", "名册"), ("intel/index.html", "情报"), ("cases/index.html", "案例")]
 
 
-# ── 数据管线 (四源只读) ──────────────────────────────────────────
+# ── 数据管线 (薄封装 → dashboard_data.collect_* 单源复用) ────────
+def _event_row(e: dict) -> dict:
+    """collect_events / dashboard-data.json 条目 → 渲染层 ts/subj/src。"""
+    return {"ts": str(e.get("sha", ""))[:7], "subj": escape(str(e.get("text", ""))[:100]), "src": e.get("source", "")}
+
+
 def git_events(n: int = 10) -> list[dict]:
-    ev = []
-    for repo, src in ((ZS, "ZS"), (AS, "AS")):
-        try:
-            r = subprocess.run(["git", "-C", str(repo), "log", "--format=%ad|%s", "--date=format:%m-%d %H:%M", f"-{n * 2}"], capture_output=True, text=True, timeout=15)
-            for line in r.stdout.strip().splitlines():
-                if "|" in line:
-                    ts, subj = line.split("|", 1)
-                    ev.append({"ts": ts, "subj": escape(subj[:100]), "src": src})
-        except Exception:
-            pass
-    ev.sort(key=lambda e: e["ts"], reverse=True)
-    return ev[:n]
+    return [_event_row(e) for e in dd.collect_events(n)]
 
 
 def load_events(n: int = 10) -> list[dict]:
-    """事件流优先读 site/dashboard-data.json (与 dashboard.html 同源); 缺文件回落 git_events。"""
+    """事件流优先读 site/dashboard-data.json (与 dashboard.html 同源); 缺文件回落 collect_events。"""
     try:
         data = json.loads((SITE / "dashboard-data.json").read_text(encoding="utf-8"))
-        evs = [{"ts": str(e.get("sha", ""))[:7], "subj": escape(str(e.get("text", ""))[:100]),
-                "src": e.get("source", "")} for e in data.get("events", [])[:n]]
-        return evs
+        return [_event_row(e) for e in data.get("events", [])[:n]]
     except Exception:
         return git_events(n)
 
 
 def load_tasks() -> dict:
-    tasks = []
-    for f in sorted((ZS / ".team/tasks").glob("*.toml")):
-        try:
-            d = tomllib.load(open(f, "rb"))
-            tasks.append({"id": d.get("id", ""), "title": (d.get("title") or "")[:80], "state": d.get("state", "draft"), "agent": d.get("agent", "")})
-        except Exception:
-            pass
-    from collections import Counter
-    return {"total": len(tasks), "states": dict(Counter(t["state"] for t in tasks)), "tasks": tasks}
+    return dd.collect_zs_tasks()
 
 
 def load_members() -> list[dict]:
-    d = yaml.safe_load(SCHEMA.read_text(encoding="utf-8"))
-    return [m for b in d.get("brand_teams", {}).values() for m in b.get("members", [])]
+    return dd.collect_schema().get("members", [])
 
 
 def drift_errors() -> int:
-    try:
-        r = subprocess.run(["python3", str(OF / "scripts/check_team_drift.py")], capture_output=True, text=True, timeout=60, cwd=OF)
-        m = re.search(r"ERROR (\d+)", r.stdout)
-        return int(m.group(1)) if m else -1
-    except Exception:
-        return -1
+    return dd.collect_drift().get("errors", -1)
 
 
 def as_proposals() -> int:
-    try:
-        with sqlite3.connect(f"file:{AS / '.swarm/dev/swarm.db'}?mode=ro", uri=True, timeout=10) as con:
-            return con.execute("SELECT COUNT(*) FROM proposals").fetchone()[0]
-    except Exception:
-        return 0
+    return dd.collect_as_db().get("proposals", 0)
 
 
 # ── 渲染 ────────────────────────────────────────────────────────

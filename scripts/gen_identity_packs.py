@@ -156,6 +156,52 @@ def extract_as_definition(agent_id: str) -> dict | None:
     return {"frontmatter": fm, "body": body, "description": fm.get("description", "")}
 
 
+def load_mcp_matrix() -> list[str]:
+    """T-223: 读 ~/.claude.json + ~/.qwen/settings.json 的 mcpServers, 合并去重。"""
+    servers: set[str] = set()
+    for p in (Path.home() / ".claude.json", Path.home() / ".qwen" / "settings.json"):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+            servers |= set((d.get("mcpServers") or {}).keys())
+        except Exception:
+            continue
+    return sorted(servers)
+
+
+_MATRIX: list[str] | None = None
+
+
+def mcp_for_seat(seat: str, mcp_list: list | None = None, matrix: list[str] | None = None) -> str:
+    """T-223: deps.mcp × MCP 矩阵交集 → 该席位 MCP 工具表。
+
+    - mcp_list 缺省时从 AS definition frontmatter depends_on.mcp 提取
+    - '全部 MCP 工具' 展开为矩阵全服务器行
+    - 有声明但交集空时保留声明行 (状态=不在矩阵), 不清空表
+    """
+    global _MATRIX
+    if matrix is None:
+        if _MATRIX is None:
+            _MATRIX = load_mcp_matrix()
+        matrix = _MATRIX
+    if mcp_list is None:
+        as_def = extract_as_definition(seat)
+        deps = ((as_def or {}).get("frontmatter") or {}).get("depends_on") or {}
+        mcp_list = deps.get("mcp", []) if isinstance(deps, dict) else []
+    if not mcp_list:
+        return "-"
+    rows = []
+    for tool in mcp_list:
+        if tool == "全部 MCP 工具":
+            if matrix:
+                rows.extend(f"| all @ {s} | {s} | ✓ 矩阵内 |" for s in matrix)
+            else:
+                rows.append(f"| {tool} | - | 矩阵空 |")
+            continue
+        owner = next((s for s in matrix if tool == s or tool.startswith(s + "_") or tool.startswith(s + "-")), None)
+        rows.append(f"| {tool} | {owner or '?'} | {'✓ 矩阵内' if owner else '⚠ 不在矩阵'} |")
+    return "| MCP 工具 | 服务器 | 状态 |\n|---|---|---|\n" + "\n".join(rows)
+
+
 def generate_identity_pack(agent_id: str, member: dict, force: bool = False):
     target = OF / "agents" / agent_id
     target.mkdir(parents=True, exist_ok=True)
@@ -240,10 +286,7 @@ def generate_identity_pack(agent_id: str, member: dict, force: bool = False):
             if cli_list:
                 cli_tools = "\n".join(f"| {c} |" for c in cli_list)
                 cli_tools = f"| 命令 |\n|---|\n{cli_tools}"
-            mcp_list = deps.get("mcp", [])
-            if mcp_list:
-                mcp_tools = "\n".join(f"| {x} |" for x in mcp_list)
-                mcp_tools = f"| MCP 工具 |\n|---|\n{mcp_tools}"
+            mcp_tools = mcp_for_seat(agent_id, deps.get("mcp", []))
     tools = TOOLS_TEMPLATE.format(name=name, cli_tools=cli_tools, mcp_tools=mcp_tools)
     if wf("TOOLS.md", tools):
         results.append("TOOLS.md")

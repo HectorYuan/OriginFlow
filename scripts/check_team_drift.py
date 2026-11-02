@@ -74,8 +74,14 @@ DEVIATIONS = {
     ("ceo", "runtime"): "CEO 用 hermes 运行时（Hector 指定），非 claude-code 默认",
 }
 
+
+
 ERRORS: list[str] = []
 WARNS: list[str] = []
+
+# 第 13 类: 席位 MEMORY.md 体量阈值 (写入模块常量便于未来调)
+MEMORY_WARN_BYTES = 3072
+MEMORY_ERR_BYTES = 5120
 
 
 def err(msg: str) -> None:
@@ -452,6 +458,29 @@ def check_feishu_roster(schema: dict) -> None:
         err(f"feishu roster 陈旧: hash={got} ≠ schema {h}")
 
 
+def check_memory_limits(members: list[dict]) -> None:
+    """第 13 类: 席位 MEMORY.md 体量阈值 (ORIGINFORCE/agents/<seat>/MEMORY.md)。
+
+    超 MEMORY_WARN_BYTES (3072B) → warn; 超 MEMORY_ERR_BYTES (5120B) → err;
+    文件缺失 → warn (身份包尚未生成, 不算 ERROR)。schema members 集合驱动, 避免误扫非 schema 席位。
+    """
+    agents_dir = ORIGINFORCE_ROOT / "agents"
+    if not agents_dir.is_dir():
+        warn(f"agents 目录缺失: {agents_dir} (无法执行 memory_limits 检查)")
+        return
+    known = {m.get("agent_id", "") for m in members} - {""}
+    for aid in sorted(known):
+        p = agents_dir / aid / "MEMORY.md"
+        if not p.exists():
+            warn(f"成员 {aid} MEMORY.md 缺失 (席位未生成身份包, 不计 ERROR)")
+            continue
+        sz = p.stat().st_size
+        if sz >= MEMORY_ERR_BYTES:
+            err(f"成员 {aid} MEMORY.md {sz}B 超 ERR 阈值 {MEMORY_ERR_BYTES}B")
+        elif sz >= MEMORY_WARN_BYTES:
+            warn(f"成员 {aid} MEMORY.md {sz}B 超 WARN 阈值 {MEMORY_WARN_BYTES}B")
+
+
 def notify_feishu_drift(errors: list[str]) -> None:
     """留接口 (S4): drift ERROR 推送飞书 wiki 漂移告警中心（schema alert_target）。"""
     return None
@@ -475,6 +504,7 @@ def main() -> int:
     check_routing_table(schema)
     check_bindings_integrity(members, bindings)
     check_feishu_roster(schema)
+    check_memory_limits(members)
     notify_feishu_drift(ERRORS)
 
     for w in WARNS:
