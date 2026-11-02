@@ -126,6 +126,7 @@ def page(title: str, body: str, active: str) -> str:
     return f"""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>{title} · NeoMachine 数字公司</title><style>{CSS}</style></head>
 <body><header><div class="wrap"><a class="brand" href="/">NeoMachine 数字公司</a><nav>{nav}</nav></div></header>
 <main class="wrap">{body}
