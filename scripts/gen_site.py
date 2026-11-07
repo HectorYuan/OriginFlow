@@ -15,6 +15,7 @@ import dashboard_data as dd
 
 OF = Path(__file__).resolve().parent.parent
 SITE = OF / "site"
+HQ_CSS = SITE / "assets" / "hq.css"  # 共享样式组件真相源 (数字总部 Published Language 呈现面)
 
 # 六层体系 (真相源: gen_dashboard_cli.py 同款口径)
 LAYERS = [
@@ -30,7 +31,7 @@ ZEN = [("https://site.zenlearning.cn/arch/", "ZenSwarm 组件图 36 页"),
        ("https://site.zenlearning.cn/radar/", "情报雷达"),
        ("https://site.zenlearning.cn/misc/designcanon/", "DesignCanon 347 公理")]
 
-CSS = """:root{--bg:oklch(0.17 0.012 232);--surface:oklch(0.205 0.013 232);--fg:oklch(0.93 0.006 200);--muted:oklch(0.66 0.014 220);--accent:oklch(0.82 0.14 168);--border:oklch(0.30 0.015 225);--serif:Georgia,"Noto Serif SC",serif;--sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"SF Mono",Menlo,Consolas,monospace;--maxw:1160px}
+_CSS_FALLBACK = """:root{--bg:oklch(0.17 0.012 232);--surface:oklch(0.205 0.013 232);--fg:oklch(0.93 0.006 200);--muted:oklch(0.66 0.014 220);--accent:oklch(0.82 0.14 168);--border:oklch(0.30 0.015 225);--serif:Georgia,"Noto Serif SC",serif;--sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"SF Mono",Menlo,Consolas,monospace;--maxw:1160px}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.65}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
@@ -53,7 +54,18 @@ th{color:var(--muted);font-weight:500;font-size:12px}.mono{font-family:var(--mon
 .ev{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13.5px}.ev time{font-family:var(--mono);color:var(--muted);white-space:nowrap}.ev .src{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
 """
 
-NAV = [("index.html", "门户"), ("dashboard.html", "总控台"), ("team/index.html", "名册"), ("intel/index.html", "情报"), ("cases/index.html", "案例")]
+
+def _load_css() -> str:
+    """共享组件优先: site/assets/hq.css 为真相源; 缺失时回落内置 CSS (幂等稳健)。"""
+    try:
+        return HQ_CSS.read_text(encoding="utf-8")
+    except OSError:
+        return _CSS_FALLBACK
+
+
+CSS = _load_css()
+
+NAV = [("index.html", "门户"), ("hq/index.html", "总部"), ("dashboard.html", "总控台"), ("team/index.html", "名册"), ("intel/index.html", "情报"), ("cases/index.html", "案例")]
 
 
 # ── 数据管线 (薄封装 → dashboard_data.collect_* 单源复用) ────────
@@ -168,7 +180,7 @@ def main() -> None:
     if args.force and args.only != "index":
         ap.error("--force 仅允许配 --only index — 四子页为手写内容, 禁止覆盖")
     ctx = build_context()
-    for d in ("", "team", "intel", "cases"):
+    for d in ("", "hq", "team", "intel", "cases"):
         (SITE / d).mkdir(exist_ok=True)
     if args.only != "pages":
         idx = SITE / "index.html"

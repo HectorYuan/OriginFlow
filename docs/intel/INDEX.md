@@ -1,3 +1,11 @@
+---
+id: originflow-intel
+layer: L4
+truth_source: originflow/docs/intel/
+tool_layer: false
+updated: "2026-11-03"
+---
+
 # NeoMachine 情报参谋部索引
 
 > L4 情报层 · 按席位投喂 · OriginFlow 维护 · 同步至 /intel/ 子路径
@@ -80,3 +88,23 @@ feed_rules:
 本 INDEX.md 是真相源（OriginFlow 仓内）。
 `gen_site.py` 读取本文件 → 渲染 `/intel/index.html`（展示层）。
 新增情报源时：改本文件 + 改 schema intel_feeds → 重跑生成器。
+
+## 扩展编目：AgentSwarm docs 集合（2026-11-03 数字总部接入）
+
+AS 大仓不建 INDEX（不搬家纪律），其知识集合由本节统一编目；逐项清单见 `AgentSwarm/docs/research/` 等目录本体。
+
+| AS 集合 | 内容 | 服务席位 | 接入形态 |
+|---|---|---|---|
+| docs/research/（21 报告） | A2A/数据库/SDK/用例/初始化/诊断/维护 等主题调研 | architect-agent, backend-agent, solution-expert | 上表 Research 段（已有） |
+| docs/roadmap/ | 周级以上路线图 | devlead, product-owner | 目录级链接 |
+| docs/audits/ | check3 复核档案 | qa-agent, devlead | 情报流段（已有） |
+| docs/design/ | trinity-comm 架构、herdr 集成等设计单源 | architect-agent | 目录级链接 |
+| skills/（497 技能） | 技能真相源 + 分发机制 | all_seats | Registry skills 段（指针登记） |
+
+## 上下游
+
+- 上游：AS docs 各集合（真相）· swarm-radar/weekly-digest/check3（情报流生产）
+- 下游：`/intel/index.html`（site 展示）· schema intel_feeds 投喂 · 数字总部 Registry
+
+> **总部入口** · 本集合已登记数字总部 Registry（id: `originflow-intel`）
+> 总览视图: `OriginFlow/site/hq/index.html` · 域模型: `OriginForce/docs/digital-hq-domain-model-v1.md` · 版式: `knowledge-overview-spec v1.0`

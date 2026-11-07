@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>总部 · NeoMachine 数字公司</title><style>/* hq.css — NeoMachine site 共享样式组件 (数字总部 Published Language 的呈现面)
+   真相源: 本文件。gen_site.py / gen_hq_registry.py 生成时读入并内联, 产物保持自包含单文件。
+   tokens 沿 site-architecture.md §3.2 oklch 设计系统, 与 site.zenlearning.cn 同源。 */
+:root{--bg:oklch(0.17 0.012 232);--surface:oklch(0.205 0.013 232);--fg:oklch(0.93 0.006 200);--muted:oklch(0.66 0.014 220);--accent:oklch(0.82 0.14 168);--border:oklch(0.30 0.015 225);--serif:Georgia,"Noto Serif SC",serif;--sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"SF Mono",Menlo,Consolas,monospace;--maxw:1160px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.65}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--border)}header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px}
+.brand{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--fg)}
+nav a{margin-left:18px;color:var(--muted);font-size:14px}nav a.on,nav a:hover{color:var(--accent)}
+h1{font-family:var(--serif);font-size:42px;margin:44px 0 10px;letter-spacing:.01em}
+h2{font-family:var(--serif);font-size:24px;margin:44px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.lede{color:var(--muted);font-size:16px;max-width:720px}
+.grid{display:grid;gap:14px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:820px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.card h3{margin:0 0 6px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:13.5px}
+.tag{display:inline-block;font-family:var(--mono);font-size:11.5px;color:var(--accent);border:1px solid var(--border);border-radius:99px;padding:1px 9px}
+.tag.tool{color:var(--fg);border-style:dashed}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:500;font-size:12px}.mono{font-family:var(--mono);font-size:13px}
+.stats{display:flex;gap:32px;margin:26px 0 0;flex-wrap:wrap}.stat b{font-family:var(--mono);font-size:26px;color:var(--accent);display:block}.stat span{color:var(--muted);font-size:13px}
+.cta{margin:22px 0 0;display:flex;gap:12px;flex-wrap:wrap}.cta a{border:1px solid var(--border);background:var(--surface);border-radius:8px;padding:8px 18px;font-size:14px}.cta a:hover{border-color:var(--accent);text-decoration:none}
+.todo{border:1px dashed var(--border);border-radius:10px;padding:38px;text-align:center;color:var(--muted);margin-top:16px}footer{margin:56px 0 30px;padding-top:14px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px}
+.ev{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13.5px}.ev time{font-family:var(--mono);color:var(--muted);white-space:nowrap}.ev .src{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+</style></head>
+<body><header><div class="wrap"><a class="brand" href="/">NeoMachine 数字公司</a><nav><a href="/index.html">门户</a><a href="/hq/index.html" class=on>总部</a><a href="/dashboard.html">总控台</a><a href="/team/index.html">名册</a><a href="/intel/index.html">情报</a><a href="/cases/index.html">案例</a></nav></div></header>
+<main class="wrap"><h1>数字总部</h1>
+<p class="lede">组织资产的注册、路由与呈现中枢（Registry of Record）· OriginFlow 内 Bounded Context · 只登记真相位置，永不复制资产内容。</p>
+<div class="cta"><a href="/dashboard.html">总控台</a><a href="/intel/index.html">情报</a><a href="https://github.com/">域模型</a></div>
+<div class="stats"><div class="stat"><b>4</b><span>项目</span></div>
+<div class="stat"><b>9</b><span>知识库集合</span></div>
+<div class="stat"><b>2</b><span>任务指针源</span></div>
+<div class="stat"><b>6</b><span>外部 Feed</span></div>
+<div class="stat"><b>9/9</b><span>总览合规 (I4)</span></div></div>
+<h2>项目 · Registry projects</h2><div class="grid g3"><div class="card"><h3><span class="tag">L2</span> originforce</h3><p>组织契约仓（schema/生成器契约/漂移检测）</p><p class="mono">docs/INDEX.md</p></div><div class="card"><h3><span class="tag">L5</span> originflow</h3><p>集成层（数字总部 BC 宿主：生成器/site/桥）</p><p class="mono">README.md</p></div><div class="card"><h3><span class="tag">L3</span> agentswarm</h3><p>治理层（提案 FSM/门禁/技能真相源/MCP 接入面）</p><p class="mono">README.md</p></div><div class="card"><h3><span class="tag">L1</span> zenswarm</h3><p>执行层（任务实体/git 权威/loop2green）</p><p class="mono">README.md</p></div></div>
+<h2>知识库集合 · Registry knowledge</h2><div class="grid g3"><div class="card"><h3>originforce-docs</h3><p class="mono">originforce/docs/</p><p>all_seats</p></div><div class="card"><h3>originforce-agents</h3><p class="mono">originforce/agents/</p><p>ceo · devlead · product-owner</p></div><div class="card"><h3>originflow-adr</h3><p class="mono">originflow/docs/adr/</p><p>architect-agent · devlead · solution-expert</p></div><div class="card"><h3>originflow-cases</h3><p class="mono">originflow/docs/cases/</p><p>all_seats</p></div><div class="card"><h3>originflow-design</h3><p class="mono">originflow/docs/design/</p><p>architect-agent · frontend-agent · devlead</p></div><div class="card"><h3>originflow-intel</h3><p class="mono">originflow/docs/intel/</p><p>all_seats</p></div><div class="card"><h3>originflow-architecture</h3><p class="mono">originflow/docs/architecture/</p><p>architect-agent · devlead</p></div><div class="card"><h3>originflow-generated</h3><p class="mono">originflow/docs/generated/</p><p>monitor-agent · devlead</p></div><div class="card"><h3>agentswarm-research</h3><p class="mono">agentswarm/docs/research/</p><p>architect-agent · solution-expert · pm-agent</p></div></div>
+<h2>任务指针 · 不落状态 (I3)</h2><div class="ev"><time class="mono">zenswarm</time><span class="src">[指针]</span><span>.team/tasks/*.toml · 实时查询: OriginFlow/scripts/dashboard_data.py</span></div><div class="ev"><time class="mono">agentswarm-proposals</time><span class="src">[指针]</span><span>swarm.db proposals 表 · 实时查询: AgentSwarm MCP (swarm_proposals_list)</span></div>
+<h2>技能 · Registry skills</h2><div class="grid g3"><div class="card"><h3>技能真相源 <span class="tag">agentswarm-skills</span></h3><p class="mono">AgentSwarm/skills/ → ~/.agents/skills + ~/.zcode 镜像</p></div><div class="card"><h3>hq-hq-connect</h3><p class="mono">skills/hq-connect.yaml</p></div><div class="card"><h3>hq-hq-register</h3><p class="mono">skills/hq-register.yaml</p></div><div class="card"><h3>hq-hq-sync</h3><p class="mono">skills/hq-sync.yaml</p></div><div class="card"><h3>hq-hq-overview</h3><p class="mono">skills/hq-overview.yaml</p></div></div>
+<h2>外部 Feed · 指南宇宙知识库打通 (I5)</h2><div class="grid g3"><div class="card"><h3>源力觉醒智能科技 <span class="tag tool">both</span></h3><p class="mono"><a href="https://tagverse.feishu.cn/wiki/OvMzwIo9LiLDHVk0RkfcNZ3xnYc">数字总部镜像节点 ↗</a></p><p>「数字总部」轻索引节点（2026-11-03 建，reports 策略落地）</p></div><div class="card"><h3>指南宇宙管理 <span class="tag tool">inbound</span></h3><p class="mono">space 7172939782706724892</p><p></p></div><div class="card"><h3>AI 前沿研究院 <span class="tag tool">inbound</span></h3><p class="mono">space 7680927371498671049</p><p></p></div><div class="card"><h3>大模型公理体系研究 <span class="tag tool">inbound</span></h3><p class="mono">space 7680097780039207883</p><p>与 DesignCanon 公理库相邻（方法论供给侧）</p></div><div class="card"><h3>OPC 创业操作系统 <span class="tag tool">inbound</span></h3><p class="mono">space 7687284685298224056</p><p></p></div><div class="card"><h3>指南宇宙开发 <span class="tag tool">inbound</span></h3><p class="mono">space 7269247519245287428</p><p></p></div></div>
+<h2>Feed 候选 · 按需后补</h2><div class="grid g3"></div>
+<h2>聚合不变量</h2><p class="lede">每个 Asset 恰有一个 TruthSource 且可解析 · 全资产禁复制内容进总部（tool_layer=true 为加强特例：纯链接卡） · TaskPointer 不落状态，实时查询 · 每个登记 Collection 必有合规 overview_index（knowledge-overview-spec） · I5 Feed 不搬运（v1.1）</p>
+<footer>gen_site.py 生成 · 2026-11-04 06:07 · NeoMachine 六层体系 · 数据源 schema v2.0 / ZS git / drift</footer>
+</main></body></html>
