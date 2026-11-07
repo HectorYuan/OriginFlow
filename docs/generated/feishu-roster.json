@@ -1,6 +1,6 @@
 {
   "generated_from": {
-    "schema_content_hash": "8c990d0e2184f7ca",
+    "schema_content_hash": "d6e6ed2e4271c5fe",
     "source": "OriginForce/docs/team-schema.yaml"
   },
   "roster": [
@@ -310,6 +310,10 @@
         "技能注册": {
           "table_id": "tblVOg5m0SLoZGch"
         },
+        "提案看板": {
+          "note": "园区 C1 新建 (2026-11-03) — AS proposals 活跃子集镜像, 数据同步 C2; 状态枚举 created/reviewing/approved/landed/rejected",
+          "table_id": "tblwZjpR20lb39tt"
+        },
         "项目台账": {
           "link字段": [
             "负责席位 (link)→成员名册 v3"
@@ -326,11 +330,65 @@
         "在役席位(grid, 筛选=active)"
       ]
     },
-    "bindings": [],
+    "bindings": [
+      {
+        "kind": "wiki_space",
+        "note": "源力觉醒智能科技 = 数字组织园区 (agent 写入唯一许可区; 人类空间只读)",
+        "ref": "7697589956734110963"
+      },
+      {
+        "campus_folder": "PyUKf5r4sldfS1dg9lVceGHjnAh",
+        "kind": "drive_skill_tree",
+        "skills_folder": "J2tbfXYJIlj7H6d6FEQcQ36XnQb",
+        "sync_script": "OriginFlow/scripts/sync_skills_to_feishu.py",
+        "synced": [
+          "hq-connect",
+          "hq-register",
+          "hq-sync",
+          "hq-overview"
+        ],
+        "synced_at": "2026-11-04"
+      },
+      {
+        "campus": [
+          {
+            "node": "OvMzwIo9LiLDHVk0RkfcNZ3xnYc",
+            "role": "总览轻索引",
+            "title": "数字总部"
+          },
+          {
+            "node": "MZp1wCiILipTTrkUV4FcsmLEnBf",
+            "role": "提案看板+漂移告警目录",
+            "title": "治理中心"
+          },
+          {
+            "node": "Kf2SwPVnBiG2a7kuy5icfwDFnyF",
+            "role": "漂移告警唯一飞书出口",
+            "title": "└ 🚨 漂移告警中心"
+          },
+          {
+            "node": "TNoqw1hf9iuseYkzjbZckU8En5g",
+            "role": "任务流水目录",
+            "title": "执行看板"
+          },
+          {
+            "node": "PzHVwzwmoi6iF8kcucScgh2lnce",
+            "role": "radar/research 归档 (C2)",
+            "title": "情报站"
+          },
+          {
+            "node": "SSunwIe3aiFPEvkrlRZc1L23nOb",
+            "role": "成员名册目录",
+            "title": "名册"
+          }
+        ],
+        "kind": "wiki_nodes"
+      }
+    ],
     "brand": "源力觉醒 (SourceForce)",
     "lark_app_id": "cli_aaac3e0c03a31bdf",
     "sync_policies": {
-      "reports": "OriginFlow→飞书 doc (报告落知识库)",
+      "reports": "OriginFlow→飞书 doc 报告落知识库 (已落地首个=数字总部轻索引节点 hq_mirror)",
       "roster": "originforce→feishu 单向推送 (sync_team_schema.py)",
       "tasks": "飞书任务→ZS 单向导入 (OriginFlow 转换, 人在飞书派活)"
     },
