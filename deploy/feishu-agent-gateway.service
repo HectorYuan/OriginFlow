@@ -1,0 +1,19 @@
+# feishu-agent-gateway.service — 飞书事件订阅接收端点 (F4a, 园区方案 §5.5)
+# 部署 (VPS): ① scp OriginFlow/scripts/feishu_agent_gateway.py 到 VPS ~/bin/
+#   ② cp 本文件 ~/.config/systemd/user/ && systemctl --user daemon-reload
+#   ③ systemctl --user enable --now feishu-agent-gateway
+#   ④ nginx server block 加: location /webhook/feishu { proxy_pass http://127.0.0.1:9806; }
+#   ⑤ 开放平台「事件与回调」请求网址 = https://<域名>/webhook/feishu → 添加订阅 im.message.receive_v1
+# 可选 env: FEISHU_BOT_TOKEN (bot ACK 回复; tenant_access_token)
+[Unit]
+Description=Feishu event webhook gateway (NeoMachine F4a)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 %h/bin/feishu_agent_gateway.py --port 9806 --state-dir %h/feishu-gateway-state
+Environment=FEISHU_BOT_TOKEN=
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
