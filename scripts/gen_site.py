@@ -29,7 +29,8 @@ LAYERS = [
 TIER = {"L5": "elite", "L4": "expert", "L3": "specialist", "L2": "consultant", "L1": "utility"}
 ZEN = [("https://site.zenlearning.cn/arch/", "ZenSwarm 组件图 36 页"),
        ("https://site.zenlearning.cn/radar/", "情报雷达"),
-       ("https://site.zenlearning.cn/misc/designcanon/", "DesignCanon 347 公理")]
+       ("https://site.zenlearning.cn/misc/designcanon/", "DesignCanon 347 公理"),
+       ("https://site.zenlearning.cn/misc/env-decoupling-report-20261109.html", "环境闸战役最终报告")]
 
 _CSS_FALLBACK = """:root{--bg:oklch(0.17 0.012 232);--surface:oklch(0.205 0.013 232);--fg:oklch(0.93 0.006 200);--muted:oklch(0.66 0.014 220);--accent:oklch(0.82 0.14 168);--border:oklch(0.30 0.015 225);--serif:Georgia,"Noto Serif SC",serif;--sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;--mono:"SF Mono",Menlo,Consolas,monospace;--maxw:1160px}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.65}
