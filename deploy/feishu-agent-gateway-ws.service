@@ -1,0 +1,16 @@
+# feishu-agent-gateway-ws.service — 飞书长连接事件网关 (本机, 无需公网)
+# 前置: 开放平台把事件订阅方式切换为「使用长连接接收事件」+ 订阅 im.message.receive_v1 + 发布
+# 凭证: ~/.feishu-gateway.env 内容两行:
+#   FEISHU_APP_ID=cli_aaac3e0c03a31bdf
+#   FEISHU_APP_SECRET=<开放平台「凭证与基础信息」页复制>
+[Unit]
+Description=Feishu WS long-conn gateway (NeoMachine F4a)
+After=network-online.target
+
+[Service]
+ExecStart=/home/hector/DevSpace/OriginFlow/.venv-ws/bin/python3 /home/hector/DevSpace/OriginFlow/scripts/feishu_agent_gateway_ws.py --secret-file %h/.feishu-gateway.env
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
