@@ -21,7 +21,10 @@
     "zs_agent_toml": "ZenSwarm/.team/agents/ceo.toml"
   },
   "skills": [
-    "code"
+    "decide",
+    "orchestrate",
+    "release",
+    "report"
   ],
   "status": "active",
   "team": "brand:originforce"

@@ -74,6 +74,9 @@ ZS_CAPABILITIES: dict[str, list[str]] = {
     "system-navigator": ["route"],
     "principle-check": ["audit"],
     "solution-expert": ["consult", "design", "proposal"],
+    "ceo": ["decide", "orchestrate", "release", "report"],
+    "ops-agent": ["operate", "monitor", "deploy"],
+    "docs-agent": ["write", "organize", "archive"],
 }
 ZS_DEFAULT_CAPABILITIES = ["code"]
 
