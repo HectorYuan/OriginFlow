@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 import tomllib
 from pathlib import Path
@@ -481,6 +482,30 @@ def check_memory_limits(members: list[dict]) -> None:
             warn(f"成员 {aid} MEMORY.md {sz}B 超 WARN 阈值 {MEMORY_WARN_BYTES}B")
 
 
+def check_hq_registry() -> None:
+    """第 14 类: 数字总部 Registry 不变量 (F1-F5)。
+
+    复用 check_hq_registry.py 单源检查逻辑 (truth_source 可解析 / overview 可渲染 /
+    id 匹配 / 总部回链块)。ERROR → err；该脚本自身 rc 非零也计 err（防漂移复发）。
+    """
+    checker = Path(__file__).resolve().parent / "check_hq_registry.py"
+    if not checker.exists():
+        warn(f"check_hq_registry.py 缺失: {checker} (无法执行第14类检查)")
+        return
+    try:
+        rc = subprocess.run(
+            [sys.executable, str(checker)], capture_output=True, text=True, timeout=60
+        )
+    except Exception as exc:
+        err(f"第14类 hq_registry 检查异常: {exc}")
+        return
+    if rc.returncode != 0:
+        for line in (rc.stdout or "").splitlines():
+            line = line.strip()
+            if line.startswith("-"):
+                err(f"hq_registry: {line.lstrip('- ')}")
+
+
 def notify_feishu_drift(errors: list[str]) -> None:
     """留接口 (S4): drift ERROR 推送飞书 wiki 漂移告警中心（schema alert_target）。"""
     return None
@@ -505,6 +530,7 @@ def main() -> int:
     check_bindings_integrity(members, bindings)
     check_feishu_roster(schema)
     check_memory_limits(members)
+    check_hq_registry()
     notify_feishu_drift(ERRORS)
 
     for w in WARNS:
